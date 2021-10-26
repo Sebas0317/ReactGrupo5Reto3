@@ -2,7 +2,7 @@ import React from "react";
 import Card from "./foodCard";
 import { Button } from "react-bootstrap";
 import "./bestFood.css";
-import food from "./assets/bestfood.jpeg";
+import food from "../assets/bestfood.jpeg"
 
 class recomendaciones extends React.Component {
     render() {

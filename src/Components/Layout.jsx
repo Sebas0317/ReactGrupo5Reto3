@@ -6,9 +6,9 @@ function Layout(props) {
   return (
     <>
       <div className="PaginaContenedor">
-       {/* <Header /> */}
+       <Header />
         <div className="PaginaContenido">{props.children}</div>
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </>
   );

@@ -1,7 +1,6 @@
 import React from "react";
 import "./ourPurpose.css";
-import fondo from "./assets/foto1.png"
-import fondo2 from "./assets/foto2.png"
+import fondo2 from "../assets/foto2.png"
 class nosotros extends React.Component {
     render() {
         return (
