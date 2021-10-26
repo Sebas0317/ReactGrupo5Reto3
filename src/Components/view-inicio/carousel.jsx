@@ -1,7 +1,7 @@
 import React from "react";
 import { Carousel } from "react-bootstrap";
 import './principalCarousel.css';
-import fotoc from "./assets/foto1.png";
+import fotoc from "./Components/assets/foto1.png";
 import logo from "./assets/logo.png";
 
 class carousel extends React.Component {

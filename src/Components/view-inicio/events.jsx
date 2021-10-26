@@ -1,10 +1,10 @@
 import React from "react";
 import Card from "./eventCards";
 import "./events.css"
-import ico1 from "./assets/ico1.png"
-import ico2 from "./assets/ico2.png"
-import ico3 from "./assets/ico3.png"
-import ico4 from "./assets/ico4.png"
+import ico1 from "./Components/assets/ico1.png"
+import ico2 from "./Components/assets/ico2.png"
+import ico3 from "./Components/assets/ico3.png"
+import ico4 from "./Components/assets/ico4.png"
 
 class Eventos extends React.Component {
     render() {
