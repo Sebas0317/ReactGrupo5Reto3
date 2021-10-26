@@ -1,0 +1,112 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: "Branding";
+    src: url("../../fonts/branding-sf-cmp-bold-webfont.woff");
+}
+
+.form-register {
+    width: 400px;
+    padding: 30px;
+    margin: auto;
+    margin-top: 100px;
+    border-radius: 4px;
+}
+
+.parrafo .titulo {
+    font-size: 6rem;
+    font-family: "Branding";
+    margin-bottom: 55px;
+    color: #4f2c38;
+}
+
+.controls {
+    width: 100%;
+    background: #D6D6D6;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    border: 1px solid #4f2c38;
+    font-size: 18px;
+    color: black;
+}
+
+.form-register p {
+    height: 40px;
+    text-align: center;
+    font-size: 18px;
+    line-height: 40px;
+}
+
+.form-register a {
+    color: black;
+    text-decoration: none;
+}
+
+.form-register a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.form-register.botons {
+    width: 100%;
+    background: #1f53c5;
+}
+
+.contenedor {
+    height: 100%;
+    margin: 5rem auto;
+    text-align: center;
+    width: 900px;
+    font-family: 'Calibri';
+}
+
+.formulario {
+    height: 100%;
+    width: 40%;
+    background: fixed;
+    float: right;
+}
+
+.parrafo {
+    height: 100%;
+    width: 40%;
+    background: fixed;
+    float: left;
+    text-align: justify;
+    color: #4f2c38;
+}
+
+.botons {
+    font-size: 15px;
+    border-radius: 8px;
+    display: inline-block;
+    padding: 15px 50px;
+    text-decoration: none;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3)
+}
+
+.btn-color {
+    color: white;
+    background-color: #FB5502;
+}
+
+.btn-color:hover {
+    background-color: #FE2A00;
+}
+
+.btn-color:active {
+    background-color: #FE2A00;
+}
+
+@media screen and (max-width: 600px) {
+    .contenedor{
+        display: grid;
+          grid-template-columns: 1fr 2fr;
+          column-gap: 5%;
+    }
+}

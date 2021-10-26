@@ -16,7 +16,7 @@ class Navbar extends Component {
             </Link>
           </div>
           <div className="nav-link text-light" >
-            <Link to="/">Nosotros</Link>
+            <Link to="/">NOSOTROS</Link>
             <Link to="/Menu">EL MENU</Link>
             <Link to="/">SERVICIOS</Link>
             <Link to="/">RESERVAS</Link>

@@ -7,6 +7,7 @@ import Services_Container from './Components/view-services/Services_Container';
 import Carrito_Container from './Components/view-carrito/Carrito_Container';
 import Contacto from "./Components/contacto";
 import Menu from "./Components/view-menu/Menu";
+import Pagina404 from "./Components/pagina404";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route exact path="/menu" component={Menu} />
         <Route exact path="/Carrito" component={Carrito_Container} />
         <Route exact path="/contacto" component={Contacto}/>
+        <Route exact component={Pagina404}/>
       </Switch>
       </Layout>
     </BrowserRouter>
