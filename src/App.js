@@ -3,13 +3,17 @@ import Layout from "./Components/Layout";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Inicio from "./Components/inicio"
+import Services_Container from './Components/view-services/Services_Container';
+import Carrito_Container from './Components/view-carrito/Carrito_Container';
+
 function App() {
   return (
     <BrowserRouter>
       <Layout>
       <Switch>
         <Route exact path="/inicio" component={Inicio}/>
-        
+        <Route exact path="/Servicios" component={Services_Container} />
+        <Route exact path="/Carrito" component={Carrito_Container} />
       </Switch>
       </Layout>
     </BrowserRouter>

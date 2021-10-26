@@ -1,0 +1,173 @@
+@font-face {
+    font-family:'Branding';
+    src: url('../../fonts/branding-sf-cmp-bold-webfont.woff');
+}
+
+main {
+    color: #4F2634;
+}
+
+main .row{
+    padding: 0;
+    margin: 0;
+}
+
+.header-car{
+    padding-top: 100px;
+    padding-bottom: 20px;
+}
+
+.title-car {
+    font-size: 5rem;
+    font-family:'Branding';
+}
+
+.buy-car{
+    text-align: center;
+    justify-content: center;
+    font-family:'Branding';
+}
+
+.buy-car a{
+    width: 255px;
+    color: white;
+    font-size: 1.3rem;
+    border-radius: 8px;
+    background-color: #FF3B04;
+}
+.buy-car:hover , .target-car:hover{ color: #59313c; }
+  
+.menu-car .price-car , .pay-car .price-car{
+    margin-left: auto;
+}
+
+.menus-car .text-car{
+    padding: 10px 0px;
+    text-align: justify;
+    font-family: Calibri;
+}
+
+.menu-car a {
+    border: none;
+    color: white;
+    background-color: #ff3c04;
+}
+
+.img-car {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+  
+.img-car img {
+    width: 100%;
+    height: auto;
+}
+
+@supports(object-fit: cover) {
+    .img-car img {
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+    }
+}
+
+.target-car{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.pay-car{
+    width: 70%;
+    padding: 30px;
+    border-radius: 10px;
+    font-family:'Branding';
+    background-color: #dedfd9;
+}
+
+.pay-car button{
+    width: 100%;
+    color: white;
+    margin-top: 30px;
+    font-size: 1.3rem;
+    border-radius: 8px;
+    background-color: #FF3B04;
+}
+
+.botones-car{
+    display: flex;
+    align-items: center;
+}
+
+.valor-car{
+    padding: 10px;
+    line-height: 10px;
+    font-weight: bold;
+    margin: 0px 4px 0px 4px;
+    border: 1px solid #000;
+}
+
+.botones-car .buttonMenos-car{
+    padding: 10px;
+    border: none;
+    padding-right: 5px;
+    background-color: transparent;
+}
+
+.botones-car .buttonMas-car{
+    border: none;
+    padding: 0px;
+    background-color: transparent;
+}
+
+.botones-car .btnMenos-car{
+    width: 13px;
+    height: 3px;
+    cursor: pointer;
+    background-color: #000;
+}
+
+.botones-car img{
+    width: 26px;
+    margin: 0px;
+    cursor: pointer;
+}
+
+/* MODAL */
+
+.modal-title{
+    font-size: 40px;
+    font-family:'Branding';
+}
+
+.modal-body{
+    font-family: Calibri;
+}
+
+.modal-footer input, .modal-footer button{
+    width: 20%;
+    color: white;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    font-family:'Branding';
+    background-color: #FF3B04;
+}
+
+/* VALIDACION */
+
+.valEmail-car{
+    display: none;
+    color: #f00;
+}
+.valName-car{
+    display: none;
+    color: #f00;
+}
+
+
+
+
+.menus-car h1{
+    font-family:'Branding';
+}

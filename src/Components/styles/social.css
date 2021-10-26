@@ -1,0 +1,10 @@
+.social {
+  right: 0;
+  width: 2rem;
+  color: white;
+  position: fixed;
+  cursor: pointer;
+  margin-left: auto;
+  text-align: center;
+  background-color: #ff3c04;
+}
