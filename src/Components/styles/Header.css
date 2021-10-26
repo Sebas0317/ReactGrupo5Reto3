@@ -1,0 +1,47 @@
+.navbar-index {
+	background-color: rgba(0, 0, 0, 0.6);
+	display: flex;
+	position: fixed;
+	width: 100%;
+	z-index: 100;
+    top:0px;
+    align-items: center;
+	justify-content: flex-end;
+	padding: 15px;
+    margin:0px;
+	font-family:  Calibri, sans-serif;
+	font-weight: bold;
+}
+
+.navbar-index div {
+	margin: 0px;
+	padding: 0px;
+}
+
+.imgCar{
+	width: 30px;
+}
+
+.logo{
+	position: absolute;
+	left: 15px;
+}
+
+.logo img {
+	width: 100px;
+}
+
+.navbar-index a {
+	margin: 0px;
+	padding: 0px;
+	margin-right: 65px;
+	color: white;
+	text-decoration: none;
+}
+a.nav-link:hover { 
+	color: #4F2634 !important;
+}
+
+.carrito a {
+	margin: 0px;
+}
