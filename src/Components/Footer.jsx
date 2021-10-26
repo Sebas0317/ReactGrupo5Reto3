@@ -15,10 +15,10 @@ class Footer extends Component {
               <a href="javascript:mostrarMapaSitio();"> MAPA DEL SITIO</a>
             </li>
             <li>
-              <a href="html/contacto.html"> CONTACTANOS</a>
+              <a href="/contacto"> CONTACTANOS</a>
             </li>
             <li>
-              <a href="html/reservas.html"> RESERVAS</a>
+              <a href="/reserva"> RESERVAS</a>
             </li>
           </div>
           <div id="contactos">
