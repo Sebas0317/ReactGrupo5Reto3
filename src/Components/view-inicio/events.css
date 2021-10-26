@@ -1,13 +1,9 @@
 .contenedor-eventos{
-    background-image: url(../assets/foto3.png);
+    background-color: orange;
     display: grid;
     grid-template-columns: repeat(4, 1fr);      
 }
 
-.contenedor-eventos img{
-    justify-content: center;
-    align-items: center;
-}
 @media (max-width: 1080px) {
     .contenedor-eventos{
         grid-template-columns: 1fr;
