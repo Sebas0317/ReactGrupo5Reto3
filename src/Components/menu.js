@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
+import MenuP from './view-menu/Menu'
 
-export default class menu extends Component {
+ class Menu extends Component {
     render() {
         return (
             <>
-                
+                <MenuP/>
             </>
         )
     }
 }
+
+export default Menu;

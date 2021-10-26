@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import logo from "./assets/logo1.png"
 import carrito from "./assets/carrito.svg"
-import inicio from "./inicio";
+import Inicio from "./inicio";
+import Menu from "./menu"
 
 class Navbar extends Component {
   render() {
@@ -10,13 +11,13 @@ class Navbar extends Component {
       <div>
         <div className="navbar-index">
           <div className="logo">
-            <Link to="/inicio">
+            <Link to="/Inicio">
               <img src={logo} alt="" />
             </Link>
           </div>
           <div className="nav-link text-light" >
             <Link to="/">Nosotros</Link>
-            <Link to="/">EL MENU</Link>
+            <Link to="/Menu">EL MENU</Link>
             <Link to="/">SERVICIOS</Link>
             <Link to="/">RESERVAS</Link>
           </div>

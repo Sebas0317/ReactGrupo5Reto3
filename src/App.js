@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Inicio from "./Components/inicio"
 import Services_Container from './Components/view-services/Services_Container';
 import Carrito_Container from './Components/view-carrito/Carrito_Container';
+import Menu from "./Components/view-menu/Menu";
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
       <Layout>
       <Switch>
         <Route exact path="/inicio" component={Inicio}/>
-        <Route exact path="/Servicios" component={Services_Container} />
+        <Route exact path="/menu" component={Menu} />
         <Route exact path="/Carrito" component={Carrito_Container} />
       </Switch>
       </Layout>

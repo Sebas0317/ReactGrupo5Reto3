@@ -5,7 +5,7 @@ import "./inicio.css"
 import Recomendaciones from "./view-inicio/bestFood"
 import Eventos from "./view-inicio/events"
 import Comentarios from './view-inicio/commentaries'
-class inicio extends Component {
+class Inicio extends Component {
     render() {
         return (
             <>
@@ -19,4 +19,4 @@ class inicio extends Component {
     }
 }
 
-export default inicio;
+export default Inicio;
