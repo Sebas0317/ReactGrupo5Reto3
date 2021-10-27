@@ -1,0 +1,39 @@
+.contenedorReserva{
+	display:flex;
+	padding:5% 5px;
+	justify-content:center;
+	align-items:center;
+	flex-direction:column;
+}
+.contenedorReserva h2 {
+	color: #310101;
+	font-size: 43px;
+}
+
+.formReserva{
+	display:flex;
+	flex-direction:column;
+	width:65%;
+	padding:2% 15%;
+	background-color:#E5E5E5;
+}
+
+.formReserva input {
+	padding: 4px;
+	border-radius: 3px;
+	border: 1px solid #fff;
+	outline: none;
+}
+.formReserva input:focus{
+	outline: 1px solid #6E6D6D;
+}
+
+.label{
+	width:50%;
+}
+.espacio{
+	height:10px;
+}
+.inputLargo{
+	width:50%;
+}

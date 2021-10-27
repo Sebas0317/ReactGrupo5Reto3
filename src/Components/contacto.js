@@ -3,9 +3,9 @@ import "./styles/contacto.css";
 
 export default function Contacto (){
 	return (
-		<div>
-		<div class="parrafo">
-        <p class="titulo">Contáctanos</p>
+		<div className="contenedor">
+		<div className="parrafo">
+        <p className="titulo">Contáctanos</p>
         <p>
           Simplemente el texto de relleno de las imprentas y archivos de texto.
           Lorem Ipsum ha sido el texto de relleno estándar de las industrias
@@ -20,31 +20,11 @@ export default function Contacto (){
           incluye versiones de Lorem Ipsum.
         </p>
       </div>
-      <div class="formulario">
-        <section class="form-register">
+      <div className="formulario">
+        <section className="form-register">
           <form method="post" action="#">
-            <select class="controls">
-              <option selected disabled>Seleccione un valor</option>
-              <option>Celebracion de cumpleaños</option>
-              <option>Aniversarios</option>
-              <option>Fiestas infantiles</option>
-              <option>Declaraciones o propuestas</option>
-              <option>Despedidas</option>
-              <option>Cena con amigos</option>
-            </select>
-            <input
-              class="controls"
-              minlength="5"
-              maxlength="20"
-              type="text"
-              name="asunto"
-              id="nombres"
-              placeholder="Asunto"
-              required=""
-              pattern="[a-zA-Z]+"
-            />
-            <input
-              class="controls"
+             <input
+              className="controls"
               minlength="3"
               maxlength="40"
               type="text"
@@ -54,8 +34,8 @@ export default function Contacto (){
               required=""
               pattern="[a-zA-Z]+"
             />
-            <input
-              class="controls"
+             <input
+              className="controls"
               minlength="5"
               maxlength="20"
               type="email"
@@ -64,8 +44,28 @@ export default function Contacto (){
               placeholder="Correo electronico"
               required=""
             />
+            <input
+              className="controls"
+              placeholder="Telefono"
+            />
+            <input
+              className="controls"
+              minlength="5"
+              maxlength="20"
+              type="text"
+              name="asunto"
+              id="nombres"
+              placeholder="Asunto"
+              required=""
+              pattern="[a-zA-Z]+"
+            />
+            <select className="controls">
+              <option selected disabled>Tipo de mensaje</option>
+              <option>Comentario</option>
+              <option>Solicitud</option>
+            </select>
             <textarea
-              class="controls"
+              className="controls"
               minlength="5"
               maxlength="50"
               name="textoArea"
@@ -76,7 +76,7 @@ export default function Contacto (){
             <input type="checkbox" name="terminos" required=""/>
               <label for="terminos"> Acepta terminos y condiciones</label
             >
-            <input class="botons btn-color" type="submit" value="Registrar" />
+            <input className="botons btn-color" type="submit" value="Registrar" />
           </form>
         </section>
       </div>
