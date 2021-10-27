@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import "./styles/reserva.css";
+import Modal from "./modal";
 
 export default function Reserva() {
 	let button = document.querySelector(".btnReserva");
@@ -38,6 +39,8 @@ export default function Reserva() {
 			nameInput.style.border="1px solid #fff"
 			if (validar == true){
 				nameInput.style.border="1px solid #C42424"
+				nameMensaje.style.opacity="1";
+				nameMensaje.textContent="Rellena este campo."
 			}
 			return false
 		}
@@ -59,7 +62,7 @@ export default function Reserva() {
 					return true
 				} else {
 					telInput.style.border="1px solid #C42424";
-					telMensaje.textContent="Ingresa un numero verdadero.";
+					telMensaje.textContent="Ingresa un numero de telefono verdadero.";
 					telMensaje.style.opacity="1"
 				}
 			} else {
@@ -73,7 +76,9 @@ export default function Reserva() {
 			telInput.style.outline="";
 			telInput.style.border="1px solid #fff"
 			if (validar == true){
-				telInput.style.border="1px solid #C42424";	
+				telInput.style.border="1px solid #C42424";
+				telMensaje.textContent="Rellena este campo";
+				telMensaje.style.opacity="1"	
 			}
 			return false
 		}
@@ -103,6 +108,8 @@ export default function Reserva() {
 			emailInput.style.border="1px solid #fff";
 			if(validar == true){
 				emailInput.style.border="1px solid #C42424"
+				emailMensaje.style.opacity="1"
+				emailMensaje.textContent="Rellena este campo."
 			}
 			return false
 		}
@@ -138,6 +145,8 @@ export default function Reserva() {
 			personasInput.style.border="1px solid #fff"
 			if (validar == true){
 				personasInput.style.border="1px solid #C42424"
+				personasMensaje.textContent="Rellena este campo."
+				personasMensaje.style.opacity="1"
 			}
 			return false
 		}
@@ -147,6 +156,7 @@ export default function Reserva() {
 	//VALIDANDO FECHA
 	function validarFecha (validar){
 		let fechaInput = document.querySelector(".fecha");
+		let fechaMensaje = document.querySelector(".fechaVal");
 		if (fecha.length != 0) {
 			let fechaActual = new Date();
 			let obtenerAño = fecha.at(0) + fecha.at(1) + fecha.at(2) + fecha.at(3);
@@ -155,19 +165,27 @@ export default function Reserva() {
 
 			if (obtenerAño < fechaActual.getFullYear()){
 				fechaInput.style.border="1px solid #C42424"
+				fechaMensaje.style.opacity="1";
+				fechaMensaje.textContent="El año que seleccionaste ya paso.";
 			} else {
 				if (obtenerAño == fechaActual.getFullYear()) {
 					if (obtenerMes < fechaActual.getMonth()+1) {
 						fechaInput.style.border="1px solid #C42424"
+						fechaMensaje.style.opacity="1";
+						fechaMensaje.textContent="El mes que seleccionaste ya paso.";
 					} else {
 						if (obtenerMes == fechaActual.getMonth()+1) {
 							if (obtenerDia < fechaActual.getDate()) {
 								fechaInput.style.border="1px solid #C42424"
+								fechaMensaje.style.opacity="1";
+								fechaMensaje.textContent="El dia que seleccionaste ya paso.";
 							} else {
+								fechaMensaje.style.opacity="0";
 								fechaInput.style.border="1px solid #4BD142"
 								return true
 							}
 						} else {
+							fechaMensaje.style.opacity="0";
 							fechaInput.style.border="1px solid #4BD142"
 							return true		
 						}
@@ -183,11 +201,15 @@ export default function Reserva() {
 			fechaInput.style.border="1px solid #fff"
 			if (validar == true) {
 				fechaInput.style.border="1px solid #C42424"
+				fechaMensaje.style.opacity="1";
+				fechaMensaje.textContent="Rellena este campo.";
 			}
 			return false
 		}
 	}
 
+
+	//VALIDAR SERVICIOS
 	function validarServicio(validar){
 		let servicioInput = document.querySelector(".servicioCont");
 		if (servicio.length == 0) {
@@ -223,15 +245,21 @@ export default function Reserva() {
 	}
 
 
+	//VALIDAR CHECKBOX
 		function validarCheckbox(validar){
 			let checkboxInput = document.querySelector(".checkboxContenedor");
+			let checkboxMensaje = document.querySelector(".checkboxVal");
 			if (checkbox === true) {
 				checkboxInput.style.border="1px solid #E5E5E5";
+				checkboxMensaje.style.opacity="0";
 				return true
 			} else {
 				checkboxInput.style.border="1px solid #E5E5E5";
+				checkboxMensaje.style.opacity="0";
 				if (validar == true) {
 					checkboxInput.style.border="1px solid #C42424";
+					checkboxMensaje.style.opacity="1";
+					checkboxMensaje.textContent="Tienes que confirmar este campo."
 				}
 				return false
 			}
@@ -249,19 +277,40 @@ export default function Reserva() {
 		validarCheckbox();
 	});
 
+	let [modal, setModal] = useState(false);
 	function validar (e){
 		e.preventDefault();
 		if (validarNombre(true) && validarTel(true) && validarEmail(true) && validarPersonas(true) && validarFecha(true) && validarServicio(true) && validarComentario(true) && validarCheckbox(true)) {
-			alert("Formulario correctoo")
+			// setName("");
+			// setTel("");
+			// setEmail("");
+			// setPersonas("");
+			// setFecha("");
+			// setComentario("");
+			setModal(true);
 		}
+		
 	}
-	
 
 	return (
 		<div className="contenedorReserva">
+			<Modal isVisible={modal} setVisible={()=>setModal(false)} data={
+				<div style={{display:"flex", padding:"20px", flexDirection:"column", width:"50%", backgroundColor:"#310101", color:"#fff"}}>
+					<h3>Bien, Tu reserva quedo asi:</h3>
+					<br/>
+					<div className="infoReserva"><p>Nombre:</p> <b>{name}</b></div>
+					<div className="infoReserva"><p>Numero de contacto:</p> <b>{tel}</b></div>
+					<div className="infoReserva"><p>Correo electronico:</p> <b>{email}</b></div>
+					<div className="infoReserva"><p>Cantidad de personas:</p> <b>{personas}</b></div>
+					<div className="infoReserva"><p>Fecha de la reserva:</p> <b>{fecha}</b></div>
+					<div className="infoReserva"><p>Servicio:</p> <b>{servicio}</b></div>
+					<div className="infoReserva"><p>Indicaciones:</p> <b>{comentario}</b></div>
+				</div>
+			}/>
+
 			<h2>Reservas</h2>
 			<form className="formReserva">
-				<p>Los campos obligatorios estan marcados con un <span>*</span></p>
+				<p>Los campos marcados con un <span>*</span> son obligatorios</p>
 				<div className="nameCont">
 					<p className="nameVal"></p>
 					<input onChange={(e) => setName(e.target.value)} className="name" placeholder="Nombre completo*"/>
@@ -283,8 +332,9 @@ export default function Reserva() {
 					<input className="inputLargo personas" type="number" max="25" min="1" onChange={(e)=>setPersonas(e.target.value)}/>
 				</div>
 				<div className="espacio"/>
-				<div>
+				<div className="fechaCont">
 					<label className="label">Fecha de la reserva<span>*</span></label>
+					<p className="fechaVal"></p>
 					<input className="inputLargo fecha" min="26-10-2021" onChange={(e)=>setFecha(e.target.value)}  type="date"/>
 				</div>
 				<div className="espacio"/>
@@ -292,7 +342,7 @@ export default function Reserva() {
  					<label className="label">Servicio<span>*</span></label>
 					<select className="inputLargo servicio" onChange={(e)=>setServicio(e.target.value)}>
 						<option disabled selected>Selecciona un servicio</option>
-						<option>Celebracion de cumple años</option>
+						<option value="1">Celebracion de cumple años</option>
 						<option>Aniversarios</option>
 						<option>Fiestas infantiles</option>
 						<option>Declaraciones o propuestas</option>
@@ -301,10 +351,11 @@ export default function Reserva() {
 					</select>
 				</div>
 				<div className="espacio"/>
-				<textarea className="comentarioReserva coment" onChange={(e)=>setComentario(e.target.value)} placeholder="Escribe tu comentario y/o solicitud" cols="30" rows="3"/>
+				<textarea className="comentarioReserva coment" onChange={(e)=>setComentario(e.target.value)} placeholder="Escribe indicaciones (opcional)" cols="30" rows="3"/>
 				<div className="espacio"/>
 				<div className="checkboxContenedor"> 
 					<input className="checkbox" onChange={(e)=>setCheckbox(e.target.checked)} type="checkbox"/>
+					<p className="checkboxVal"></p>
 					<label>Acepto la politica de tratamiento de datos<span>*</span></label>
 				</div>
 				<div className="espacio"/>

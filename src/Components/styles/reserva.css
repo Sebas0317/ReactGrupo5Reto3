@@ -48,6 +48,7 @@
 	padding: 5px;
 }
 .checkboxContenedor{
+	position: relative;
 	border: 1px solid #E5E5E5;
 	display: flex;
 	align-items: center;
@@ -144,7 +145,63 @@
 	bottom: 25px;
 	transition: opacity 0.5s;
 }
+
+.fechaCont{
+	display: flex;
+	position: relative;
+}
+.fechaVal{
+	background-color: #E5E5E5;
+	padding: 7px;
+	padding-bottom: 4px;
+	border-radius: 3px;
+	position: absolute;
+	opacity: 0;
+	color: #C42424;
+	top: -65%;
+	right: -1px;
+	transition: opacity 0.5s;
+}
 .servicioCont{
 	border: #E5E5E5;
 	border-radius: 3px;
+}
+
+.checkboxVal{
+	background-color: #E5E5E5;
+	padding: 7px;
+	padding-bottom: 4px;
+	border-radius: 3px;
+	position: absolute;
+	opacity: 0;
+	color: #C42424;
+	bottom: 60%;
+	left: -1px;
+	transition: opacity 0.5s;
+}
+
+.infoReserva{
+	display: flex;
+	align-items: center;
+	color: #000;
+	background-color: #fff;
+	height: 7vh;
+	margin-bottom: 10px;
+}
+.infoReserva p{
+	padding-left: 10px;
+	display: flex;
+	width: 65%;
+	margin-right: 5px;
+	height: 3px;
+}
+.infoReserva b{
+	padding-right: 15px;
+	text-align: right;
+	width: 35%;
+}
+
+.blanco{
+	background-color: #fff;
+	color: #000;
 }
