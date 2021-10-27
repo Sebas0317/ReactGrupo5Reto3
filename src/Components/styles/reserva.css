@@ -6,8 +6,10 @@
 	flex-direction:column;
 }
 .contenedorReserva h2 {
+	font-family: 'Branding';
 	color: #310101;
-	font-size: 43px;
+	font-size: 72px;
+	line-height: 50px;
 }
 
 .formReserva{
@@ -15,7 +17,11 @@
 	flex-direction:column;
 	width:65%;
 	padding:2% 15%;
-	background-color:#E5E5E5;
+	border-radius: 5px;
+	background-color: #E5E5E5;
+}
+.formReserva p {
+	line-height: 5px;
 }
 
 .formReserva input {
@@ -27,13 +33,118 @@
 .formReserva input:focus{
 	outline: 1px solid #6E6D6D;
 }
+.servicio{
+	border-radius: 5px;
+	background-color: #310101;
+	color: #fff;
+	font-weight: bold;
+}
+.formReserva select:focus {
+	outline: 1px solid #6E6D6D;
+}
+.formReserva textarea {
+	border-radius: 5px;
+	border: none;
+	padding: 5px;
+}
+.checkboxContenedor{
+	border: 1px solid #E5E5E5;
+	display: flex;
+	align-items: center;
+}
+.checkbox{
+	cursor: pointer;
+	background-color: #310101;
+	margin-right: 5px;
+}
+.formReserva button {
+	background-color: #310101;
+	color: #fff;
+	border: none;	
+}
+.formReserva button:focus{
+	outline: 1px solid #6E6D6D;
+}
 
+.formReserva textarea:focus {
+	outline: 1px solid #6E6D6D;
+}
+.formReserva span{
+	color: #E92222;
+}
 .label{
-	width:50%;
+	width:45%;
 }
 .espacio{
 	height:10px;
 }
 .inputLargo{
-	width:50%;
+	width:55%;
+}
+
+.nameCont{
+	position: relative;
+}
+.nameVal{
+	position: absolute;
+	opacity: 0;
+	color: #C42424;
+	margin-top: 12px;
+	right: 5px;
+	transition: opacity 0.5s;
+}
+.name{
+	width: 100%;
+}
+
+.telCont{
+	position: relative;
+}
+.telVal{
+	position: absolute;
+	opacity: 0;
+	color: #C42424;
+	margin-top: 12px;
+	right: 5px;
+	transition: opacity 0.5s;
+}
+.tel{
+	width: 100%;
+}
+
+.emailCont{
+	position: relative;
+}
+.emailVal{
+	position: absolute;
+	opacity: 0;
+	color: #C42424;
+	margin-top: 12px;
+	right: 5px;
+	transition: opacity 0.5s;
+}
+.email{
+	width: 100%;
+}
+
+.personasCont{
+	display: flex;
+	position: relative;
+}
+.personasVal{
+	background-color: #E5E5E5;
+	padding: 7px;
+	padding-bottom: 4px;
+	border-radius: 3px;
+	position: absolute;
+	opacity: 0;
+	color: #C42424;
+	margin-top: 12px;
+	right: -9px;
+	bottom: 25px;
+	transition: opacity 0.5s;
+}
+.servicioCont{
+	border: #E5E5E5;
+	border-radius: 3px;
 }

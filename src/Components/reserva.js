@@ -9,105 +9,288 @@ export default function Reserva() {
 	let [email, setEmail] = useState("");
 	let [personas, setPersonas] = useState("");
 	let [fecha, setFecha] = useState("");
+	let [servicio, setServicio] = useState("");
+	let [comentario, setComentario] = useState("");
+	let [checkbox, setCheckbox] = useState("");
 
-	useEffect(()=>{
 
-		//VALIDANDO NOMBRE
+	//VALIDANDO NOMBRE
+	function validarNombre(validar){
 		const valName = new RegExp('^[A-ZÁÉÍÓÚÑ ]+$', 'i');
+		let nameMensaje = document.querySelector(".nameVal");
 		let nameInput = document.querySelector(".name");
 		if (name.length != 0) {
 			nameInput.style.outline="none";
 			if (valName.test(name)){
 				nameInput.style.border="1px solid #4BD142"
+				nameMensaje.textContent="";
+				nameMensaje.style.opacity="0";
+				return true
 			} else {
 				nameInput.style.border="1px solid #C42424"
+				nameMensaje.textContent = "Solo se admiten letras." 
+				nameMensaje.style.opacity="1";
 			}
 		}else {
+			nameMensaje.style.opacity="0";
+			nameMensaje.textContent=""
 			nameInput.style.outline="";
 			nameInput.style.border="1px solid #fff"
+			if (validar == true){
+				nameInput.style.border="1px solid #C42424"
+			}
+			return false
 		}
+	}
 
-		// VALIDANDO TELEFONO
+	
+	// VALIDANDO TELEFONO
+	function validarTel(validar){
 		const valNum = /^[0-9]+$/;
 		let telInput = document.querySelector(".tel");
+		let telMensaje = document.querySelector(".telVal");
 		if (tel.length != 0){
 			telInput.style.outline="none";
 			if (valNum.test(tel)) {
-				telInput.style.border="1px solid #4BD142";
+				if (tel.length == 7 || tel.length == 10) {
+					telInput.style.border="1px solid #4BD142";
+					telMensaje.textContent="";
+					telMensaje.style.opacity=""
+					return true
+				} else {
+					telInput.style.border="1px solid #C42424";
+					telMensaje.textContent="Ingresa un numero verdadero.";
+					telMensaje.style.opacity="1"
+				}
 			} else {
+				telMensaje.textContent="Solo se admiten numeros.";
+				telMensaje.style.opacity="1"
 				telInput.style.border="1px solid #C42424";
 			}
 		} else {
+			telMensaje.textContent="";
+			telMensaje.style.opacity=""
 			telInput.style.outline="";
 			telInput.style.border="1px solid #fff"
+			if (validar == true){
+				telInput.style.border="1px solid #C42424";	
+			}
+			return false
 		}
+	
+	}
 
-		// VALIDANDO EMAIL
+
+	// VALIDANDO EMAIL
+	function validarEmail (validar){
 		const valEmail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+		let emailMensaje = document.querySelector(".emailVal");
 		let emailInput = document.querySelector(".email");
 		if (email.length != 0) {
 			emailInput.style.outline="none";
 			if (valEmail.test(email)){
 				emailInput.style.border="1px solid #4BD142"
+				emailMensaje.style.opacity="0"
+				return true
 			} else {
 				emailInput.style.border="1px solid #C42424"
+				emailMensaje.textContent="Ingresa un correo verdadero."
+				emailMensaje.style.opacity="1"
 			}
 		} else {
 			emailInput.style.outline="";
+			emailMensaje.style.opacity="0"
 			emailInput.style.border="1px solid #fff";
+			if(validar == true){
+				emailInput.style.border="1px solid #C42424"
+			}
+			return false
 		}
+	}
 
-		//VALIDANDO CANTIDAD DE PERSONAS
+	
+	//VALIDANDO CANTIDAD DE PERSONAS
+	function validarPersonas (validar){
+		const valNum = /^[0-9]+$/;
 		let personasInput = document.querySelector(".personas");
+		let personasMensaje = document.querySelector(".personasVal");
 		if (personas.length != 0) {
 			personasInput.style.outline="none"
 			if (valNum.test(personas)){
 				if (personas > 0 && personas <= 25) {
 					personasInput.style.border="1px solid #4BD142"
+					personasMensaje.style.opacity="0"
+					return true
 				} else {
 					personasInput.style.border="1px solid #C42424"
+					personasMensaje.textContent="Solo se permiten entre 1-25 personas"
+					personasMensaje.style.opacity="1"
 				}
 			} else {
+				personasMensaje.textContent="Solo se admiten numeros."
+				personasMensaje.style.opacity="1"
 				personasInput.style.border="1px solid #C42424"
 			}
 		} else {
+			personasMensaje.style.opacity="0"
+			personasMensaje.textContent=""
 			personasInput.style.outline=""
 			personasInput.style.border="1px solid #fff"
+			if (validar == true){
+				personasInput.style.border="1px solid #C42424"
+			}
+			return false
+		}
+	}
+
+
+	//VALIDANDO FECHA
+	function validarFecha (validar){
+		let fechaInput = document.querySelector(".fecha");
+		if (fecha.length != 0) {
+			let fechaActual = new Date();
+			let obtenerAño = fecha.at(0) + fecha.at(1) + fecha.at(2) + fecha.at(3);
+			let obtenerMes = fecha.at(5) + fecha.at(6);
+			let obtenerDia = fecha.at(8) + fecha.at(9);
+
+			if (obtenerAño < fechaActual.getFullYear()){
+				fechaInput.style.border="1px solid #C42424"
+			} else {
+				if (obtenerAño == fechaActual.getFullYear()) {
+					if (obtenerMes < fechaActual.getMonth()+1) {
+						fechaInput.style.border="1px solid #C42424"
+					} else {
+						if (obtenerMes == fechaActual.getMonth()+1) {
+							if (obtenerDia < fechaActual.getDate()) {
+								fechaInput.style.border="1px solid #C42424"
+							} else {
+								fechaInput.style.border="1px solid #4BD142"
+								return true
+							}
+						} else {
+							fechaInput.style.border="1px solid #4BD142"
+							return true		
+						}
+					}
+				} else {
+					fechaInput.style.border="1px solid #4BD142"
+					return true
+				}
+				
+			} 
+			
+		} else {
+			fechaInput.style.border="1px solid #fff"
+			if (validar == true) {
+				fechaInput.style.border="1px solid #C42424"
+			}
+			return false
+		}
+	}
+
+	function validarServicio(validar){
+		let servicioInput = document.querySelector(".servicioCont");
+		if (servicio.length == 0) {
+			servicioInput.style.border="1px solid #E5E5E5";
+			if (validar == true) {
+				servicioInput.style.border="1px solid #C42424";
+			}
+			return false
+		} else {
+			servicioInput.style.border="1px solid #E5E5E5";
+			return true
+		}
+	}
+
+
+	//VALIDANDO COMENTARIOS O SOLITUDES
+	function validarComentario(validar){
+					let comentInput = document.querySelector(".comentarioReserva");
+					if (comentario.length != 0) {
+						comentInput.style.outline="none";
+						if (comentario.length > 8 && comentario.length < 250) {
+							comentInput.style.border="1px solid #4BD142";
+							return true
+						} else {
+							comentInput.style.border="1px solid #C42424";
+							return false
+						}
+					} else {
+						comentInput.style.outline="";
+						comentInput.style.border="1px solid #fff";
+						return true
+					}	
+	}
+
+
+		function validarCheckbox(validar){
+			let checkboxInput = document.querySelector(".checkboxContenedor");
+			if (checkbox === true) {
+				checkboxInput.style.border="1px solid #E5E5E5";
+				return true
+			} else {
+				checkboxInput.style.border="1px solid #E5E5E5";
+				if (validar == true) {
+					checkboxInput.style.border="1px solid #C42424";
+				}
+				return false
+			}
 		}
 
-		//VALIDANDO FECHA
 
-
+	useEffect(()=>{
+		validarNombre();
+		validarTel();
+		validarEmail();
+		validarPersonas();
+		validarFecha();
+		validarServicio();
+		validarComentario();
+		validarCheckbox();
 	});
 
 	function validar (e){
 		e.preventDefault();
-		alert("enviado");
+		if (validarNombre(true) && validarTel(true) && validarEmail(true) && validarPersonas(true) && validarFecha(true) && validarServicio(true) && validarComentario(true) && validarCheckbox(true)) {
+			alert("Formulario correctoo")
+		}
 	}
+	
 
 	return (
 		<div className="contenedorReserva">
-			<h2>Reserva</h2>
+			<h2>Reservas</h2>
 			<form className="formReserva">
-				<input onChange={(e) => setName(e.target.value)} className="name" placeholder="Nombre completo"/>
+				<p>Los campos obligatorios estan marcados con un <span>*</span></p>
+				<div className="nameCont">
+					<p className="nameVal"></p>
+					<input onChange={(e) => setName(e.target.value)} className="name" placeholder="Nombre completo*"/>
+				</div>
 				<div className="espacio"/>
-				<input className="tel" type="tel" onChange={(e) => setTel(e.target.value)} placeholder="Numero de contacto"/>
+				<div className="telCont">
+					<p className="telVal"></p>
+					<input className="tel" type="tel" onChange={(e) => setTel(e.target.value)} placeholder="Numero de contacto*"/>
+				</div>
 				<div className="espacio"/>
-				<input className="email" onChange={(e)=>setEmail(e.target.value)} placeholder="Correo electronico"/>
+				<div className="emailCont">
+					<p className="emailVal"></p>
+					<input className="email" onChange={(e)=>setEmail(e.target.value)} placeholder="Correo electronico*"/>
+				</div>
 				<div className="espacio"/>
-				<div>
-					<label className="label">Cantidad de personas</label>
+				<div className="personasCont">
+					<label className="label">Cantidad de personas<span>*</span></label>
+					<p className="personasVal"></p>
 					<input className="inputLargo personas" type="number" max="25" min="1" onChange={(e)=>setPersonas(e.target.value)}/>
 				</div>
 				<div className="espacio"/>
 				<div>
-					<label className="label">Fecha de la reserva</label>
-					<input className="inputLargo fecha" onChange={(e)=>setFecha(e.target.value)}  type="date"/>
+					<label className="label">Fecha de la reserva<span>*</span></label>
+					<input className="inputLargo fecha" min="26-10-2021" onChange={(e)=>setFecha(e.target.value)}  type="date"/>
 				</div>
 				<div className="espacio"/>
-				<div>
- 					<label className="label">Servicio</label>
-					<select className="inputLargo">
+				<div className="servicioCont">
+ 					<label className="label">Servicio<span>*</span></label>
+					<select className="inputLargo servicio" onChange={(e)=>setServicio(e.target.value)}>
 						<option disabled selected>Selecciona un servicio</option>
 						<option>Celebracion de cumple años</option>
 						<option>Aniversarios</option>
@@ -118,11 +301,11 @@ export default function Reserva() {
 					</select>
 				</div>
 				<div className="espacio"/>
-				<textarea placeholder="Escribe tu comentario y/o solicitud" cols="30" rows="5"/>
+				<textarea className="comentarioReserva coment" onChange={(e)=>setComentario(e.target.value)} placeholder="Escribe tu comentario y/o solicitud" cols="30" rows="3"/>
 				<div className="espacio"/>
-				<div>
-					<input type="checkbox"/>
-					<label>Acepto la politica de tratamiento de datos</label>
+				<div className="checkboxContenedor"> 
+					<input className="checkbox" onChange={(e)=>setCheckbox(e.target.checked)} type="checkbox"/>
+					<label>Acepto la politica de tratamiento de datos<span>*</span></label>
 				</div>
 				<div className="espacio"/>
 				<button type="submit" onClick={validar} className="btnReserva">Enviar</button>

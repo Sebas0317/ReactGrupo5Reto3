@@ -19,7 +19,7 @@ class Navbar extends Component {
             <Link to="/">NOSOTROS</Link>
             <Link to="/Menu">EL MENU</Link>
             <Link to="/">SERVICIOS</Link>
-            <Link to="/">RESERVAS</Link>
+            <Link to="/reserva">RESERVAS</Link>
           </div>
           <div className="carrito">
             <Link to="/">
