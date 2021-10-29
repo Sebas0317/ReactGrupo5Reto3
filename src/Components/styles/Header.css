@@ -38,7 +38,8 @@
 	color: white;
 	text-decoration: none;
 }
-a.nav-link:hover { 
+
+.nav-link a:hover{ 
 	color: #4F2634 !important;
 }
 

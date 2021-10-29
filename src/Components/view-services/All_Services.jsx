@@ -1,11 +1,11 @@
 import React from "react";
 import Service from "./Service";
-import Cumple from "../../img/img_cumple.png"
-import Aniversarios from "../../img/img_aniversario.png"
-import Infantil from "../../img/img_infantil.png"
-import Propuestas from "../../img/img_propuesta.png"
-import Despedidas from "../../img/img_despedida.png"
-import Amigos from "../../img/img_amigos.png"
+import Cumple from "../assets/serv_cumple.png"
+import Aniversarios from "../assets/serv_aniversario.png"
+import Infantil from "../assets/serv_infantil.png"
+import Propuestas from "../assets/serv_propuesta.png"
+import Despedidas from "../assets/serv_despedida.png"
+import Amigos from "../assets/serv_amigos.png"
 
 class All_Services extends React.Component{
   render(props){

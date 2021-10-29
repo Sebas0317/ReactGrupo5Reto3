@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import logo from "./assets/logo1.png"
 import carrito from "./assets/carrito.svg"
-import Inicio from "./inicio";
-import Menu from "./menu"
 
 class Navbar extends Component {
   render() {
@@ -12,17 +10,17 @@ class Navbar extends Component {
         <div className="navbar-index">
           <div className="logo">
             <Link to="/">
-              <img src={logo} alt="" />
+              <img src={logo} alt="logo" />
             </Link>
           </div>
           <div className="nav-link text-light" >
             <Link to="/nosotros">NOSOTROS</Link>
             <Link to="/Menu">EL MENU</Link>
-            <Link to="/">SERVICIOS</Link>
+            <Link to="/servicios">SERVICIOS</Link>
             <Link to="/reserva">RESERVAS</Link>
           </div>
           <div className="carrito">
-            <Link to="/">
+            <Link to="/carrito">
               <img className="imgCar" src={carrito} />
               </Link>
           </div>

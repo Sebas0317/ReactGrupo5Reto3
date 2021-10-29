@@ -15,7 +15,7 @@ class Service extends React.Component{
               perspiciatis dolores quod hic quas, minima at excepturi aut voluptates in eveniet nisi. 
               Nihil cumque doloribus facilis.
             </p>
-            <a className="btn btn-sm p-2" href=" ">
+            <a className="btn btn-sm p-2" href="/reserva">
               Reservar
             </a>
           </div>

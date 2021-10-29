@@ -8,7 +8,7 @@ class Services_Container extends React.Component{
   render(){
     return(
       <main>
-        <div className="container-fluit p-0 mb-5">
+        <div className="container-fluit pt-4 my-5">
           <React.Fragment>
             <Social />
             <Information />

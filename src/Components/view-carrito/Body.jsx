@@ -18,7 +18,7 @@ class Body extends React.Component{
         </div>
 
         <div className="row buy-car p-5">
-          <a type="button" className="btn" href=" ">
+          <a type="button" className="btn" href="/menu">
             CONTINUAR COMPRANDO
           </a>
         </div>

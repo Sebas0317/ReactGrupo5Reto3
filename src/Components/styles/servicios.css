@@ -1,11 +1,10 @@
 @font-face {
   font-family: "Branding";
-  src: url("../../fonts/branding-sf-cmp-bold-webfont.woff");
+  src: url("../fonts/branding-sf-cmp-bold-webfont.woff");
 }
 
 main {
   color: #4f2c38;
-  /* margin-top: 4.5rem;  */
 }
 
 .top-serv {

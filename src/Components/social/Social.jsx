@@ -1,8 +1,8 @@
 import React from "react";
 import "../styles/social.css";
-import facebook from "../../img/ico-facebook@2x.png";
-import twitter from "../../img/ico-twitter@2x.png";
-import youtube from "../../img/ico-youtube@2x.png";
+import facebook from "../assets/ico-facebook.png";
+import twitter from "../assets/ico-twitter.png";
+import youtube from "../assets/ico-youtube.png";
 
 class Social extends React.Component{
   render(){

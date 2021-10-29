@@ -6,7 +6,7 @@ import Social from "../social/Social"
 class Carrito_Container extends React.Component{
   render() {
     return(
-      <main>
+      <main className="pt-5 my-5">
         <React.Fragment>
           <Social />
           <Body />
