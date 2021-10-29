@@ -275,6 +275,10 @@ export default function Reserva() {
 		validarServicio();
 		validarComentario();
 		validarCheckbox();
+
+		document.querySelector(".btnsReserva button").addEventListener("click", ()=>{
+			setModal(false);
+		});
 	});
 
 	let [modal, setModal] = useState(false);
@@ -292,10 +296,15 @@ export default function Reserva() {
 		
 	}
 
+	function cerrarModal(){
+		setModal(false)
+	}
+	
+
 	return (
 		<div className="contenedorReserva">
 			<Modal isVisible={modal} setVisible={()=>setModal(false)} data={
-				<div style={{display:"flex", padding:"20px", flexDirection:"column", width:"50%", backgroundColor:"#310101", color:"#fff"}}>
+				<div style={{display:"flex", padding:"20px", flexDirection:"column", width:"50%", backgroundColor:"#310101", color:"#fff", borderRadius:"5px"}}>
 					<h3>Bien, Tu reserva quedo asi:</h3>
 					<br/>
 					<div className="infoReserva"><p>Nombre:</p> <b>{name}</b></div>
@@ -305,6 +314,10 @@ export default function Reserva() {
 					<div className="infoReserva"><p>Fecha de la reserva:</p> <b>{fecha}</b></div>
 					<div className="infoReserva"><p>Servicio:</p> <b>{servicio}</b></div>
 					<div className="infoReserva"><p>Indicaciones:</p> <b>{comentario}</b></div>
+					<div className="btnsReserva">
+						<button onClick={()=>{cerrarModal()}}>CANCELAR</button>
+						<button>RESERVAR</button>	
+					</div>
 				</div>
 			}/>
 

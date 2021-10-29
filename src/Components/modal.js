@@ -12,7 +12,7 @@ export default function Modal ({isVisible, setVisible, data}){
 			}, 300)
 		})
 
-		if (isVisible == true){
+		if (isVisible === true){
 			document.querySelector(".modalContainer").style.display="flex";
 			setTimeout(()=>{
 				document.querySelector(".modalContainer").style.top="0px";
