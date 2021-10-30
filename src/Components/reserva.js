@@ -10,6 +10,7 @@ export default function Reserva() {
 	let [email, setEmail] = useState("");
 	let [personas, setPersonas] = useState("");
 	let [fecha, setFecha] = useState("");
+	let [hora, setHora] = useState("");
 	let [servicio, setServicio] = useState("");
 	let [comentario, setComentario] = useState("");
 	let [checkbox, setCheckbox] = useState("");
@@ -154,11 +155,11 @@ export default function Reserva() {
 
 
 	//VALIDANDO FECHA
+	let fechaActual = new Date();
 	function validarFecha (validar){
-		let fechaInput = document.querySelector(".fecha");
 		let fechaMensaje = document.querySelector(".fechaVal");
-		if (fecha.length != 0) {
-			let fechaActual = new Date();
+		let fechaInput = document.querySelector(".fecha");
+		if (fecha.length != 0) {	
 			let obtenerAño = fecha.at(0) + fecha.at(1) + fecha.at(2) + fecha.at(3);
 			let obtenerMes = fecha.at(5) + fecha.at(6);
 			let obtenerDia = fecha.at(8) + fecha.at(9);
@@ -191,6 +192,7 @@ export default function Reserva() {
 						}
 					}
 				} else {
+					fechaMensaje.style.opacity="0";
 					fechaInput.style.border="1px solid #4BD142"
 					return true
 				}
@@ -208,6 +210,27 @@ export default function Reserva() {
 		}
 	}
 
+
+	//VALIDANDO HORA
+	function validarHora(validar){
+		let horaInput = document.querySelector(".hora");
+		let horaMensaje = document.querySelector(".horaVal");
+		if (hora.length != 0) {
+			horaMensaje.style.opacity="0";
+			horaInput.style.border="1px solid #4BD142";
+			return true
+		} else {
+			horaMensaje.style.opacity="0";
+			horaInput.style.border="1px solid #fff";
+			if (validar === true) {
+				horaMensaje.style.opacity="1";
+				horaMensaje.textContent="Rellena este campo.";
+				horaInput.style.border="1px solid #C42424";
+				return false
+			}
+		}
+		
+	}
 
 	//VALIDAR SERVICIOS
 	function validarServicio(validar){
@@ -265,6 +288,7 @@ export default function Reserva() {
 			}
 		}
 
+	let fechaCO = fecha.charAt(8) + fecha.charAt(9) + "/" + fecha.charAt(5) + fecha.charAt(6) + "/" + fecha.charAt(0) + fecha.charAt(1) + fecha.charAt(2) + fecha.charAt(3);
 
 	useEffect(()=>{
 		validarNombre();
@@ -272,6 +296,7 @@ export default function Reserva() {
 		validarEmail();
 		validarPersonas();
 		validarFecha();
+		validarHora()
 		validarServicio();
 		validarComentario();
 		validarCheckbox();
@@ -280,18 +305,47 @@ export default function Reserva() {
 	let [modal, setModal] = useState(false);
 	function validar (e){
 		e.preventDefault();
-		if (validarNombre(true) && validarTel(true) && validarEmail(true) && validarPersonas(true) && validarFecha(true) && validarServicio(true) && validarComentario(true) && validarCheckbox(true)) {
-			// setName("");
-			// setTel("");
-			// setEmail("");
-			// setPersonas("");
-			// setFecha("");
-			// setComentario("");
+		if (validarNombre(true) && validarTel(true) && validarEmail(true) && validarPersonas(true) && validarFecha(true) && validarHora(true) && validarServicio(true) && validarComentario(true) && validarCheckbox(true)) {
 			setModal(true);
 		}
 		
 	}
 
+	function enviarReserva (){
+		let mensaje = `Datos de la reserva:<br><br> 
+                Cliente: <b>${name}</b><br> 
+                Teléfono: <b>${tel}</b><br> 
+                Número de personas: <b>${personas}</b><br> 
+                Servicio: <b>${servicio}</b><br> 
+                Fecha: <b>${fechaCO}</b><br> 
+                Hora: <b>${hora}</b><br> 
+                Indicaciones especiales: <b>${comentario}</b>
+			`;
+
+		window.Email.send({
+	      SecureToken : "07760063-8f87-4c65-9a2c-42ece65d3891",
+	      To : email,
+	      From : "grupo5juventic@gmail.com",
+	      Subject : "Confirmación de reserva",
+	      Body : mensaje
+  		})
+  		.then(()=>{
+  			document.querySelector(".closeModal").click();
+  			setName("");
+			setTel("");
+			setEmail("");
+			setPersonas("");
+			setFecha("");
+			setHora("");
+			setComentario("");
+			document.querySelector(".contenedorReserva form").reset();
+	  			alert("Reserva enviada exitosamente!");
+	  	})
+  		.catch((error)=>{
+  			alert("Ha ocurrido un error al intentar enviar la reserva, disculpanos..");
+			alert(error);
+  		})
+	}
 
 
 	return (
@@ -304,13 +358,13 @@ export default function Reserva() {
 					<div className="infoReserva"><p>Numero de contacto:</p> <b>{tel}</b></div>
 					<div className="infoReserva"><p>Correo electronico:</p> <b>{email}</b></div>
 					<div className="infoReserva"><p>Cantidad de personas:</p> <b>{personas}</b></div>
-					<div className="infoReserva"><p>Fecha de la reserva:</p> <b>{fecha}</b></div>
-					<div className="infoReserva"><p>Hora:</p> <b>{fecha}</b></div>
+					<div className="infoReserva"><p>Fecha de la reserva:</p> <b>{fechaCO}</b></div>
+					<div className="infoReserva"><p>Hora:</p> <b>{hora}</b></div>
 					<div className="infoReserva"><p>Servicio:</p> <b>{servicio}</b></div>
 					<div className="infoReserva"><p>Indicaciones:</p> <b>{comentario}</b></div>
 					<div className="btnsReserva">
 						<button className="closeModal">CANCELAR</button>
-						<button className="btnReserva">RESERVAR</button>	
+						<button className="btnReserva" onClick={()=>enviarReserva()}>RESERVAR</button>	
 					</div>
 				</div>
 			</Modal>
@@ -348,7 +402,7 @@ export default function Reserva() {
 				<div className="horaCont">
 					<label className="label">Hora de la reserva<span>*</span></label>
 					<p className="horaVal"></p>
-					<input className="inputLargo" type="time"/>
+					<input onChange={(e)=>setHora(e.target.value)} className="inputLargo hora" type="time"/>
 				</div>
 				<div className="espacio"/>
 				<div className="servicioCont">
