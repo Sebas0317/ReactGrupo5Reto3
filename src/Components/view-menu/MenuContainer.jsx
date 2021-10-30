@@ -6,7 +6,7 @@ import carrito from "../assets/carrito.svg"
 import mas from "../assets/mas1.svg"
 
 class menuContainer extends Component {
-  render() {
+  render(props) {
     return (
       <div className="item">
         <img src={this.props.plato} />
@@ -18,22 +18,22 @@ class menuContainer extends Component {
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
             aliquip ex ea commodo
           </p>
-          <h2 className="titlePrecio">{this.props.precio}</h2>
+          <h2 className="titlePrecio">$25.000</h2>
         </div>
         <div className="cantidad">
           <h5 className="titleCant">CANTIDAD</h5>
           <div className="botones">
-            <button onclick="restar(5)" id="btnMenos5" className="buttonMenos">
+            <button onclick={this.props.res} id="btnMenos5" className="buttonMenos">
               <div className="btnMenos"></div>
             </button>
-            <p id="valor5" className="valor">
+            <p id={this.props.id} className="valor">
               1
             </p>
-            <button onclick="sumar(5)" className="buttonMas">
+            <button onclick={this.props.sum} className="buttonMas">
               <img className="imgMas" src={mas} />
             </button>
           </div>
-          <button onclick="abrir(5)" className="btnAgregar">
+          <button onclick={this.props.abr} className="btnAgregar">
             <img src={carrito} />
             <p>AÑADIR AL CARRITO</p>
           </button>

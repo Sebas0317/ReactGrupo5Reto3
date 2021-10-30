@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/inicio.css"
-import Carousel from "./carousel"
+import Carousel from "./Carousel"
 import Propuesta from "./OurProposal"
 import Recomendados from "./Recommended"
 import Eventos from "./All_events"
