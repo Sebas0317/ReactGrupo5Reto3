@@ -275,10 +275,6 @@ export default function Reserva() {
 		validarServicio();
 		validarComentario();
 		validarCheckbox();
-
-		document.querySelector(".btnsReserva button").addEventListener("click", ()=>{
-			setModal(false);
-		});
 	});
 
 	let [modal, setModal] = useState(false);
@@ -296,30 +292,28 @@ export default function Reserva() {
 		
 	}
 
-	function cerrarModal(){
-		setModal(false)
-	}
-	
+
 
 	return (
 		<div className="contenedorReserva">
-			<Modal isVisible={modal} setVisible={()=>setModal(false)} data={
-				<div style={{display:"flex", padding:"20px", flexDirection:"column", width:"50%", backgroundColor:"#310101", color:"#fff", borderRadius:"5px"}}>
-					<h3>Bien, Tu reserva quedo asi:</h3>
+			<Modal isVisible={modal} setVisible={()=>{setModal(false)}}>
+				<div style={{display:"flex", padding:"20px", flexDirection:"column", width:"45%", backgroundColor:"#310101", color:"#fff", borderRadius:"5px"}}>
+					<h3>Bien, tu reserva quedo asi:</h3>
 					<br/>
 					<div className="infoReserva"><p>Nombre:</p> <b>{name}</b></div>
 					<div className="infoReserva"><p>Numero de contacto:</p> <b>{tel}</b></div>
 					<div className="infoReserva"><p>Correo electronico:</p> <b>{email}</b></div>
 					<div className="infoReserva"><p>Cantidad de personas:</p> <b>{personas}</b></div>
 					<div className="infoReserva"><p>Fecha de la reserva:</p> <b>{fecha}</b></div>
+					<div className="infoReserva"><p>Hora:</p> <b>{fecha}</b></div>
 					<div className="infoReserva"><p>Servicio:</p> <b>{servicio}</b></div>
 					<div className="infoReserva"><p>Indicaciones:</p> <b>{comentario}</b></div>
 					<div className="btnsReserva">
-						<button onClick={()=>{cerrarModal()}}>CANCELAR</button>
-						<button>RESERVAR</button>	
+						<button className="closeModal">CANCELAR</button>
+						<button className="btnReserva">RESERVAR</button>	
 					</div>
 				</div>
-			}/>
+			</Modal>
 
 			<h2>Reservas</h2>
 			<form className="formReserva">
@@ -351,11 +345,17 @@ export default function Reserva() {
 					<input className="inputLargo fecha" min="26-10-2021" onChange={(e)=>setFecha(e.target.value)}  type="date"/>
 				</div>
 				<div className="espacio"/>
+				<div className="horaCont">
+					<label className="label">Hora de la reserva<span>*</span></label>
+					<p className="horaVal"></p>
+					<input className="inputLargo" type="time"/>
+				</div>
+				<div className="espacio"/>
 				<div className="servicioCont">
  					<label className="label">Servicio<span>*</span></label>
 					<select className="inputLargo servicio" onChange={(e)=>setServicio(e.target.value)}>
 						<option disabled selected>Selecciona un servicio</option>
-						<option value="1">Celebracion de cumple años</option>
+						<option>Celebracion de cumple años</option>
 						<option>Aniversarios</option>
 						<option>Fiestas infantiles</option>
 						<option>Declaraciones o propuestas</option>
@@ -372,7 +372,7 @@ export default function Reserva() {
 					<label>Acepto la politica de tratamiento de datos<span>*</span></label>
 				</div>
 				<div className="espacio"/>
-				<button type="submit" onClick={validar} className="btnReserva">Enviar</button>
+				<button type="submit" onClick={validar}>Enviar</button>
 			</form>
 		</div>
 	)

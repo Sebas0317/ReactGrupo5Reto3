@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+﻿import React, { Component } from "react";
 import logofooter from "./assets/logo.png";
 import "./styles/Footer.css"
 class Footer extends Component {
@@ -39,27 +39,27 @@ class Footer extends Component {
                   <tr>
                     <th>
                       <h4>
-                        <a href="index.html">Inicio</a>
+                        <a href="/">Inicio</a>
                       </h4>
                     </th>
                     <th>
                       <h4>
-                        <a href="html/nosotros.html">Nosotros</a>
+                        <a href="/nosotros">Nosotros</a>
                       </h4>
                     </th>
                     <th>
                       <h4>
-                        <a href="html/servicios.html">Servicios</a>
+                        <a href="/servicios">Servicios</a>
                       </h4>
                     </th>
                     <th>
                       <h4>
-                        <a href="html/menu.html">Menú</a>
+                        <a href="/menu">Menú</a>
                       </h4>
                     </th>
                     <th>
                       <h4>
-                        <a href="html/reservas.html">Reservas</a>
+                        <a href="/reserva">Reservas</a>
                       </h4>
                     </th>
                   </tr>

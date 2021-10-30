@@ -162,6 +162,11 @@
 	right: -1px;
 	transition: opacity 0.5s;
 }
+.horaCont{
+	display: flex;
+	position: relative;
+}
+
 .servicioCont{
 	border: #E5E5E5;
 	border-radius: 3px;
@@ -183,23 +188,21 @@
 .infoReserva{
 	display: flex;
 	align-items: center;
-	color: #000;
+	color: #fff;
+	background-color: rgba(255, 255, 255, 0.3);
 	font-size: 18px;
-	background-color: #fff;
 	height: 7vh;
 	margin-bottom: 10px;
 }
 .infoReserva p{
-	padding-left: 10px;
-	display: flex;
-	width: 65%;
-	margin-right: 5px;
-	height: 3px;
+	padding-left: 15px;
+	margin-bottom: 0px;
+	width: 55%;
 }
 .infoReserva b{
 	padding-right: 15px;
 	text-align: right;
-	width: 35%;
+	width: 45%;
 }
 
 .blanco{
@@ -215,4 +218,16 @@
 .btnsReserva button{
 	border: none;
 	outline: none;
+}
+.closeModal{
+	padding: 5px;
+	width: 25%;
+	background-color: #CA3B3B;
+	color: #fff;
+}
+.btnReserva{
+	padding: 5px;
+	width: 25%;
+	background-color: #2D9E45;
+	color: #fff;
 }

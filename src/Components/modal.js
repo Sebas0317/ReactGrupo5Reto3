@@ -1,7 +1,7 @@
-import React,{useEffect} from "react";
+import {useEffect} from "react";
 import "./styles/modal.css";
 
-export default function Modal ({isVisible, setVisible, data}){
+export default function Modal ({isVisible, setVisible, children}){
 
 	useEffect(()=>{
 		document.querySelector(".fondoModal").addEventListener("click", ()=>{
@@ -11,6 +11,14 @@ export default function Modal ({isVisible, setVisible, data}){
 				setVisible(false);
 			}, 300)
 		})
+
+		document.querySelector(".closeModal").addEventListener("click", ()=>{
+			document.querySelector(".modalContainer").style.top="-100%";
+			setTimeout(()=>{
+				document.querySelector(".modalContainer").style.display="none";
+				setVisible(false);
+			}, 300)
+		});
 
 		if (isVisible === true){
 			document.querySelector(".modalContainer").style.display="flex";
@@ -23,7 +31,7 @@ export default function Modal ({isVisible, setVisible, data}){
 		<div className="modalContainer">
 			<div className="fondoModal"></div>
 			<div className="bodyModal">
-				{data}
+				{children}
 			</div>
 		</div>
 		)
