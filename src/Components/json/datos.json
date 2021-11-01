@@ -1,0 +1,33 @@
+{
+	"platos": {
+		"plato1": {
+			"foto": "url",
+			"nombre": "Bandeja paisa",
+			"descripcion": "sdf ggfhgfh sd",
+			"precio": 35000
+		},
+		"plato2": {
+			"foto":"url",
+			"nombre": "Arroz con pollo",
+			"descripcion": "sdf ggfhgfh sd",
+			"precio": 35000
+		},
+		"plato3": {
+		  	"foto":"url",
+			"nombre": "Sancocho",
+			"descripcion": "sdf ggfhgfh sd",
+			"precio": 40000
+		}
+	},
+	"servicios": {
+
+	},
+	"comentarios": {
+		"comentario1": {
+			"user": "JhonF",
+			"comentario": "asdasdsadsadasdasdasdasdasdasdasdasdasd",
+			"fecha": "02/11/2021"
+		}
+	}
+
+}
