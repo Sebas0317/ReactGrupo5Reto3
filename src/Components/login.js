@@ -3,7 +3,7 @@ import "./styles/login.css";
 import verPass from "./assets/verPass.svg";
 import verPassNone from "./assets/verPassNone.svg";
 import Logo from "./assets/logo.png";
-import Foto2 from "./assets/foto2.png";
+import Foto from "./assets/foto1.png";
 
 function Login (){
 	
@@ -30,7 +30,7 @@ function Login (){
 	return (
 		<div className="loginContainer">
 			<form>
-				<img className="loginFoto2" src={Foto2}/>
+				<div className="loginFoto2"/>
 				<div className="formCont">
 					<img className="loginLogo" src={Logo} alt="Logo"/>
 					<h2>Inicia sesion</h2>

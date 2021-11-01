@@ -21,11 +21,12 @@
 	font-size: 35px;
 }
 .loginFoto2{
-	background-color: red;
+	background-image: url("../assets/foto2.png");
 	width: 55%;
-	border-radius: 5px;
+	background-size: cover;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
 	height: 100%;
-	resize: contain;
 }
 .loginLogo{
 	display: flex;
@@ -45,7 +46,7 @@
 	flex-direction: column;
 	padding: 30px;
 	padding-left: 45px;
-	width: 100%;
+	width: 45%;
 }
 
 .passLabel{
