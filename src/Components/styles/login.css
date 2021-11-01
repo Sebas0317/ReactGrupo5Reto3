@@ -24,6 +24,7 @@
 	background-image: url("../assets/foto2.png");
 	width: 55%;
 	background-size: cover;
+	background-repeat: no-repeat;
 	border-top-left-radius: 5px;
 	border-bottom-left-radius: 5px;
 	height: 100%;
