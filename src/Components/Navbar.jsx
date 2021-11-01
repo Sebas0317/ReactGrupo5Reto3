@@ -18,11 +18,10 @@ class Navbar extends Component {
             <Link to="/Menu">EL MENU</Link>
             <Link to="/servicios">SERVICIOS</Link>
             <Link to="/reserva">RESERVAS</Link>
-          </div>
-          <div className="carrito">
-            <Link to="/carrito">
+            <Link className="pocoMargin" to="/carrito">
               <img className="imgCar" src={carrito} />
-              </Link>
+            </Link>
+            <Link className="pocoMargin" to="/login">LOGIN</Link>
           </div>
         </div>
       </div>

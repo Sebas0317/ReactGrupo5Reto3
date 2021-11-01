@@ -4,13 +4,11 @@ import Footer from "./Footer";
 import "./styles/layout.css"
 function Layout(props) {
   return (
-    <>
       <div className="PaginaContenedor">
-       <Header />
-        <div className="PaginaContenido">{props.children}</div>
-        <Footer />
+       <Header/>
+          <div className="PaginaContenido">{props.children}</div>
+        <Footer/>
       </div>
-    </>
   );
 }
 
