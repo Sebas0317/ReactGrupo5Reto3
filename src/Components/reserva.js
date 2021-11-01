@@ -350,24 +350,26 @@ export default function Reserva() {
 
 	return (
 		<div className="contenedorReserva">
-			<Modal isVisible={modal} setVisible={()=>{setModal(false)}}>
-				<div style={{display:"flex", padding:"20px", flexDirection:"column", width:"45%", backgroundColor:"#310101", color:"#fff", borderRadius:"5px"}}>
-					<h3>Bien, tu reserva quedo asi:</h3>
-					<br/>
-					<div className="infoReserva"><p>Nombre:</p> <b>{name}</b></div>
-					<div className="infoReserva"><p>Numero de contacto:</p> <b>{tel}</b></div>
-					<div className="infoReserva"><p>Correo electronico:</p> <b>{email}</b></div>
-					<div className="infoReserva"><p>Cantidad de personas:</p> <b>{personas}</b></div>
-					<div className="infoReserva"><p>Fecha de la reserva:</p> <b>{fechaCO}</b></div>
-					<div className="infoReserva"><p>Hora:</p> <b>{hora}</b></div>
-					<div className="infoReserva"><p>Servicio:</p> <b>{servicio}</b></div>
-					<div className="infoReserva"><p>Indicaciones:</p> <b>{comentario}</b></div>
-					<div className="btnsReserva">
-						<button className="closeModal">CANCELAR</button>
-						<button className="btnReserva" onClick={()=>enviarReserva()}>RESERVAR</button>	
-					</div>
-				</div>
-			</Modal>
+			{ modal &&
+				<Modal isVisible={modal} setVisible={()=>{setModal(false)}}>
+							<div style={{display:"flex", padding:"20px", flexDirection:"column", width:"45%", backgroundColor:"#310101", color:"#fff", borderRadius:"5px"}}>
+								<h3>Bien, tu reserva quedo asi:</h3>
+								<br/>
+								<div className="infoReserva"><p>Nombre:</p> <b>{name}</b></div>
+								<div className="infoReserva"><p>Numero de contacto:</p> <b>{tel}</b></div>
+								<div className="infoReserva"><p>Correo electronico:</p> <b>{email}</b></div>
+								<div className="infoReserva"><p>Cantidad de personas:</p> <b>{personas}</b></div>
+								<div className="infoReserva"><p>Fecha de la reserva:</p> <b>{fechaCO}</b></div>
+								<div className="infoReserva"><p>Hora:</p> <b>{hora}</b></div>
+								<div className="infoReserva"><p>Servicio:</p> <b>{servicio}</b></div>
+								<div className="infoReserva"><p>Indicaciones:</p> <b>{comentario}</b></div>
+								<div className="btnsReserva">
+									<button className="closeModal">CANCELAR</button>
+									<button className="btnReserva" onClick={()=>enviarReserva()}>RESERVAR</button>	
+								</div>
+							</div>
+						</Modal>
+					}
 
 			<h2>Reservas</h2>
 			<form className="formReserva">

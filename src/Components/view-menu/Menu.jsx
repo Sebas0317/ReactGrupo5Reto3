@@ -1,5 +1,6 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import MenuContainer from "./MenuContainer";
+import Modal from "../modal";
 import "./menu.css";
 
 //Imagenes del menu
@@ -17,23 +18,32 @@ import plato11 from "../assets/menu_pl11.jpeg"
 import plato12 from "../assets/menu_pl12.jpg"
 
 
-class Menu extends Component {
-  render(props) {
+function Menu () {
+    let [modal, setModal] = useState(false)
     let number = 1;
+    let [cant, setCant] = useState(1);
     let platos = [plato1, plato2, plato3, plato4, plato5, plato6, plato7, plato8, plato9, plato10, plato11, plato12];
     return (
       <div className="contenedorPlatos">
+        {
+          modal &&
+          <Modal isVisible={modal} setVisible={()=>setModal(false)}>
+            <div style={{backgroundColor:"#fff", padding:"20px"}}>
+              <p>{cant}</p>
+            </div>
+          </Modal>
+
+        }
         <p className="title">Haz tu pedido</p>
         <div className="platos">
          {platos.map((plato)=>{
             return (
-              <MenuContainer plato={plato} id={number++}/>
+              <MenuContainer plato={plato} id={number++} abr={(e)=>{setCant(e); setModal(true)}}/>
             )
          })}
         </div>
       </div>
     );
-  }
 }
 
 export default Menu;
