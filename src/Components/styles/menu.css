@@ -123,3 +123,22 @@
     font-weight: bold;
     margin: 0;
 }
+
+.btns{
+    display: flex;
+    width: 100%;
+    margin-top: 15px;
+	justify-content: space-evenly;
+}
+
+.btns button{
+	border: none;
+	outline: none;
+}
+
+.btnOk{
+    padding: 5px;
+	width: 25%;
+	background-color: #2D9E45;
+	color: #fff;
+}

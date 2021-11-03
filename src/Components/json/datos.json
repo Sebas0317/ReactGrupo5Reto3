@@ -1,33 +1,86 @@
 {
-	"platos": {
-		"plato1": {
-			"foto": "url",
+	"platos": [
+		{
+			"foto": "'../assets/menu_pl1.png'",
 			"nombre": "Bandeja paisa",
-			"descripcion": "sdf ggfhgfh sd",
+			"descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
 			"precio": 35000
 		},
-		"plato2": {
-			"foto":"url",
+		{
+			"foto": "../assets/menu_pl2.jpg",
 			"nombre": "Arroz con pollo",
-			"descripcion": "sdf ggfhgfh sd",
+			"descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
 			"precio": 35000
 		},
-		"plato3": {
-		  	"foto":"url",
+		{
+			"foto": "../assets/menu_pl3.png",
 			"nombre": "Sancocho",
-			"descripcion": "sdf ggfhgfh sd",
+			"descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
+			"precio": 40000
+		},
+		{
+			"foto": "../assets/menu_pl4.png",
+			"nombre": "Pescado",
+			"descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
+			"precio": 20000
+		},
+		{
+			"foto": "../assets/menu_pl5.png",
+			"nombre": "Arroz con coco",
+			"descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
+			"precio": 35000
+		},
+		{
+			"foto": "../assets/menu_pl6.png",
+			"nombre": "Pollo broster",
+			"descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
+			"precio": 30000
+		},
+		{
+			"foto": "../assets/menu_pl7.png",
+			"nombre": "Lomo de cerdo relleno",
+			"descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
+			"precio": 40000
+		},
+		{
+			"foto": "../assets/menu_pl8.jpeg",
+			"nombre": "Carne en bistec",
+			"descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
+			"precio": 35000
+		},
+		{
+			"foto": "../assets/menu_pl9.jpeg",
+			"nombre": "Pollo a la naranja",
+			"descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
+			"precio": 18000
+		},
+		 {
+			"foto": "../assets/menu_pl10.jpg",
+			"nombre": "Hamburguesa",
+			"descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
+			"precio": 20000
+		},
+		 {
+			"foto": "../assets/menu_pl11.jpeg",
+			"nombre": "Pollo asado",
+			"descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
+			"precio": 20000
+		},
+		 {
+			"foto": "../assets/menu_pl12.jpg",
+			"nombre": "Espagueti",
+			"descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
 			"precio": 40000
 		}
-	},
-	"servicios": {
+	],
 
-	},
-	"comentarios": {
-		"comentario1": {
+	"servicios": [],
+
+	"comentarios": [
+		{
 			"user": "JhonF",
 			"comentario": "asdasdsadsadasdasdasdasdasdasdasdasdasd",
 			"fecha": "02/11/2021"
 		}
-	}
-
+	]
 }

@@ -21,6 +21,10 @@ main .row{
     font-family:'Branding';
 }
 
+.title-menu-car h3{
+    font-family:'Branding';
+}
+
 .buy-car{
     text-align: center;
     justify-content: center;
@@ -99,7 +103,7 @@ main .row{
     align-items: center;
 }
 
-.valor-car{
+.botones-car p{
     padding: 10px;
     line-height: 10px;
     font-weight: bold;
@@ -164,9 +168,6 @@ main .row{
     color: #f00;
 }
 
-
-
-
-.menus-car h1{
+.menus-car h2{
     font-family:'Branding';
 }
