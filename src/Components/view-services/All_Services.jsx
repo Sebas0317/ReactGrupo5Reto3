@@ -25,7 +25,7 @@ class All_Services extends React.Component{
         })}
       </div>
       <div className="row gestion-ser p-5">
-        <a type="button" className="btn" href="/adminservices">
+        <a type="button" className="btn" href="/gestionservicios">
           Gestionar Servicios
         </a>
       </div>
