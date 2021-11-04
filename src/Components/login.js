@@ -7,6 +7,9 @@ import Foto from "./assets/foto1.png";
 
 function Login (){
 	
+	let [email, setEmail] = useState("");
+	let [pass, setPass] = useState("");
+
 	function mostrarPass(){
 		let oculto = true;
 		let btnVerPass = document.querySelector(".inputPass img");
@@ -24,6 +27,59 @@ function Login (){
 		})
 	}
 
+	function validar(e){
+		e.preventDefault();
+		let inputEmail = document.querySelector(".inputEmail");
+		let inputPass = document.querySelector(".inputPass");
+		let emailMensaje = document.querySelector(".loginEmailVal");
+		let passMensaje = document.querySelector(".loginPassVal");
+
+		if (email.length == 0 && pass.length == 0) {
+			inputEmail.style.border="1px solid #C42424";
+			inputPass.style.border="1px solid #C42424";
+			emailMensaje.textContent="Rellena este campo.";
+			emailMensaje.style.opacity=1;
+			passMensaje.textContent="Rellena este campo.";
+			passMensaje.style.opacity=1;
+		
+		} else {
+			inputEmail.style.border="none";
+			inputPass.style.border="none";
+			emailMensaje.textContent="";
+			emailMensaje.style.opacity=0;
+			passMensaje.textContent="";
+			passMensaje.style.opacity=0;	
+
+			if (email.length != 0) {
+				const valEmail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+				if (valEmail.test(email)) {
+
+				} else {
+					inputEmail.style.border="1px solid #C42424";
+					emailMensaje.textContent="Ingresa un email verdadero.";
+					emailMensaje.style.opacity=1;
+				}
+				if (pass.length != 0) {
+					if (pass.length >= 5) {
+
+					} else {
+						inputPass.style.border="1px solid #C42424";
+						passMensaje.textContent="La contraseña debe tener minimo 5 caracteres.";
+						passMensaje.style.opacity=1;
+					}
+				} else {
+					inputPass.style.border="1px solid #C42424";
+					passMensaje.textContent="Rellena este campo.";
+					passMensaje.style.opacity=1;
+				}
+			} else {
+				inputEmail.style.border="1px solid #C42424";
+				emailMensaje.textContent="Rellena este campo.";
+				emailMensaje.style.opacity=1;
+			}
+		}
+	}
+
 	useEffect(()=>{
 		mostrarPass()
 	})
@@ -34,14 +90,14 @@ function Login (){
 				<div className="formCont">
 					<img className="loginLogo" src={Logo} alt="Logo"/>
 					<h2>Inicia sesion</h2>
-					<label>Correo electronico</label>
-					<input className="inputEmail" type="email" placeholder="Ingresa tu correo"/>
-					<label className="passLabel">Contraseña</label>
+					<label>Correo electronico <p className="loginEmailVal"></p></label>
+					<input className="inputEmail" onChange={(e)=>setEmail(e.target.value)} type="email" placeholder="Ingresa tu correo"/>
+					<label className="passLabel">Contraseña <p className="loginPassVal"></p></label>
 					<div className="inputPass">
-						<input type="password" placeholder="Ingresa tu contraseña"/>
+						<input type="password" onChange={(e)=>setPass(e.target.value)} placeholder="Ingresa tu contraseña"/>
 						<img src={verPass}/>
 					</div>
-					<button>Iniciar sesion</button>
+					<button onClick={(e)=>validar(e)}>Iniciar sesion</button>
 				</div>
 			</form>
 		</div>

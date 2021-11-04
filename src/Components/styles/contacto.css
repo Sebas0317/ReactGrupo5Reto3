@@ -9,6 +9,16 @@
     src: url("../fonts/branding-sf-cmp-bold-webfont.woff");
 }
 
+.contactoCont {
+    padding-top: 5%;
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    justify-content: space-evenly;
+    font-family: 'Calibri';
+}
+
 .form-register {
     width: 400px;
     padding: 30px;
@@ -56,15 +66,15 @@
     width: 100%;
     background: #1f53c5;
 }
-
-.contenedor {
-    height: 100%;
-    margin: 5rem auto;
-    text-align: center;
-    width: 900px;
-    font-family: 'Calibri';
+.form-register form input{
+    border: none;
 }
-
+#select {
+    border: none;
+}
+#textoArea {
+    border: none;
+}
 .formulario {
     height: 100%;
     width: 40%;
@@ -82,14 +92,28 @@
 }
 
 .botons {
-    font-size: 15px;
+    font-size: 17px;
     border-radius: 8px;
-    display: inline-block;
-    padding: 15px 50px;
-    text-decoration: none;
+    border: none;
+    display: flex;
+    width: 45%;
+    height: 6vh;
+    margin: 0px auto;
+    align-items: center;
+    justify-content: center;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3)
 }
-
+.checkboxCont{
+    border:none;
+    margin-bottom: 10px;
+}
+.checkboxCont input {
+    cursor: pointer;
+    margin: 0px 7px;
+}
+#textoArea{
+    margin: 0px;
+}
 .btn-color {
     color: white;
     background-color: #FB5502;

@@ -38,9 +38,21 @@
 }
 
 .loginContainer label{
+	display: flex;
+	align-items: center;
+	width: 100%;
 	font-size: 18px;
 	color: #000;
 	font-weight: bold;
+}
+
+.formCont label p{
+	font-weight: normal;
+	opacity: 0;
+	transition: opacity 0.3s;
+	margin: 0px 5px 0px auto;
+	color: #C42424;
+	font-size: 14px;
 }
 .formCont{
 	display: flex;
@@ -61,6 +73,7 @@
 	height: 6vh;
 	padding: 0px 5px;
 }
+
 .inputPass{
 	display: flex;
 	align-items: center;
