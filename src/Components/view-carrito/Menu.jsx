@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import ico_mas from "../assets/mas1.svg"
 import ico_basura from "../assets/car-ico-basura.png"
 
@@ -8,8 +8,7 @@ function Menu ({nombre, precio, total, foto, cant, id, abr}){
   let [Newtotal, setNewtotal] = useState(total);
   let list = JSON.parse(localStorage.getItem('Platos'));
 
-  // SUMAR CANTIDAD 
-
+  // SUMAR Y RESTAR CANTIDAD 
   function sumar_restar(e){
     e=='s' ? Newcant++ : Newcant--
     if (Newcant <= 0){
@@ -24,6 +23,15 @@ function Menu ({nombre, precio, total, foto, cant, id, abr}){
     }
   }
 
+  // CALCULAR TOTAL DE PEDIDO 
+  useEffect(()=>{
+		if(list.length){
+      let sum = list.reduce((a, b) => a + b['Total'],0)
+      let pricetotal = document.querySelector('.total-car')
+      pricetotal.innerHTML = Intl.NumberFormat().format(sum)
+    }
+  });
+  
   return(
     <>
       <div className="menu-car d-flex">

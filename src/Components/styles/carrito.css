@@ -137,35 +137,23 @@ main .row{
     cursor: pointer;
 }
 
-/* MODAL */
-
-.modal-title{
-    font-size: 40px;
-    font-family:'Branding';
-}
-
-.modal-body{
-    font-family: Calibri;
-}
-
-.modal-footer input, .modal-footer button{
-    width: 20%;
-    color: white;
-    font-size: 1.2rem;
-    border-radius: 8px;
-    font-family:'Branding';
-    background-color: #FF3B04;
-}
-
 /* VALIDACION */
 
 .valEmail-car{
-    display: none;
-    color: #f00;
+    opacity: 0;
+    color: #C42424;
+    margin-top: 12px;
+    right: 20px;
+    transition: opacity 0.5s;
+    position: absolute;
 }
 .valName-car{
-    display: none;
-    color: #f00;
+    opacity: 0;
+    color: #C42424;
+    margin-top: 12px;
+    right: 20px;
+    transition: opacity 0.5s;
+    position: absolute;
 }
 
 .menus-car h2{

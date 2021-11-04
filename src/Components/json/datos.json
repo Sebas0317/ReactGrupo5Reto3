@@ -74,12 +74,47 @@
 		}
 	],
 
-	"servicios": [],
+	"servicios": [
+		{
+			"nombre": "Celebración de cumpleaños",
+			"descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus suscipit ut blanditiis perspiciatis dolores quod hic quas, minima at excepturi aut voluptates in eveniet nisi. Nihil cumque doloribus facilis."
+		},
+		{
+			"nombre": "Aniversarios",
+			"descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus suscipit ut blanditiis perspiciatis dolores quod hic quas, minima at excepturi aut voluptates in eveniet nisi. Nihil cumque doloribus facilis."
+		},
+		{
+			"nombre": "Fiestas infantiles",
+			"descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus suscipit ut blanditiis perspiciatis dolores quod hic quas, minima at excepturi aut voluptates in eveniet nisi. Nihil cumque doloribus facilis."
+		},
+		{
+			"nombre": "Declaraciones o propuestas",
+			"descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus suscipit ut blanditiis perspiciatis dolores quod hic quas, minima at excepturi aut voluptates in eveniet nisi. Nihil cumque doloribus facilis."
+		},
+		{
+			"nombre": "Despedidas",
+			"descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus suscipit ut blanditiis perspiciatis dolores quod hic quas, minima at excepturi aut voluptates in eveniet nisi. Nihil cumque doloribus facilis."
+		},
+		{
+			"nombre": "Cena con amigos",
+			"descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus suscipit ut blanditiis perspiciatis dolores quod hic quas, minima at excepturi aut voluptates in eveniet nisi. Nihil cumque doloribus facilis."
+		}
+	],
 
 	"comentarios": [
 		{
-			"user": "JhonF",
-			"comentario": "asdasdsadsadasdasdasdasdasdasdasdasdasd",
+			"user": "Mario García",
+			"comentario": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum vitae similique illum id dolores quos non pariatur sapiente voluptates earum, atque numquam iure deleniti explicabo modi perspiciatis accusantium aliquam dolor!",
+			"fecha": "02/11/2021"
+		},
+		{
+			"user": "Miguel Ospino",
+			"comentario": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum vitae similique illum id dolores quos non pariatur sapiente voluptates earum, atque numquam iure deleniti explicabo modi perspiciatis accusantium aliquam dolor!",
+			"fecha": "02/11/2021"
+		},
+		{
+			"user": "Vanessa Montero",
+			"comentario": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum vitae similique illum id dolores quos non pariatur sapiente voluptates earum, atque numquam iure deleniti explicabo modi perspiciatis accusantium aliquam dolor!",
 			"fecha": "02/11/2021"
 		}
 	]

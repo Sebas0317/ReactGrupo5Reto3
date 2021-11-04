@@ -5,6 +5,7 @@ import Layout from "./Components/Layout";
 import Inicio from "./Components/view-inicio/Inicio_Container"
 import Reserva from "./Components/reserva";
 import Services_Container from './Components/view-services/Services_Container';
+import Admin_Services from './Components/view-services/Admin_Services';
 import Carrito_Container from './Components/view-carrito/Carrito_Container';
 import Contacto from "./Components/contacto";
 import Menu from "./Components/view-menu/Menu";
@@ -20,6 +21,7 @@ function App() {
         <Route exact path="/menu" component={Menu} />
         <Route exact path="/carrito" component={Carrito_Container} />
         <Route exact path="/servicios" component={Services_Container}/>
+        <Route exact path="/gestionservicios" component={Admin_Services}/>
         <Route exact path="/reserva" component={Reserva}/>
         <Route exact path="/contacto" component={Contacto}/>
         <Route exact path="/login" component={Login}/>

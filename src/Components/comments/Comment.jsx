@@ -7,15 +7,13 @@ class Comment extends React.Component{
       <div className={this.props.act}>
         <div className="row text-center p-5">
           <div className="col-sm-4">
-            <img className="rounded-circle" src={this.props.img} alt={this.props.img} />
+            <img className="rounded-circle" src={this.props.img} alt="img_testimony" />
           </div>
           <div className="col-sm-6 d-flex align-items-center">
             <p className="fs-6 m-0">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum vitae similique illum id dolores 
-              quos non pariatur sapiente voluptates earum, atque numquam iure deleniti explicabo modi perspiciatis 
-              accusantium aliquam dolor!
+              {this.props.comentario}
               <br />
-              <span className="blockquote-footer">{this.props.nomCliente}</span> 
+              <span className="blockquote-footer">{this.props.user}</span> 
             </p>
           </div>
         </div>

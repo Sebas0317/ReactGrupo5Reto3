@@ -1,18 +1,27 @@
 import React from "react";
 import Comentario from "./Comment";
+import json from "../json/datos.json"
 import cliente1 from "../assets/cliente1.png"
 import cliente2 from "../assets/cliente2.png"
 import cliente3 from "../assets/cliente3.png"
 
 class All_comments extends React.Component{
   render(props){
+    let servicios = [cliente1, cliente2, cliente3]
     return(
       <div className="row testimony m-0">
         <div id="controls" className="carousel carousel-dark slide" data-bs-ride="carousel">
           <div className="carousel-inner">
-            <Comentario act="carousel-item active" img={cliente2} alt="img_testimony1" nomCliente="Mario García" />
-            <Comentario act="carousel-item" img={cliente1} alt="img_testimony2" nomCliente="Miguel Ospino" />
-            <Comentario act="carousel-item" img={cliente3} alt="img_testimony3" nomCliente="Vanessa Montero" />
+            {json.comentarios.map((comentario, index)=>{
+              return (
+                <Comentario 
+                  act={index==0 ? "carousel-item active" : "carousel-item"} 
+                  img={servicios[index]} 
+                  user={comentario.user} 
+                  comentario={comentario.comentario}
+                />
+              )
+            })}
           </div>
           <button className="carousel-control-prev" type="button" data-bs-target="#controls" data-bs-slide="prev">
             <span className="carousel-control-prev-icon" aria-hidden="true"></span>
