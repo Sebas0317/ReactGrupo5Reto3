@@ -1,0 +1,48 @@
+.contenedorNos {
+  color: #4f2c38;
+  border: white solid 1px;
+  margin-top: 4.5rem;
+}
+.photo {
+    min-width: 540px;
+    min-height: 500px;
+    background: url('../assets/nosotros.png');
+    background-size: cover;
+  }
+  
+  .top {
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  .history .title2 {
+    color: #e3901b;
+    font-size: 2rem;
+  }
+  
+  .title {
+    font-family: Branding;
+    font-size: 7rem;
+  }
+  
+  .history .text {
+    text-align: justify;
+  }
+  
+  .personal {
+    padding-bottom: 3rem;
+    text-align: center;
+    background-color: #D5CACE;
+  }
+  
+  .personal .col-sm-4 {
+    font-family: Branding;
+  }
+  
+  .personal img {
+    margin-bottom: 1rem;
+    padding: 4px;
+    width: 140px;
+    height: 140px;
+    border: #AFA3A6 5px solid;
+  }

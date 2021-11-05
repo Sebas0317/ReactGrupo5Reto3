@@ -7,8 +7,9 @@ import Reserva from "./Components/reserva";
 import Services_Container from './Components/view-services/Services_Container';
 import Carrito_Container from './Components/view-carrito/Carrito_Container';
 import Contacto from "./Components/contacto";
-import Menu from "./Components/view-menu/Menu";
+import Menu from "./Components/view-menu/Menu.jsx";
 import Pagina404 from "./Components/pagina404";
+import Nosotros from './Components/Nosotros.js';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route exact path="/servicios" component={Services_Container}/>
         <Route exact path="/reserva" component={Reserva}/>
         <Route exact path="/contacto" component={Contacto}/>
+        <Route exact path="/nosotros" component={Nosotros}/>
         <Route exact component={Pagina404}/>
       </Switch>
       </Layout>
