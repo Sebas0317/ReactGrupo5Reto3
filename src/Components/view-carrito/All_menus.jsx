@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Menu from "./Menu";
+import Menu_carrito from "./Menu_carrito";
 import Modal from "../modal";
 
 function All_menus (){
@@ -38,7 +38,7 @@ function All_menus (){
       {list.length ? 
         list.map((menu,index)=>{
           return (
-            <Menu 
+            <Menu_carrito 
               nombre={menu['Nombre']} 
               precio={menu['Precio']}
               total={menu['Total']}

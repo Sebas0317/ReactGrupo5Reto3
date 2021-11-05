@@ -21,7 +21,7 @@ main .row{
     font-family:'Branding';
 }
 
-.title-menu-car h3{
+.title-menu-car h3, .menus-car h2{
     font-family:'Branding';
 }
 
@@ -154,8 +154,4 @@ main .row{
     right: 20px;
     transition: opacity 0.5s;
     position: absolute;
-}
-
-.menus-car h2{
-    font-family:'Branding';
 }

@@ -3,43 +3,43 @@
   border: white solid 1px;
   margin-top: 4.5rem;
 }
-.photo {
+.photo-nos {
     min-width: 540px;
     min-height: 500px;
     background: url('../assets/nosotros.png');
     background-size: cover;
   }
   
-  .top {
+  .top-nos {
     display: flex;
     align-items: flex-start;
   }
   
-  .history .title2 {
+  .history-nos .title2-nos {
     color: #e3901b;
     font-size: 2rem;
   }
   
-  .title {
+  .title-nos {
     font-family: Branding;
     font-size: 7rem;
   }
   
-  .history .text {
+  .history-nos .text-nos {
     text-align: justify;
   }
   
-  .personal {
+  .personal-nos {
     padding-bottom: 3rem;
     text-align: center;
     background-color: #D5CACE;
   }
   
-  .personal .col-sm-4 {
+  .personal-nos .col-sm-4 {
     font-family: Branding;
   }
   
-  .personal img {
+  .personal-nos img {
     margin-bottom: 1rem;
     padding: 4px;
     width: 140px;

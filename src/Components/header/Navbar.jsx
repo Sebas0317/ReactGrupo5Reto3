@@ -15,7 +15,7 @@ class Navbar extends Component {
           </div>
           <div className="nav-link text-light" >
             <Link to="/nosotros">NOSOTROS</Link>
-            <Link to="/Menu">EL MENU</Link>
+            <Link to="/menu">EL MENU</Link>
             <Link to="/servicios">SERVICIOS</Link>
             <Link to="/reserva">RESERVAS</Link>
             <Link className="pocoMargin" to="/carrito">
