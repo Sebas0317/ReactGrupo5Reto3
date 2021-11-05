@@ -38,6 +38,7 @@ main {
   border: none;
   color: white;
   font-size: 1.3rem;
+  border-radius: 8px;
   font-family: Branding;
   background-color: #ff3c04;
 }
@@ -59,4 +60,26 @@ main {
     object-fit: cover;
     object-position: center center;
   }
+}
+
+/* Gestion servicios */
+
+.gestion-ser{
+  text-align: center;
+  justify-content: center;
+  font-family:'Branding';
+}
+
+.gestion-ser a{
+  width: 255px;
+  color: white;
+  font-size: 1.3rem;
+  border-radius: 8px;
+  background-color: #FF3B04;
+}
+.gestion-ser:hover:hover{ color: #59313c; }
+
+.title-Adserv {
+  font-family: Branding;
+  font-size: 4rem;
 }

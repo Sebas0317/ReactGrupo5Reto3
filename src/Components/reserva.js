@@ -312,14 +312,14 @@ export default function Reserva() {
 	}
 
 	function enviarReserva (){
-		let mensaje = `Datos de la reserva:<br><br> 
-                Cliente: <b>${name}</b><br> 
-                Teléfono: <b>${tel}</b><br> 
-                Número de personas: <b>${personas}</b><br> 
-                Servicio: <b>${servicio}</b><br> 
-                Fecha: <b>${fechaCO}</b><br> 
-                Hora: <b>${hora}</b><br> 
-                Indicaciones especiales: <b>${comentario}</b>
+		let mensaje = `<b>DATOS DE LA RESERVA:</b><br><br> 
+										Cliente: <b>${name}</b><br> 
+										Teléfono: <b>${tel}</b><br> 
+										Número de personas: <b>${personas}</b><br> 
+										Servicio: <b>${servicio}</b><br> 
+										Fecha: <b>${fechaCO}</b><br> 
+										Hora: <b>${hora}</b><br> 
+										Indicaciones especiales: <b>${comentario}</b>
 			`;
 
 		window.Email.send({
@@ -350,24 +350,26 @@ export default function Reserva() {
 
 	return (
 		<div className="contenedorReserva">
-			<Modal isVisible={modal} setVisible={()=>{setModal(false)}}>
-				<div style={{display:"flex", padding:"20px", flexDirection:"column", width:"45%", backgroundColor:"#310101", color:"#fff", borderRadius:"5px"}}>
-					<h3>Bien, tu reserva quedo asi:</h3>
-					<br/>
-					<div className="infoReserva"><p>Nombre:</p> <b>{name}</b></div>
-					<div className="infoReserva"><p>Numero de contacto:</p> <b>{tel}</b></div>
-					<div className="infoReserva"><p>Correo electronico:</p> <b>{email}</b></div>
-					<div className="infoReserva"><p>Cantidad de personas:</p> <b>{personas}</b></div>
-					<div className="infoReserva"><p>Fecha de la reserva:</p> <b>{fechaCO}</b></div>
-					<div className="infoReserva"><p>Hora:</p> <b>{hora}</b></div>
-					<div className="infoReserva"><p>Servicio:</p> <b>{servicio}</b></div>
-					<div className="infoReserva"><p>Indicaciones:</p> <b>{comentario}</b></div>
-					<div className="btnsReserva">
-						<button className="closeModal">CANCELAR</button>
-						<button className="btnReserva" onClick={()=>enviarReserva()}>RESERVAR</button>	
-					</div>
-				</div>
-			</Modal>
+			{ modal &&
+				<Modal isVisible={modal} setVisible={()=>{setModal(false)}}>
+							<div style={{display:"flex", padding:"20px", flexDirection:"column", width:"45%", backgroundColor:"#310101", color:"#fff", borderRadius:"5px"}}>
+								<h3>Bien, tu reserva quedó así:</h3>
+								<br/>
+								<div className="infoReserva"><p>Nombre:</p> <b>{name}</b></div>
+								<div className="infoReserva"><p>Numero de contacto:</p> <b>{tel}</b></div>
+								<div className="infoReserva"><p>Correo electronico:</p> <b>{email}</b></div>
+								<div className="infoReserva"><p>Cantidad de personas:</p> <b>{personas}</b></div>
+								<div className="infoReserva"><p>Fecha de la reserva:</p> <b>{fechaCO}</b></div>
+								<div className="infoReserva"><p>Hora:</p> <b>{hora}</b></div>
+								<div className="infoReserva"><p>Servicio:</p> <b>{servicio}</b></div>
+								<div className="infoReserva"><p>Indicaciones:</p> <b>{comentario}</b></div>
+								<div className="btnsReserva">
+									<button className="closeModal">CANCELAR</button>
+									<button className="btnReserva" onClick={()=>enviarReserva()}>RESERVAR</button>	
+								</div>
+							</div>
+						</Modal>
+					}
 
 			<h2>Reservas</h2>
 			<form className="formReserva">
@@ -409,7 +411,7 @@ export default function Reserva() {
  					<label className="label">Servicio<span>*</span></label>
 					<select className="inputLargo servicio" onChange={(e)=>setServicio(e.target.value)}>
 						<option disabled selected>Selecciona un servicio</option>
-						<option>Celebracion de cumple años</option>
+						<option>Celebración de cumpleaños</option>
 						<option>Aniversarios</option>
 						<option>Fiestas infantiles</option>
 						<option>Declaraciones o propuestas</option>

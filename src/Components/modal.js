@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+import React, {useEffect} from "react";
 import "./styles/modal.css";
 
 export default function Modal ({isVisible, setVisible, children}){
@@ -11,20 +11,23 @@ export default function Modal ({isVisible, setVisible, children}){
 				setVisible(false);
 			}, 300)
 		})
+		let closeModal = document.querySelector(".closeModal");
+		if (closeModal) {
+			closeModal.addEventListener("click", ()=>{
+				document.querySelector(".modalContainer").style.top="-100%";
+				setTimeout(()=>{
+					document.querySelector(".modalContainer").style.display="none";
+					setVisible(false);
+				}, 300)
+			});
 
-		document.querySelector(".closeModal").addEventListener("click", ()=>{
-			document.querySelector(".modalContainer").style.top="-100%";
-			setTimeout(()=>{
-				document.querySelector(".modalContainer").style.display="none";
-				setVisible(false);
-			}, 300)
-		});
-
+		}
+			
 		if (isVisible === true){
 			document.querySelector(".modalContainer").style.display="flex";
 			setTimeout(()=>{
 				document.querySelector(".modalContainer").style.top="0px";
-			}, 10)
+			}, 100)
 		}
 	})
 	return (

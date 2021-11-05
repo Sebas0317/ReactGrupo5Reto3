@@ -38,7 +38,9 @@
 	color: white;
 	text-decoration: none;
 }
-
+.pocoMargin{
+	margin-right: 20px!important;
+}
 .nav-link a:hover{ 
 	color: #4F2634 !important;
 }

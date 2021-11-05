@@ -1,0 +1,144 @@
+.contenedorPlatos {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 5rem auto;
+    padding: 0px 40px 0px 40px;
+}
+
+.platos{
+    display: flex;
+    padding: 0px 30px;
+    flex-direction: column;
+}
+.title {
+    font-size: 5.5rem;
+    font-family: "Branding";
+    padding: 1rem 0px 40px 40px;
+    color: #4f2c38;
+}
+
+.item{
+    display: flex;
+    margin-bottom: 50px;
+}
+
+.item img {
+    width: 20%;
+    margin-right: 20px;
+    resize: center;
+}
+
+.descripcion{
+    display: flex;
+    width: 60%;
+    padding: 0px 10px;
+    color: #4f2c38;
+    flex-direction: column;
+}
+.descripcion h2{
+    margin-top: 10px;
+}
+.descripcion p {
+    padding: 10px 0px;
+    text-align: justify;
+}
+.cantidad{
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    justify-content: center;
+    flex-direction: column;
+    color: #4f2c38;
+    width: 15%;
+}
+.titleCant{
+    font-weight: bold;
+}
+.cantidad h5{
+    margin-bottom: 20px;
+}
+.titlePrecio{
+    font-family: 'Branding';
+}
+.titleItem{
+    font-family: 'Branding';
+}
+.botones{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.valor{
+    display: flex;
+    padding: 10px;
+    margin: 0px 4px 0px 4px;
+    font-weight: bold;
+    border: 1px solid #000;
+    line-height: 10px;
+}
+.buttonMenos{
+    padding: 10px;
+    padding-right: 5px;
+    background-color: transparent;
+    border: none;
+}
+.buttonMas{
+    display: flex;
+    border: none;
+    background-color: transparent;
+    padding: 0px;
+}
+.btnMenos{
+    width: 13px;
+    height: 3px;
+    background-color: #000;
+    cursor: pointer;
+}
+.botones img{
+    width: 26px;
+    margin: 0px;
+    cursor: pointer;
+}
+
+.btnAgregar{
+    display: flex;
+    cursor: pointer;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    background-color: #FF3B04;
+}
+.btnAgregar img{
+    width: 20px;
+    margin: 0px 2px;
+}
+.btnAgregar p {
+    font-size: 13px;
+    color: #fff;
+    font-weight: bold;
+    margin: 0;
+}
+
+.btns{
+    display: flex;
+    width: 100%;
+    margin-top: 15px;
+	justify-content: space-evenly;
+}
+
+.btns button{
+	border: none;
+	outline: none;
+}
+
+.btnOk{
+    padding: 5px;
+	width: 25%;
+	background-color: #2D9E45;
+	color: #fff;
+}

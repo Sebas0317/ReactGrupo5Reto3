@@ -4,7 +4,7 @@ import Carousel from "./carousel"
 import Propuesta from "./OurProposal"
 import Recomendados from "./Recommended"
 import Eventos from "./All_events"
-import Comentarios from "./All_comments"
+import Comentarios from "../comments/All_comments"
 
 
 class Inicio_Container extends React.Component{

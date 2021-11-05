@@ -37,7 +37,7 @@ footer {
     padding-right: 50px;
     color: #fff;
 }
-.datos-footer li a:hover{color: #e3901b;}
+.datos-footer li a:hover{color: #e3901b !important;}
 
 #contactos .contactos-footer {
     text-align: left;

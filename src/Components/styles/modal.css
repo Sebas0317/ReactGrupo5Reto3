@@ -26,3 +26,13 @@
 .bodyModal div{
 	z-index: 200;
 }
+
+.styleModal{
+	display: flex ; 
+	padding: 20px ; 
+	width: 45% ; 
+	color: #fff ; 
+	border-radius: 5px;
+	flex-direction: column;
+	background-color: #310101;
+}

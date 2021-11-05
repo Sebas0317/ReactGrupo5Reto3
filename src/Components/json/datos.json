@@ -1,0 +1,121 @@
+{
+	"platos": [
+		{
+			"foto": "'../assets/menu_pl1.png'",
+			"nombre": "Bandeja paisa",
+			"descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
+			"precio": 35000
+		},
+		{
+			"foto": "../assets/menu_pl2.jpg",
+			"nombre": "Arroz con pollo",
+			"descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
+			"precio": 35000
+		},
+		{
+			"foto": "../assets/menu_pl3.png",
+			"nombre": "Sancocho",
+			"descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
+			"precio": 40000
+		},
+		{
+			"foto": "../assets/menu_pl4.png",
+			"nombre": "Pescado",
+			"descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
+			"precio": 20000
+		},
+		{
+			"foto": "../assets/menu_pl5.png",
+			"nombre": "Arroz con coco",
+			"descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
+			"precio": 35000
+		},
+		{
+			"foto": "../assets/menu_pl6.png",
+			"nombre": "Pollo broster",
+			"descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
+			"precio": 30000
+		},
+		{
+			"foto": "../assets/menu_pl7.png",
+			"nombre": "Lomo de cerdo relleno",
+			"descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
+			"precio": 40000
+		},
+		{
+			"foto": "../assets/menu_pl8.jpeg",
+			"nombre": "Carne en bistec",
+			"descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
+			"precio": 35000
+		},
+		{
+			"foto": "../assets/menu_pl9.jpeg",
+			"nombre": "Pollo a la naranja",
+			"descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
+			"precio": 18000
+		},
+		 {
+			"foto": "../assets/menu_pl10.jpg",
+			"nombre": "Hamburguesa",
+			"descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
+			"precio": 20000
+		},
+		 {
+			"foto": "../assets/menu_pl11.jpeg",
+			"nombre": "Pollo asado",
+			"descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
+			"precio": 20000
+		},
+		 {
+			"foto": "../assets/menu_pl12.jpg",
+			"nombre": "Espagueti",
+			"descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
+			"precio": 40000
+		}
+	],
+
+	"servicios": [
+		{
+			"nombre": "Celebración de cumpleaños",
+			"descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus suscipit ut blanditiis perspiciatis dolores quod hic quas, minima at excepturi aut voluptates in eveniet nisi. Nihil cumque doloribus facilis."
+		},
+		{
+			"nombre": "Aniversarios",
+			"descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus suscipit ut blanditiis perspiciatis dolores quod hic quas, minima at excepturi aut voluptates in eveniet nisi. Nihil cumque doloribus facilis."
+		},
+		{
+			"nombre": "Fiestas infantiles",
+			"descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus suscipit ut blanditiis perspiciatis dolores quod hic quas, minima at excepturi aut voluptates in eveniet nisi. Nihil cumque doloribus facilis."
+		},
+		{
+			"nombre": "Declaraciones o propuestas",
+			"descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus suscipit ut blanditiis perspiciatis dolores quod hic quas, minima at excepturi aut voluptates in eveniet nisi. Nihil cumque doloribus facilis."
+		},
+		{
+			"nombre": "Despedidas",
+			"descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus suscipit ut blanditiis perspiciatis dolores quod hic quas, minima at excepturi aut voluptates in eveniet nisi. Nihil cumque doloribus facilis."
+		},
+		{
+			"nombre": "Cena con amigos",
+			"descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus suscipit ut blanditiis perspiciatis dolores quod hic quas, minima at excepturi aut voluptates in eveniet nisi. Nihil cumque doloribus facilis."
+		}
+	],
+
+	"comentarios": [
+		{
+			"user": "Mario García",
+			"comentario": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum vitae similique illum id dolores quos non pariatur sapiente voluptates earum, atque numquam iure deleniti explicabo modi perspiciatis accusantium aliquam dolor!",
+			"fecha": "02/11/2021"
+		},
+		{
+			"user": "Miguel Ospino",
+			"comentario": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum vitae similique illum id dolores quos non pariatur sapiente voluptates earum, atque numquam iure deleniti explicabo modi perspiciatis accusantium aliquam dolor!",
+			"fecha": "02/11/2021"
+		},
+		{
+			"user": "Vanessa Montero",
+			"comentario": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum vitae similique illum id dolores quos non pariatur sapiente voluptates earum, atque numquam iure deleniti explicabo modi perspiciatis accusantium aliquam dolor!",
+			"fecha": "02/11/2021"
+		}
+	]
+}
