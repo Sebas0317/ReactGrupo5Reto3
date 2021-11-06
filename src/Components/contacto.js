@@ -3,6 +3,7 @@ import "./styles/contacto.css";
 import Modal from "./modal";
 import Ok from "./assets/ok.png";
 import Load from "./assets/loading.gif";
+import Social from "./social/Social";
 
 export default function Contacto (){
 
@@ -241,6 +242,7 @@ function validarCheck (){
 
 	return (
 		<div className="contactoCont">
+      <Social />
      { modal &&
       <Modal isVisible={true} setVisible={()=>setModal(false)}>
         <div style={{backgroundColor:"#fff", padding:"30px", borderRadius:"5px"}}>

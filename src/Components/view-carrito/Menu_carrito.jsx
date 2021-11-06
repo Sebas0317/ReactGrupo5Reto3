@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import ico_mas from "../assets/mas1.svg"
 import ico_basura from "../assets/car-ico-basura.png"
 
-function Menu ({nombre, precio, total, foto, cant, id, abr}){
+function Menu_carrito ({nombre, precio, total, foto, cant, id, abr}){
 
   let [Newcant, setNewcant] = useState(cant);
   let [Newtotal, setNewtotal] = useState(total);
@@ -79,4 +79,4 @@ function Menu ({nombre, precio, total, foto, cant, id, abr}){
   );
 }
 
-export default Menu;
+export default Menu_carrito;

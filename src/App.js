@@ -11,7 +11,7 @@ import Carrito_Container from './Components/view-carrito/Carrito_Container';
 import Contacto from "./Components/contacto";
 import Menu from "./Components/view-menu/Menu.jsx";
 import Pagina404 from "./Components/pagina404";
-import Nosotros from './Components/Nosotros.js';
+import Nosotros from "./Components/view-nosotros/Nosotros"
 
 function App() {
   return (
@@ -27,10 +27,14 @@ function App() {
         <Route exact path="/reserva" component={Reserva}/>
         <Route exact path="/contacto" component={Contacto}/>
         <Route exact path="/nosotros" component={Nosotros}/>
+<<<<<<< HEAD
         =======
        {/* <Route exact path="/login" component={Login}/>
 >>>>>>> c664cd191cf498a2124321d92f92cd2bf9eb5ee2 */}
 
+=======
+        <Route exact path="/login" component={Login}/>
+>>>>>>> e3627550cafadafd718f02faac6f3f326b46e1d5
         <Route exact component={Pagina404}/>
       </Switch>
       </Layout>

@@ -1,26 +1,29 @@
 import React, { Component } from "react";
-import "./nosotros.css";
+import "../styles/nosotros.css";
 import Personal1 from "../assets/cliente1.png";
+import Personal2 from "../assets/cliente2.png";
+import Personal3 from "../assets/cliente3.png";
+import Personal4 from "../assets/cliente4.png";
 
-class nosotros extends Component {
+class NosotrosC extends Component {
   render() {
     return (
       <div className="contenedorNos">
-      <div className="container-fluid p-0 mb-5">
+      <div className="container-fluid p-0">
         <div className="row my-5 mx-0">
           <div className="col-sm-6 p-0">
-            <div className="photo float-end" />
+            <div className="photo-nos float-end" />
           </div>
-          <div className="col-sm-6 history p-0 m-0">
-            <div className="top mt-5 ms-3 me-1">
+          <div className="col-sm-6 history-nos p-0 m-0">
+            <div className="top-nos mt-5 ms-3 me-1">
               <p className="lh-1">
-                <span className="title2">NUESTRA</span>
+                <span className="title2-nos">NUESTRA</span>
                 <br />
-                <span className="title">Historia</span>
+                <span className="title-nos">Historia</span>
               </p>
             </div>
             <div>
-              <p className="text mx-4">
+              <p className="text-nos mx-4">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum
                 vitae similique illum id dolores quos non pariatur
                 sapientevoluptates earum, atque numquam iure deleniti explicabo
@@ -46,7 +49,7 @@ class nosotros extends Component {
             </div>
           </div>
         </div>
-        <div className="row personal gy-5 px-5 m-0">
+        <div className="row personal-nos gy-5 px-5 m-0">
           <div className="col-sm-4">
             <img
               className="rounded-circle"
@@ -59,7 +62,7 @@ class nosotros extends Component {
           <div className="col-sm-4">
             <img
               className="rounded-circle"
-              src={Personal1}
+              src={Personal4}
               alt="personal2"
             />
             <h3>Brenda Mendoza</h3>
@@ -68,7 +71,7 @@ class nosotros extends Component {
           <div className="col-sm-4">
             <img
               className="rounded-circle"
-              src={Personal1}
+              src={Personal3}
               alt="personal3"
             />
             <h3>Laura Acosta</h3>
@@ -77,7 +80,7 @@ class nosotros extends Component {
           <div className="col-sm-4">
             <img
               className="rounded-circle"
-              src={Personal1}
+              src={Personal3}
               alt="personal4"
             />
             <h3>María Márquez</h3>
@@ -86,7 +89,7 @@ class nosotros extends Component {
           <div className="col-sm-4">
             <img
               className="rounded-circle"
-              src={Personal1}
+              src={Personal2}
               alt="personal5"
             />
             <h3>Juan Pérez</h3>
@@ -95,7 +98,7 @@ class nosotros extends Component {
           <div className="col-sm-4">
             <img
               className="rounded-circle"
-              src={Personal1}
+              src={Personal4}
               alt="personal6"
             />
             <h3>María Torres</h3>
@@ -108,4 +111,4 @@ class nosotros extends Component {
   }
 }
 
-export default nosotros;
+export default NosotrosC;
