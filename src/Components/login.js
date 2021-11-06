@@ -95,7 +95,7 @@ function Login (){
 					<label className="passLabel">Contraseña <p className="loginPassVal"></p></label>
 					<div className="inputPass">
 						<input type="password" onChange={(e)=>setPass(e.target.value)} placeholder="Ingresa tu contraseña"/>
-						<img src={verPass}/>
+						<img src={verPass} alt="pass"/>
 					</div>
 					<button onClick={(e)=>validar(e)}>Iniciar sesion</button>
 				</div>

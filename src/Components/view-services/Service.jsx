@@ -1,7 +1,8 @@
 import React from "react";
 
 function Service({imagen,nombre, descripcion}){
-    return(
+  
+  return(
       <div className="col-sm-6">
         <div className="row service m-0 p-0">
           <div className="col-sm-6 p-0 img-serv">
@@ -12,7 +13,7 @@ function Service({imagen,nombre, descripcion}){
             <p>
               {descripcion}
             </p>
-            <a className="btn btn-sm p-2" href="/reserva">
+            <a className="btn btn-sm h-300" href="/reserva">
               Reservar
             </a>
           </div>
