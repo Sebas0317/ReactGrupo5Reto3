@@ -8,6 +8,8 @@
 
 .loginContainer form {
 	display: flex;
+	padding: 0px;
+	flex-direction: row;
 	margin-top: 4%;
 	background-color: #E5E5E5;
 	border-radius: 5px;
