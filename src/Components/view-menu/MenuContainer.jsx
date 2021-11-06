@@ -41,11 +41,11 @@ function MenuContainer({foto, nombre, descripcion, precio, act}) {
           </button>
           <p id={"valor"} className="valor">{cant}</p>
           <button onClick={()=>sumar()} className="buttonMas">
-            <img className="imgMas" src={mas} />
+            <img className="imgMas" src={mas} alt="Boton mas" />
           </button>
         </div>
         <button onClick={()=>act(nombre,precio,cant,foto)} className="btnAgregar">
-          <img src={carrito} />
+          <img src={carrito} alt="imagen carrito"/>
           <p>AÑADIR AL CARRITO</p>
         </button>
       </div>
@@ -53,4 +53,4 @@ function MenuContainer({foto, nombre, descripcion, precio, act}) {
     );
 }
 
-export default MenuContainer;
+export  default MenuContainer ;

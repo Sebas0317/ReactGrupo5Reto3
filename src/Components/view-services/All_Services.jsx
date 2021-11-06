@@ -1,5 +1,7 @@
 import React from "react";
 import Service from "./Service";
+
+/*FOTOS*/
 import Cumple from "../assets/serv_cumple.png"
 import Aniversarios from "../assets/serv_aniversario.png"
 import Infantil from "../assets/serv_infantil.png"
@@ -17,7 +19,7 @@ class All_Services extends React.Component{
         {json.servicios.map((servicio, index)=>{
           return (
             <Service 
-              imgagen={servicios[index]} 
+              imagen={servicios[index]} 
               nombre={servicio.nombre}
               descripcion={servicio.descripcion}
             />

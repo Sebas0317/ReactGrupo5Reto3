@@ -8,7 +8,7 @@
 		},
 		{
 			"foto": "../assets/menu_pl2.jpg",
-			"nombre": "Arroz con pollo",
+			"nombre": "Arroz con Hongos",
 			"descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
 			"precio": 35000
 		},
@@ -72,6 +72,7 @@
 			"descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
 			"precio": 40000
 		}
+		
 	],
 
 	"servicios": [
@@ -114,6 +115,12 @@
 		},
 		{
 			"user": "Vanessa Montero",
+			"comentario": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum vitae similique illum id dolores quos non pariatur sapiente voluptates earum, atque numquam iure deleniti explicabo modi perspiciatis accusantium aliquam dolor!",
+			"fecha": "02/11/2021"
+		},
+
+		{
+			"user": "Pedro PicaPiedra",
 			"comentario": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum vitae similique illum id dolores quos non pariatur sapiente voluptates earum, atque numquam iure deleniti explicabo modi perspiciatis accusantium aliquam dolor!",
 			"fecha": "02/11/2021"
 		}
