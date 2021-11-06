@@ -1,14 +1,15 @@
 import {useState, useEffect} from "react";
 import "./styles/login.css";
 import verPass from "./assets/verPass.svg";
-import verPassNone from "./assets/verPassNone.svg";
 import {Link} from "react-router-dom";
-import Logo from "./assets/logo.png";
+import verPassNone from "./assets/verPassNone.svg";
 
 function Login (){
 	
+	let [name, setName] = useState("");
 	let [email, setEmail] = useState("");
 	let [pass, setPass] = useState("");
+	let [pass1, setPass1] = useState("");
 
 	function mostrarPass(){
 		let oculto = true;
@@ -27,14 +28,35 @@ function Login (){
 		})
 	}
 
+
+	function mostrarPass1(){
+		let oculto = true;
+		let btnVerPass = document.querySelector("#inputPass img");
+		let inputPass = document.querySelector("#inputPass input");
+		btnVerPass.addEventListener("click", ()=>{
+			if (oculto == true) {
+				btnVerPass.src=verPassNone;
+				inputPass.type="text";
+				oculto = false;
+			} else {
+				btnVerPass.src=verPass;
+				inputPass.type="password";
+				oculto = true;
+			}
+		})
+	}
+
 	function validar(e){
 		e.preventDefault();
-		let inputEmail = document.querySelector(".inputEmail");
-		let inputPass = document.querySelector(".inputPass");
+		let inputEmail = document.querySelector("#inputEmail");
+		let inputPass = document.querySelector("#inputPass");
 		let emailMensaje = document.querySelector(".loginEmailVal");
-		let passMensaje = document.querySelector(".loginPassVal");
+		let passMensaje = document.querySelector("#loginPassVal");
+		let inputName = document.querySelector("#inputName");
+		let inputPass1 = document.querySelector("#inputPass1");
+		let passMensaje1 = document.querySelector("#loginPassVal1");
 
-		if (email.length == 0 && pass.length == 0) {
+		if (email.length == 0 && pass.length == 0 && name.length == 0 && pass1.length == 0) {
 			inputEmail.style.border="1px solid #C42424";
 			inputPass.style.border="1px solid #C42424";
 			emailMensaje.textContent="Rellena este campo.";
@@ -62,7 +84,7 @@ function Login (){
 				if (pass.length != 0) {
 					if (pass.length >= 5) {
 						if (valEmail.test(email)) {
-							validarCuenta();
+							comprobarCuenta();
 						}
 					} else {
 						inputPass.style.border="1px solid #C42424";
@@ -89,48 +111,54 @@ function Login (){
 		users = JSON.parse(localStorage.getItem("users"));
 	}
 
-	function validarCuenta(){
-		for (let i = 0; i < users.length; i++) {
+	//Comprobar que no exista la cuenta
+	function comprobarCuenta(){
+		for (let i = 0; i < users.length; i++){
 			if (email == users[i].user) {
-				if (pass == users[i].pass) {
-					alert("login");
-				} else {
-					alert("La contraseña es incorrecta");
-				}
-				break;
-			} else {
+				alert("El correo ingresado ya se encuentra registrado :(");
+			} else{
 				let val = i;
 				val++
 				if (val == users.length) {
-					alert("El usuario no existe");
+					guardarCuenta();
 				}
 			}
-		};
-		
+		}
+	}
+
+	function guardarCuenta(){
+		alert("Cuenta guardada")
 	}
 
 	
 
 	useEffect(()=>{
-		mostrarPass()
+		mostrarPass();
+		mostrarPass1();
 	})
 	return (
 		<div className="loginContainer">
 			<form>
 				<div className="loginFoto2"/>
 				<div className="formCont">
-					<img className="loginLogo" src={Logo} alt="Logo"/>
-					<h2>Inicia sesion</h2>
-					<label>Correo electronico <p className="loginEmailVal"></p></label>
-					<input className="inputEmail" onChange={(e)=>setEmail(e.target.value)} type="email" placeholder="Ingresa tu correo"/>
-					<label className="passLabel">Contraseña <p className="loginPassVal"></p></label>
-					<div className="inputPass">
+					<h2>Registro</h2>
+					<label>Nombre</label>
+					<input className="inputEmail" id="inputName" type="text" placeholder="Ingresa tu nombre"/>
+					<label style={{marginTop:"5px"}}>Correo electronico <p className="loginEmailVal"></p></label>
+					<input className="inputEmail" id="inputEmail" onChange={(e)=>setEmail(e.target.value)} type="email" placeholder="Ingresa tu correo"/>
+					<label className="passLabel">Contraseña <p className="loginPassVal" id="loginPassVal"></p></label>
+					<div className="inputPass" id="inputPass">
 						<input type="password" onChange={(e)=>setPass(e.target.value)} placeholder="Ingresa tu contraseña"/>
-						<img src={verPass} alt="pass"/>
+						<img src={verPass}/>
+					</div>
+					<label className="passLabel">Repite tu contraseña <p className="loginPassVal" id="loginPassVal1"></p></label>
+					<div className="inputPass" id="inputPass1">
+						<input type="password" onChange={(e)=>setPass(e.target.value)} placeholder="Ingresa de nuevo tu contraseña"/>
+						<img src={verPass}/>
 					</div>
 					<div style={{position:"absolute", width:"100%", left:0, alignItems:"center", bottom:8, display:"flex", flexDirection:"column"}}>
-						<button onClick={(e)=>validar(e)}>Iniciar sesion</button>
-						<p style={{margin:0, marginTop:3}}>¿No tienes cuenta? registrate <Link to="/register">Aqui</Link></p>
+						<button onClick={(e)=>validar(e)}>Registrarme</button>
+						<p style={{margin:0, marginTop:3}}>¿Ya tienes una cuenta? logueate <Link to="/login">Aqui</Link></p>
 					</div>
 				</div>
 			</form>

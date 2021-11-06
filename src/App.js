@@ -12,7 +12,9 @@ import Contacto from "./Components/contacto";
 import Menu from "./Components/view-menu/Menu.jsx";
 import Pagina404 from "./Components/pagina404";
 import Nosotros from "./Components/view-nosotros/Nosotros"
-import Login from "./Components/login.js"
+import Login from "./Components/login";
+import Register from "./Components/register";
+
 function App() {
   return (
     <BrowserRouter>
@@ -27,9 +29,8 @@ function App() {
         <Route exact path="/reserva" component={Reserva}/>
         <Route exact path="/contacto" component={Contacto}/>
         <Route exact path="/nosotros" component={Nosotros}/>
-
         <Route exact path="/login" component={Login}/>
-
+        <Route exact path="/register" component={Register}/>
         <Route exact component={Pagina404}/>
       </Switch>
       </Layout>

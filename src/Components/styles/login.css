@@ -55,6 +55,7 @@
 	font-size: 14px;
 }
 .formCont{
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	padding: 30px;

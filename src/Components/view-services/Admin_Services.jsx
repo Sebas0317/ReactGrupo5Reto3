@@ -12,7 +12,16 @@ import Modal from "../modal.js";
 
 import "./modalservicio.css";
 
+
 function Admin_Services() {
+
+  const [modal, setModal] = useState(false);
+  const [modal1, setModal1] = useState(false);
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+
+  const [servicio, setServicio] = useState("");
+
   let servicios = [
     Cumple,
     Aniversarios,
@@ -34,22 +43,7 @@ function Admin_Services() {
   function eliminarServicios(props) {
     infoservices.splice(props, 1);
     localStorage.setItem("servicios", JSON.stringify(infoservices));
-    location.reload();
-    // console.log(infoservices)
   }
-  function editarServicios(e) {
-    let valor = prompt("Editar Servicio");
-    infoservices[e].descripcion = valor;
-    localStorage.setItem("servicios", JSON.stringify(infoservices));
-    location.reload();
-  }
-  useEffect(() => {});
-
-  const [modal, setModal] = useState(false);
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-
-  const [servicio, setServicio] = useState("");
 
   function actualizarServicio() {
     infoservices[servicio].nombre = name;
@@ -58,10 +52,40 @@ function Admin_Services() {
     setModal(false);
   }
 
+  function addServicio (){
+    infoservices.push({nombre:name, descripcion:description});
+    localStorage.setItem("servicios", JSON.stringify(infoservices));
+    setModal1(false);
+  }
+
   return (
     <main>
-      {modal && (
+      {modal &&
         <Modal isVisible={true} setVisible={() => setModal(false)}>
+          <form className="modalservice">
+            <input
+              type="text"
+              placeholder={infoservices[servicio].nombre}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Nombra tu servicio"
+            />
+            <textarea
+              placeholder={infoservices[servicio].descripcion}
+              onChange={(e) => setDescription(e.target.value)}
+              id=""
+              cols="30"
+              rows="10"
+              placeholder="Describe tu servicio"
+            ></textarea>
+            <button onClick={() => actualizarServicio()}>
+              Actualizar servicio
+            </button>
+          </form>
+        </Modal>
+      }
+      {
+        modal1 && 
+         <Modal isVisible={true} setVisible={() => setModal1(false)}>
           <form className="modalservice">
             <input
               type="text"
@@ -75,12 +99,12 @@ function Admin_Services() {
               rows="10"
               placeholder="Describe tu servicio"
             ></textarea>
-            <button onClick={() => actualizarServicio()}>
-              Actualizar el servicio
+            <button onClick={() => addServicio()}>
+              Agregar servicio
             </button>
           </form>
         </Modal>
-      )}
+      }
       <div className="container-fluit pt-4 my-5">
         <div className="row mt-5 mx-0 p-0">
           <div className="col-sm-12 top-serv ps-5 pe-1">
@@ -135,12 +159,14 @@ function Admin_Services() {
               </div>
             );
           })}
-          {infoservices.length == 0 && (
-            <p style={{ fontSize: "40px" }}>Sin servicios</p>
-          )}
+          {infoservices.length == 0 && 
+            (
+            <p style={{ fontSize: "30px" }}>Sin servicios, ¿por qué no agregas uno?</p>
+            )
+          }
         </div>
         <div className="row gestion-ser p-5">
-          <a type="button" className="btn">
+          <a type="button" onClick={()=>setModal1(true)} className="btn">
             Agregar servicio
           </a>
         </div>
