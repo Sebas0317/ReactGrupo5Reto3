@@ -2,8 +2,8 @@ import React,{useEffect, useState} from "react";
 import "./styles/contacto.css";
 import Modal from "./modal";
 import Ok from "./assets/ok.png";
-import Load from "./assets/loading.gif";
 import Social from "./social/Social";
+import Load from "./loading";
 
 export default function Contacto (){
 
@@ -252,11 +252,7 @@ function validarCheck (){
       </Modal>
      }
     { loading &&
-      <Modal isVisible={true} setVisible={()=>setLoading(false)}>
-        <div style={{display:"flex", justifyContent:"center", borderRadius:"3px", backgroundColor:"#fff", width:"4%", height:"7vh", padding:"5px"}}>
-          <img src={Load}/>
-        </div>
-      </Modal>
+      <Load isVisible={true}/>
     }
 		  <div className="parrafo">
         <p className="titulo">Contáctanos</p>

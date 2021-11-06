@@ -3,6 +3,9 @@ import "./styles/login.css";
 import verPass from "./assets/verPass.svg";
 import {Link} from "react-router-dom";
 import verPassNone from "./assets/verPassNone.svg";
+import Load from "./loading";
+import ok from "./assets/ok.png";
+import Modal from "./modal";
 
 function Login (){
 	
@@ -10,6 +13,8 @@ function Login (){
 	let [email, setEmail] = useState("");
 	let [pass, setPass] = useState("");
 	let [pass1, setPass1] = useState("");
+	let [loading, setLoading] = useState(false);
+	let [modal, setModal] = useState(false);
 
 	function mostrarPass(){
 		let oculto = true;
@@ -31,8 +36,8 @@ function Login (){
 
 	function mostrarPass1(){
 		let oculto = true;
-		let btnVerPass = document.querySelector("#inputPass img");
-		let inputPass = document.querySelector("#inputPass input");
+		let btnVerPass = document.querySelector("#inputPass1 img");
+		let inputPass = document.querySelector("#inputPass1 input");
 		btnVerPass.addEventListener("click", ()=>{
 			if (oculto == true) {
 				btnVerPass.src=verPassNone;
@@ -46,11 +51,19 @@ function Login (){
 		})
 	}
 
+	let users = false;
+	if (!localStorage.getItem("users")) {
+		localStorage.setItem("users", JSON.stringify([{"user":"admin@salysalsa.co", pass:"admin123", rol:"admin", name:"Administrador"}]))
+	} else {
+		users = JSON.parse(localStorage.getItem("users"));
+	}
+
 	function validar(e){
 		e.preventDefault();
 		let inputEmail = document.querySelector("#inputEmail");
 		let inputPass = document.querySelector("#inputPass");
 		let emailMensaje = document.querySelector(".loginEmailVal");
+		let nameMensaje = document.querySelector("#loginEmailVal1");
 		let passMensaje = document.querySelector("#loginPassVal");
 		let inputName = document.querySelector("#inputName");
 		let inputPass1 = document.querySelector("#inputPass1");
@@ -59,75 +72,152 @@ function Login (){
 		if (email.length == 0 && pass.length == 0 && name.length == 0 && pass1.length == 0) {
 			inputEmail.style.border="1px solid #C42424";
 			inputPass.style.border="1px solid #C42424";
+			inputName.style.border="1px solid #C42424";
 			emailMensaje.textContent="Rellena este campo.";
 			emailMensaje.style.opacity=1;
 			passMensaje.textContent="Rellena este campo.";
 			passMensaje.style.opacity=1;
+			nameMensaje.textContent="Rellena este campo."
+			nameMensaje.style.opacity=1;
+			inputPass1.style.border="1px solid #C42424";
+			passMensaje1.textContent="Rellena este campo.";
+			passMensaje1.style.opacity=1
 		
 		} else {
-			inputEmail.style.border="none";
+			setLoading(true);
 			inputPass.style.border="none";
+			inputEmail.style.border="none";
+			inputName.style.border="none";
+			inputPass1.style.border="none";
 			emailMensaje.textContent="";
 			emailMensaje.style.opacity=0;
 			passMensaje.textContent="";
-			passMensaje.style.opacity=0;	
+			passMensaje.style.opacity=0;
+			nameMensaje.textContent=""
+			nameMensaje.style.opacity=0;
+			passMensaje1.textContent="";
+			passMensaje1.style.opacity=0
 
-			if (email.length != 0) {
+			function valName(){
+				if (name.length > 0) {
+				const valName = new RegExp('^[A-ZÁÉÍÓÚÑ ]+$', 'i');
+				if (valName.test(name)) {
+					return true;
+				} else {
+					inputName.style.border="1px solid #C42424";
+					nameMensaje.textContent="Ingresa solo letras."
+					nameMensaje.style.opacity="1";
+				}
+				} else {
+					inputName.style.border="1px solid #C42424";
+					nameMensaje.textContent="Rellena este campo."
+					nameMensaje.style.opacity="1";
+				}
+			}
+			valName();
+
+			function validarEmail (){
 				const valEmail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-				if (valEmail.test(email)) {
-
+				if (email.length != 0) {
+					if (valEmail.test(email)) {
+						return true;
+					} else {
+						inputEmail.style.border="1px solid #C42424";
+						emailMensaje.textContent="Ingresa un email verdadero.";
+						emailMensaje.style.opacity=1;
+					}
 				} else {
 					inputEmail.style.border="1px solid #C42424";
-					emailMensaje.textContent="Ingresa un email verdadero.";
+					emailMensaje.textContent="Rellena este campo.";
 					emailMensaje.style.opacity=1;
 				}
+			}
+			validarEmail();
+
+			function valPass (){
 				if (pass.length != 0) {
 					if (pass.length >= 5) {
-						if (valEmail.test(email)) {
-							comprobarCuenta();
-						}
+						return true;
 					} else {
-						inputPass.style.border="1px solid #C42424";
-						passMensaje.textContent="La contraseña debe tener minimo 5 caracteres.";
-						passMensaje.style.opacity=1;
-					}
+							inputPass.style.border="1px solid #C42424";
+							passMensaje.textContent="La contraseña debe tener minimo 5 caracteres.";
+							passMensaje.style.opacity=1;
+					}	
 				} else {
 					inputPass.style.border="1px solid #C42424";
 					passMensaje.textContent="Rellena este campo.";
 					passMensaje.style.opacity=1;
 				}
+			}
+			valPass();
+
+			function valPass1 (){
+				if (pass1.length > 0) {
+					if (pass1.length < 5) {
+						inputPass1.style.border="1px solid #C42424";
+						passMensaje1.textContent="La contraseña debe tener minimo 5 caracteres.";
+						passMensaje1.style.opacity=1;
+					} else {
+						if (pass1 == pass) {
+							return true;
+						} else {
+							if (pass.length > 4) {
+								inputPass.style.border="1px solid #C42424";
+								inputPass1.style.border="1px solid #C42424";
+								passMensaje.textContent="Las contraseñas no son iguales.";
+								passMensaje.style.opacity=1;
+							} else {
+								valPass();
+							}
+						}
+					}
+				} else {
+					inputPass1.style.border="1px solid #C42424";
+					passMensaje1.textContent="Rellena este campo.";
+					passMensaje1.style.opacity=1;
+				}
+			}
+			valPass1();
+			if (valName() && validarEmail() && valPass() && valPass1()) {
+				setLoading(true);
+				comprobarCuenta();
 			} else {
-				inputEmail.style.border="1px solid #C42424";
-				emailMensaje.textContent="Rellena este campo.";
-				emailMensaje.style.opacity=1;
+				setLoading(false);
 			}
 		}
-	}
-
-	let users = false;
-	if (!localStorage.getItem("users")) {
-		localStorage.setItem("users", JSON.stringify([{"user":"admin@salysalsa.co", pass:"admin123", rol:"admin", name:"Administrador"}]))
-	} else {
-		users = JSON.parse(localStorage.getItem("users"));
 	}
 
 	//Comprobar que no exista la cuenta
 	function comprobarCuenta(){
 		for (let i = 0; i < users.length; i++){
 			if (email == users[i].user) {
-				alert("El correo ingresado ya se encuentra registrado :(");
+				let inputEmail = document.querySelector("#inputEmail");
+				let emailMensaje = document.querySelector(".loginEmailVal");
+				inputEmail.style.border="1px solid #C42424";
+				emailMensaje.textContent="El correo ya se encuentra registrado.";
+				emailMensaje.style.opacity=1;
+				setLoading(false);
+				break;
 			} else{
 				let val = i;
 				val++
 				if (val == users.length) {
 					guardarCuenta();
+					break;
 				}
 			}
 		}
 	}
 
 	function guardarCuenta(){
-		alert("Cuenta guardada")
+		users.push({user:email, pass:pass, name:name, rol:"cliente"});
+		localStorage.setItem("users", JSON.stringify(users));
+		setLoading(false);
+		setModal(true);
+		setTimeout(()=>{
+			setModal(false);
+			document.querySelector(".loginContainer form").reset();
+		}, 3000);
 	}
 
 	
@@ -138,12 +228,23 @@ function Login (){
 	})
 	return (
 		<div className="loginContainer">
+			{ loading &&
+				<Load isVisible={true} />
+			}
+			{ modal &&
+				<Modal isVisible={true} setVisible={()=>setModal(false)}>
+					<div style={{backgroundColor:"#fff", width:"27%", padding:"25px", borderRadius:"3px", display:"flex", alignItems:"center", justifyContent:"center"}}>
+						<h3 style={{fontSize:"22px", margin:"auto 0px"}}>Registrado correctamente</h3>
+						<img style={{height:"auto", marginLeft:"2%", width:"9%"}} src={ok}/>
+					</div>
+				</Modal>
+			}
 			<form>
 				<div className="loginFoto2"/>
 				<div className="formCont">
 					<h2>Registro</h2>
-					<label>Nombre</label>
-					<input className="inputEmail" id="inputName" type="text" placeholder="Ingresa tu nombre"/>
+					<label>Nombre <p id="loginEmailVal1">asdsad</p></label>
+					<input className="inputEmail" id="inputName" type="text" onChange={(e)=>setName(e.target.value)} placeholder="Ingresa tu nombre"/>
 					<label style={{marginTop:"5px"}}>Correo electronico <p className="loginEmailVal"></p></label>
 					<input className="inputEmail" id="inputEmail" onChange={(e)=>setEmail(e.target.value)} type="email" placeholder="Ingresa tu correo"/>
 					<label className="passLabel">Contraseña <p className="loginPassVal" id="loginPassVal"></p></label>
@@ -151,11 +252,12 @@ function Login (){
 						<input type="password" onChange={(e)=>setPass(e.target.value)} placeholder="Ingresa tu contraseña"/>
 						<img src={verPass}/>
 					</div>
-					<label className="passLabel">Repite tu contraseña <p className="loginPassVal" id="loginPassVal1"></p></label>
+					<label className="passLabel">Repite tu contraseña</label>
 					<div className="inputPass" id="inputPass1">
-						<input type="password" onChange={(e)=>setPass(e.target.value)} placeholder="Ingresa de nuevo tu contraseña"/>
+						<input type="password" onChange={(e)=>setPass1(e.target.value)} placeholder="Ingresa de nuevo tu contraseña"/>
 						<img src={verPass}/>
 					</div>
+					<label><p className="loginPassVal" id="loginPassVal1"></p></label>
 					<div style={{position:"absolute", width:"100%", left:0, alignItems:"center", bottom:8, display:"flex", flexDirection:"column"}}>
 						<button onClick={(e)=>validar(e)}>Registrarme</button>
 						<p style={{margin:0, marginTop:3}}>¿Ya tienes una cuenta? logueate <Link to="/login">Aqui</Link></p>

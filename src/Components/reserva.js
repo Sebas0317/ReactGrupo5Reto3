@@ -369,7 +369,7 @@ export default function Reserva() {
 								</div>
 							</div>
 						</Modal>
-					}
+			}
 
 			<h2>Reservas</h2>
 			<form className="formReserva">
