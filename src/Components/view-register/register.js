@@ -1,11 +1,11 @@
 import {useState, useEffect} from "react";
-import "./styles/login.css";
-import verPass from "./assets/verPass.svg";
+import "../styles/login.css";
+import verPass from "../assets/verPass.svg";
 import {Link} from "react-router-dom";
-import verPassNone from "./assets/verPassNone.svg";
-import Load from "./loading";
-import ok from "./assets/ok.png";
-import Modal from "./modal";
+import verPassNone from "../assets/verPassNone.svg";
+import Load from "../modal/loading";
+import ok from "../assets/ok.png";
+import Modal from "../modal/modal";
 
 function Login (){
 	

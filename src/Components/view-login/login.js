@@ -1,9 +1,9 @@
 import {useState, useEffect} from "react";
-import "./styles/login.css";
-import verPass from "./assets/verPass.svg";
-import verPassNone from "./assets/verPassNone.svg";
+import "../styles/login.css";
+import verPass from "../assets/verPass.svg";
+import verPassNone from "../assets/verPassNone.svg";
 import {Link} from "react-router-dom";
-import Logo from "./assets/logo.png";
+import Logo from "../assets/logo.png";
 
 function Login (){
 	

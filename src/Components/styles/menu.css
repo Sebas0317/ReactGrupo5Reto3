@@ -36,7 +36,7 @@
     color: #4f2c38;
     flex-direction: column;
 }
-.descripcion h2{
+.descripcion h2, .descripcion-Ad h2{
     margin-top: 10px;
 }
 .descripcion p {
@@ -124,21 +124,50 @@
     margin: 0;
 }
 
-.btns{
-    display: flex;
-    width: 100%;
-    margin-top: 15px;
-	justify-content: space-evenly;
-}
-
-.btns button{
-	border: none;
-	outline: none;
-}
+/* MODAL AGREGAR MENÚ */
 
 .btnOk{
     padding: 5px;
 	width: 25%;
 	background-color: #2D9E45;
 	color: #fff;
+}
+
+/* GESTION MENUS */
+
+.gestion-menu{
+    text-align: center;
+    justify-content: center;
+    font-family:'Branding';
+  }
+  
+.gestion-menu a{
+    width: 255px;
+    color: white;
+    font-size: 1.3rem;
+    border-radius: 8px;
+    background-color: #FF3B04;
+}
+.gestion-menu:hover:hover{ color: #59313c; }
+
+.title-AdMenu {
+    font-family: Branding;
+    font-size: 4rem;
+    padding: 1rem 0px 40px 40px;
+    color: #4f2c38;
+}
+
+.descripcion-Ad{
+    display: flex;
+    width: 60%;
+    padding: 0px 10px;
+    color: #4f2c38;
+    flex-direction: column;
+    background-color: #e6e0e2;
+}
+
+.descripcion-Ad p {
+    padding: 10px 0px;
+    text-align: justify;
+    font-size: small;
 }

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Menu_carrito from "./Menu_carrito";
-import Modal from "../modal";
+import Modal from "../modal/modal";
 
 function All_menus (){
 

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import Modal from "../modal"
+import Modal from "../modal/modal"
 
 function Card (){
 

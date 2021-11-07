@@ -8,9 +8,7 @@ import Amigos from "../assets/serv_amigos.png";
 import json from "../json/datos.json";
 import ico_basura from "../assets/car-ico-basura.png";
 import ico_edit from "../assets/ad-ser-edit.png";
-import Modal from "../modal.js";
-
-import "./modalservicio.css";
+import Modal from "../modal/modal.js";
 
 
 function Admin_Services() {
@@ -43,6 +41,7 @@ function Admin_Services() {
   function eliminarServicios(props) {
     infoservices.splice(props, 1);
     localStorage.setItem("servicios", JSON.stringify(infoservices));
+    window.location.reload(false);
   }
 
   function actualizarServicio() {
@@ -62,47 +61,61 @@ function Admin_Services() {
     <main>
       {modal &&
         <Modal isVisible={true} setVisible={() => setModal(false)}>
-          <form className="modalservice">
-            <input
-              type="text"
-              placeholder={infoservices[servicio].nombre}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Nombra tu servicio"
-            />
-            <textarea
-              placeholder={infoservices[servicio].descripcion}
-              onChange={(e) => setDescription(e.target.value)}
-              id=""
-              cols="30"
-              rows="10"
-              placeholder="Describe tu servicio"
-            ></textarea>
-            <button onClick={() => actualizarServicio()}>
-              Actualizar servicio
-            </button>
-          </form>
+          <div className="styleModal">
+            <div className="modalservice">
+              <input
+                type="text"
+                className="form-control"
+                placeholder={infoservices[servicio].nombre}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Nombra tu servicio"
+              />
+              <textarea
+                placeholder={infoservices[servicio].descripcion}
+                onChange={(e) => setDescription(e.target.value)}
+                id=""
+                cols="30"
+                rows="5"
+                className="form-control mt-3"
+                placeholder="Describe tu servicio"
+              ></textarea>
+              <div className="btns">
+                <button className="closeModal">Cancelar</button>
+                <button className="btnOk-ser" onClick={() => actualizarServicio()}>
+                  Actualizar servicio
+                </button>
+              </div>
+            </div>
+          </div>
         </Modal>
       }
       {
         modal1 && 
          <Modal isVisible={true} setVisible={() => setModal1(false)}>
-          <form className="modalservice">
-            <input
-              type="text"
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Nombra tu servicio"
-            />
-            <textarea
-              onChange={(e) => setDescription(e.target.value)}
-              id=""
-              cols="30"
-              rows="10"
-              placeholder="Describe tu servicio"
-            ></textarea>
-            <button onClick={() => addServicio()}>
-              Agregar servicio
-            </button>
-          </form>
+          <div className="styleModal">
+            <div className="modalservice">
+              <input
+                type="text"
+                className="form-control" 
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Nombra tu servicio"
+              />
+              <textarea
+                onChange={(e) => setDescription(e.target.value)}
+                id=""
+                cols="30"
+                rows="5"
+                className="form-control mt-3" 
+                placeholder="Describe tu servicio"
+              ></textarea>
+              <div className="btns">
+                <button className="closeModal">Cancelar</button>
+                <button className="btnOk-ser" onClick={() => addServicio()}>
+                  Agregar servicio
+                </button>
+              </div>
+            </div>
+          </div>
         </Modal>
       }
       <div className="container-fluit pt-4 my-5">
@@ -161,7 +174,7 @@ function Admin_Services() {
           })}
           {infoservices.length == 0 && 
             (
-            <p style={{ fontSize: "30px" }}>Sin servicios, ¿por qué no agregas uno?</p>
+            <p style={{ fontSize: "30px", fontFamily:"Branding" }}>Sin servicios, ¿por qué no agregas uno?</p>
             )
           }
         </div>

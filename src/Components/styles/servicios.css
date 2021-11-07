@@ -83,3 +83,33 @@ main {
   font-family: Branding;
   font-size: 4rem;
 }
+
+/* MODAL SERVICIOS */
+
+.modalservice{
+  padding: 10px;
+  display: flex;
+  z-index: 2000;
+  border-radius: 3px ;
+  flex-direction: column;
+}
+
+.dataNameSer, .dataDescriSer{
+	position: relative;
+}
+
+.valName-ser, .valDescri-ser{
+  opacity: 0;
+  color: #C42424;
+  margin-top: 12px;
+  right: 20px;
+  transition: opacity 0.5s;
+  position: absolute;
+}
+
+.btnOk-ser{
+	padding: 5px;
+	width: 32%;
+	background-color: #2D9E45;
+	color: #fff;
+}

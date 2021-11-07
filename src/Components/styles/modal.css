@@ -36,3 +36,15 @@
 	flex-direction: column;
 	background-color: #310101;
 }
+
+.btns{
+	display: flex;
+	width: 100%;
+	margin-top: 15px;
+	justify-content: space-evenly;
+}
+
+.btns button{
+	border: none;
+	outline: none;
+}

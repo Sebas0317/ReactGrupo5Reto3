@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import MenuContainer from "./MenuContainer";
 import Social from "../social/Social"
-import Modal from "../modal";
+import Modal from "../modal/modal";
 import "../styles/menu.css";
 import json from "../json/datos.json"
 
@@ -94,6 +94,11 @@ function Menu () {
           )
         })}
       </div>
+      <div className="row gestion-menu p-5">
+          <a type="button" className="btn" href="gestionmenu">
+            Gestionar menús
+          </a>
+        </div>
     </div>
   );
 }

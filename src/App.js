@@ -3,17 +3,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Layout from "./Components/Layout";
 import Inicio from "./Components/view-inicio/Inicio_Container"
-import Reserva from "./Components/reserva";
+import Reserva from "./Components/view-reserva/reserva";
 import Services_Container from './Components/view-services/Services_Container';
 import Admin_Services from './Components/view-services/Admin_Services';
 import Admin_Menu from './Components/view-menu/Admin_Menu';
 import Carrito_Container from './Components/view-carrito/Carrito_Container';
-import Contacto from "./Components/contacto";
-import Menu from "./Components/view-menu/Menu.jsx";
+import Contacto from "./Components/view-contacto/contacto";
+import Menu from "./Components/view-menu/Menu";
 import Pagina404 from "./Components/pagina404";
 import Nosotros from "./Components/view-nosotros/Nosotros"
-import Login from "./Components/login";
-import Register from "./Components/register";
+import Login from "./Components/view-login/login";
+import Register from "./Components/view-register/register";
 
 function App() {
   return (

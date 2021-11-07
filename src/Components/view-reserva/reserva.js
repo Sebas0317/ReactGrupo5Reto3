@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
-import "./styles/reserva.css";
-import Modal from "./modal";
+import "../styles/reserva.css";
+import Modal from "../modal/modal";
 
 export default function Reserva() {
 	let button = document.querySelector(".btnReserva");

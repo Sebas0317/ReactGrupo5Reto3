@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import "./styles/modal.css";
+import "../styles/modal.css";
 
 export default function Modal ({isVisible, setVisible, children}){
 

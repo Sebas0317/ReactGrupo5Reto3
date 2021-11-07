@@ -1,9 +1,9 @@
 import React,{useEffect, useState} from "react";
-import "./styles/contacto.css";
-import Modal from "./modal";
-import Ok from "./assets/ok.png";
-import Social from "./social/Social";
-import Load from "./loading";
+import "../styles/contacto.css";
+import Modal from "../modal/modal";
+import Ok from "../assets/ok.png";
+import Social from "../social/Social";
+import Load from "../modal/loading";
 
 export default function Contacto (){
 
