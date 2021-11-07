@@ -1,4 +1,25 @@
-.editdelete{
+.adminCont{
+    width: 100%;
+    height: 100vh;
+}
+
+.navAdmin{
+    padding-top: 6%;
+    width: 25%;
+    background-color: #310101;
+    height: 100%;
+    color: #fff;
+}
+
+.opcionAdmin{
+    margin-bottom: 10%;
+    margin-left: 3px;
     display: flex;
-    position: right;
+    padding: 12px;
+    width: 100%;
+}
+
+.seleccion{
+    border-left: 2px solid #fff;
+    text-shadow: 1px 1px 10px #fff;
 }

@@ -40,7 +40,15 @@
 }
 .pocoMargin{
 	margin-right: 20px!important;
+	cursor: pointer;
 }
+
+.marginLogin{
+	cursor: pointer;
+	margin-left: 15px;
+	margin-right: 5px!important;
+}
+
 .nav-link a:hover{ 
 	color: #4F2634 !important;
 }
@@ -48,3 +56,31 @@
 .carrito a {
 	margin: 0px;
 }
+.MenuOpcionesCont{
+	display: flex;
+	position: fixed;
+	top: 9.5vh;
+	flex-direction: column;
+	align-items: center;
+	background-color: #fff;
+	z-index: 500;
+	right: 0;
+	padding: 8px;
+	border-radius: 5px;
+	box-shadow: 0px 3px 8px 3px #474747;
+}
+
+.opcionesNavMenu{
+	cursor: pointer;
+	width: 100%;
+	color: #000;
+	background-color: #F7F7F7;
+	margin-bottom:4%;
+	padding: 10px 5px;
+	padding-left: 10px;
+}
+
+.opcionesNavMenu:hover{
+	background-color: #F0EFEF;
+}
+

@@ -1,14 +1,15 @@
 import {useState, useEffect} from "react";
 import "../styles/login.css";
 import verPass from "../assets/verPass.svg";
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import verPassNone from "../assets/verPassNone.svg";
 import Load from "../modal/loading";
 import ok from "../assets/ok.png";
 import Modal from "../modal/modal";
 
 function Login (){
-	
+	let history = useHistory();
+
 	let [name, setName] = useState("");
 	let [email, setEmail] = useState("");
 	let [pass, setPass] = useState("");
@@ -217,7 +218,8 @@ function Login (){
 		setTimeout(()=>{
 			setModal(false);
 			document.querySelector(".loginContainer form").reset();
-		}, 3000);
+			history.push("/login")
+		}, 2000);
 	}
 
 	

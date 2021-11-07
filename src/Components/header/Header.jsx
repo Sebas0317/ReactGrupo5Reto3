@@ -2,8 +2,7 @@ import React from "react";
 import Navbar from "./Navbar";
 import "../styles/Header.css"
 import "../styles/Footer.css"
-class Header extends React.Component {
-  render() {
+function Header (){
     return (
       <>
         <div className="head">
@@ -12,11 +11,10 @@ class Header extends React.Component {
               <img src="" />
             </a>
           </div>
-          <Navbar />
+          <Navbar mandar={()=>{alert("xdd")}}/>
         </div>
       </>
     );
-  }
 }
 
 export default Header;

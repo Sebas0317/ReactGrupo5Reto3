@@ -2,13 +2,16 @@ import {useState, useEffect} from "react";
 import "../styles/login.css";
 import verPass from "../assets/verPass.svg";
 import verPassNone from "../assets/verPassNone.svg";
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import Logo from "../assets/logo.png";
 
 function Login (){
 	
+	let history = useHistory();
+
 	let [email, setEmail] = useState("");
 	let [pass, setPass] = useState("");
+	let [obj, setObj] = useState(1);
 
 	function mostrarPass(){
 		let oculto = true;
@@ -90,19 +93,34 @@ function Login (){
 	}
 
 	function validarCuenta(){
+		let inputEmail = document.querySelector(".inputEmail");
+		let emailMensaje = document.querySelector(".loginEmailVal");
+		let inputPass = document.querySelector(".inputPass");
+		let passMensaje = document.querySelector(".loginPassVal");
+
 		for (let i = 0; i < users.length; i++) {
 			if (email == users[i].user) {
 				if (pass == users[i].pass) {
-					alert("login");
+					localStorage.setItem("session", JSON.stringify({estado:true, user:users[i]}))
+					document.querySelector("#btnActualizar").click();
+					if (users[i].rol == "admin") {
+						history.push("/admin");
+					} else {
+						history.push("/");
+					}
 				} else {
-					alert("La contraseña es incorrecta");
+					inputPass.style.border="1px solid #C42424";
+					passMensaje.textContent="La contraseña es incorrecta.";
+					passMensaje.style.opacity=1;
 				}
 				break;
 			} else {
 				let val = i;
 				val++
 				if (val == users.length) {
-					alert("El usuario no existe");
+					emailMensaje.textContent="El usuario no existe.";
+					emailMensaje.style.opacity=1;
+					inputEmail.style.border="1px solid #C42424";
 				}
 			}
 		};
