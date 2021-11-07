@@ -1,15 +1,23 @@
 import "../styles/admin.css";
 
 export default function Admin (){
-	return (
-		<div className="adminCont">
-			<div className="navAdmin">
-				<div className="opcionAdmin seleccion marginTop"><span>Servicios</span></div>
-				<div className="opcionAdmin "><span>Menu</span></div>
-				<div className="opcionAdmin"><span>Reservas</span></div>
-				<div className="opcionAdmin"><span>Usuarios</span></div>
+	let session = JSON.parse(localStorage.getItem("session"));
+	if (session.user.rol == "admin") {
+		return (
+			<div className="adminCont">
+					<div className="navAdmin">
+						<div className="opcionAdmin seleccion marginTop"><span>Editar servicios</span></div>
+						<div className="opcionAdmin "><span>Editar menu</span></div>
+						<div className="opcionAdmin"><span>Editar reservas</span></div>
+						<div className="opcionAdmin"><span>Editar usuarios</span></div>
+					</div>
+				</div>
 
-			</div>
-		</div>
-	)
+		)
+	} else {
+		return (
+			<div style={{height:"100vh", width:"100%", display:"flex", alignItems:"center", justifyContent:"center"}}><h4>No tienes permiso para estar en este lugar :(</h4></div>
+		)
+	}
+	
 }

@@ -30,6 +30,7 @@ function Navbar () {
       session.estado = false;
       localStorage.setItem("session", JSON.stringify(session));
       setObj("asdaasdasd");
+      history.push("/")
       setMenu(false);
     }
 
