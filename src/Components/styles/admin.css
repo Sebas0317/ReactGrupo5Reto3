@@ -10,6 +10,8 @@
     background-color: #310101;
     height: 100%;
     color: #fff;
+    border-bottom: 3px solid #B2B2B2;
+    border-right: 3px solid #B2B2B2;
 }
 
 .opcionAdmin{

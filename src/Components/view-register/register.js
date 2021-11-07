@@ -3,7 +3,6 @@ import "../styles/login.css";
 import verPass from "../assets/verPass.svg";
 import {Link, useHistory} from "react-router-dom";
 import verPassNone from "../assets/verPassNone.svg";
-import Load from "../modal/loading";
 import ok from "../assets/ok.png";
 import Modal from "../modal/modal";
 
@@ -14,7 +13,6 @@ function Login (){
 	let [email, setEmail] = useState("");
 	let [pass, setPass] = useState("");
 	let [pass1, setPass1] = useState("");
-	let [loading, setLoading] = useState(false);
 	let [modal, setModal] = useState(false);
 
 	function mostrarPass(){
@@ -85,7 +83,6 @@ function Login (){
 			passMensaje1.style.opacity=1
 		
 		} else {
-			setLoading(true);
 			inputPass.style.border="none";
 			inputEmail.style.border="none";
 			inputName.style.border="none";
@@ -180,10 +177,8 @@ function Login (){
 			}
 			valPass1();
 			if (valName() && validarEmail() && valPass() && valPass1()) {
-				setLoading(true);
 				comprobarCuenta();
 			} else {
-				setLoading(false);
 			}
 		}
 	}
@@ -197,7 +192,6 @@ function Login (){
 				inputEmail.style.border="1px solid #C42424";
 				emailMensaje.textContent="El correo ya se encuentra registrado.";
 				emailMensaje.style.opacity=1;
-				setLoading(false);
 				break;
 			} else{
 				let val = i;
@@ -213,7 +207,6 @@ function Login (){
 	function guardarCuenta(){
 		users.push({user:email, pass:pass, name:name, rol:"cliente"});
 		localStorage.setItem("users", JSON.stringify(users));
-		setLoading(false);
 		setModal(true);
 		setTimeout(()=>{
 			setModal(false);
@@ -230,9 +223,6 @@ function Login (){
 	})
 	return (
 		<div className="loginContainer">
-			{ loading &&
-				<Load isVisible={true} />
-			}
 			{ modal &&
 				<Modal isVisible={true} setVisible={()=>setModal(false)}>
 					<div style={{backgroundColor:"#fff", width:"27%", padding:"25px", borderRadius:"3px", display:"flex", alignItems:"center", justifyContent:"center"}}>

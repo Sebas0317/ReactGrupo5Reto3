@@ -15,8 +15,11 @@ function Admin_Services() {
 
   const [modal, setModal] = useState(false);
   const [modal1, setModal1] = useState(false);
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
+  let [obj, setObj] = useState("aaa");
+
+  let name = false;
+  let description = false;
+
 
   const [servicio, setServicio] = useState("");
 
@@ -41,7 +44,13 @@ function Admin_Services() {
   function eliminarServicios(props) {
     infoservices.splice(props, 1);
     localStorage.setItem("servicios", JSON.stringify(infoservices));
-    window.location.reload(false);
+    if(obj == "aaa"){
+      setObj("eee");
+    } else if(obj == "eee"){
+      setObj("ooo");
+    } else if (obj == "ooo"){
+      setObj("aaa");
+    }
   }
 
   function actualizarServicio() {
@@ -67,17 +76,15 @@ function Admin_Services() {
                 type="text"
                 className="form-control"
                 placeholder={servicio && infoservices[servicio].nombre}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Nombra tu servicio"
+                onChange={(e) => {name = e.target.value}}
               />
               <textarea
                 placeholder={servicio && infoservices[servicio].descripcion}
-                onChange={(e) => setDescription(e.target.value)}
+                onChange={(e) => {description = e.target.value}}
                 id=""
                 cols="30"
                 rows="5"
                 className="form-control mt-3"
-                placeholder="Describe tu servicio"
               ></textarea>
               <div className="btns">
                 <button className="closeModal">Cancelar</button>
@@ -97,11 +104,11 @@ function Admin_Services() {
               <input
                 type="text"
                 className="form-control" 
-                onChange={(e) => setName(e.target.value)}
+                onChange={(e) => {name = e.target.value}}
                 placeholder="Nombra tu servicio"
               />
               <textarea
-                onChange={(e) => setDescription(e.target.value)}
+                onChange={(e) => {description = e.target.value}}
                 id=""
                 cols="30"
                 rows="5"
