@@ -66,12 +66,12 @@ function Admin_Services() {
               <input
                 type="text"
                 className="form-control"
-                placeholder={infoservices[servicio].nombre}
+                placeholder={servicio && infoservices[servicio].nombre}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Nombra tu servicio"
               />
               <textarea
-                placeholder={infoservices[servicio].descripcion}
+                placeholder={servicio && infoservices[servicio].descripcion}
                 onChange={(e) => setDescription(e.target.value)}
                 id=""
                 cols="30"

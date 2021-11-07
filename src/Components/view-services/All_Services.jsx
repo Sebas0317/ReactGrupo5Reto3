@@ -1,5 +1,6 @@
 import React from "react";
 import Service from "./Service";
+import {Link} from "react-router-dom";
 
 /*FOTOS*/
 import Cumple from "../assets/serv_cumple.png";
@@ -44,9 +45,9 @@ class All_Services extends React.Component {
           })}
         </div>
         <div className="row gestion-ser p-5">
-          <a type="button" className="btn" href="/gestionservicios">
+          <Link type="button" className="btn" to="/gestionservicios">
             Gestionar Servicios
-          </a>
+          </Link>
         </div>
       </>
     );
