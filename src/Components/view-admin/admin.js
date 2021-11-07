@@ -1,63 +1,83 @@
 import {useState, useEffect} from "react";
+import {useHistory} from "react-router-dom";
 import Services from "../view-services/Admin_Services";
 import "../styles/admin.css";
 
 export default function Admin (){
+	const history = useHistory();
+
 	let [servicios, setServicios] = useState(true);
 	let [menu, setMenu] = useState(false);
 	let [reservas, setReservas] = useState(false);
 	let [usuarios, setUsuarios] = useState(false);
-
-	useEffect(()=>{
-		let btnServicios = document.querySelector("#btnServicios");
-		let btnUsuarios = document.querySelector("#btnUsuarios"); 
-		let btnMenu = document.querySelector("#btnMenu");
-		let btnReservas = document.querySelector("#btnReservas");
-
-		btnServicios.addEventListener("click", ()=>{
-			setMenu(false);
-			setReservas(false);
-			setUsuarios(false);
-			setServicios(true);
-			btnUsuarios.classList.remove("seleccion");
-			btnServicios.classList.add("seleccion");
-			btnMenu.classList.remove("seleccion");
-			btnReservas.classList.remove("seleccion");
-		});
-		btnUsuarios.addEventListener("click", ()=>{
-			setMenu(false);
-			setReservas(false);
-			setUsuarios(true);
-			setServicios(false);
-			btnUsuarios.classList.add("seleccion");
-			btnServicios.classList.remove("seleccion");
-			btnMenu.classList.remove("seleccion");
-			btnReservas.classList.remove("seleccion");
-
-		});
-		btnMenu.addEventListener("click", ()=>{
-			setMenu(true);
-			setReservas(false);
-			setUsuarios(false);
-			setServicios(false);
-			btnMenu.classList.add("seleccion");
-			btnServicios.classList.remove("seleccion");
-			btnUsuarios.classList.remove("seleccion");
-			btnReservas.classList.remove("seleccion");
-		});
-		btnReservas.addEventListener("click", ()=>{
-			setMenu(false);
-			setReservas(true);
-			setUsuarios(false);
-			setServicios(false);
-			btnMenu.classList.remove("seleccion");
-			btnServicios.classList.remove("seleccion");
-			btnUsuarios.classList.remove("seleccion");
-			btnReservas.classList.add("seleccion");
-		});
-	});
+	let [redi, setRedi] = useState("");
 
 	let session = JSON.parse(localStorage.getItem("session"));
+
+	if(session){
+		if (session.estado !== true) {
+			history.push("/login");
+		}
+	}
+
+	useEffect(()=>{
+		if (session.user.rol == "admin") {
+			let btnServicios = document.querySelector("#btnServicios");
+			let btnUsuarios = document.querySelector("#btnUsuarios"); 
+			let btnMenu = document.querySelector("#btnMenu");
+			let btnReservas = document.querySelector("#btnReservas");
+
+			btnServicios.addEventListener("click", ()=>{
+				setMenu(false);
+				setReservas(false);
+				setUsuarios(false);
+				setServicios(true);
+				btnUsuarios.classList.remove("seleccion");
+				btnServicios.classList.add("seleccion");
+				btnMenu.classList.remove("seleccion");
+				btnReservas.classList.remove("seleccion");
+			});
+			btnUsuarios.addEventListener("click", ()=>{
+				setMenu(false);
+				setReservas(false);
+				setUsuarios(true);
+				setServicios(false);
+				btnUsuarios.classList.add("seleccion");
+				btnServicios.classList.remove("seleccion");
+				btnMenu.classList.remove("seleccion");
+				btnReservas.classList.remove("seleccion");
+
+			});
+			btnMenu.addEventListener("click", ()=>{
+				setMenu(true);
+				setReservas(false);
+				setUsuarios(false);
+				setServicios(false);
+				btnMenu.classList.add("seleccion");
+				btnServicios.classList.remove("seleccion");
+				btnUsuarios.classList.remove("seleccion");
+				btnReservas.classList.remove("seleccion");
+			});
+			btnReservas.addEventListener("click", ()=>{
+				setMenu(false);
+				setReservas(true);
+				setUsuarios(false);
+				setServicios(false);
+				btnMenu.classList.remove("seleccion");
+				btnServicios.classList.remove("seleccion");
+				btnUsuarios.classList.remove("seleccion");
+				btnReservas.classList.add("seleccion");
+			});
+		} else {
+			setTimeout(()=>{
+				setRedi("Redirigiendo..");
+			}, 2000);
+			setTimeout(()=>{
+				history.push("/");
+			}, 3200);
+		}
+	});
+
 	if (session.user.rol == "admin") {
 		return (
 			<div className="adminCont">
@@ -89,7 +109,10 @@ export default function Admin (){
 		)
 	} else {
 		return (
-			<div style={{height:"100vh", width:"100%", display:"flex", alignItems:"center", justifyContent:"center"}}><h4>No tienes permiso para estar en este lugar :(</h4></div>
+			<div style={{height:"100vh", width:"100%", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center"}}>
+				<h4>No tienes privilegios para estar en este lugar</h4>
+				<p>{redi}</p>
+			</div>
 		)
 	}
 	
