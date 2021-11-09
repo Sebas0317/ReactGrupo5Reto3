@@ -15,6 +15,8 @@ function Login (){
 	let [pass1, setPass1] = useState("");
 	let [modal, setModal] = useState(false);
 
+	let session = JSON.parse(localStorage.getItem("session"));
+
 	function mostrarPass(){
 		let oculto = true;
 		let btnVerPass = document.querySelector(".inputPass img");
@@ -30,6 +32,12 @@ function Login (){
 				oculto = true;
 			}
 		})
+	}
+
+	if(session){
+		if (session.estado == true) {
+			history.push("/");
+		}
 	}
 
 

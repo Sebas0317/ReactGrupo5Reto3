@@ -35,13 +35,15 @@ function Navbar () {
         document.querySelector(".imgCar").src=carrito1;
       }
 
-     if (session.estado === true){
+    if(session){
+      if (session.estado === true){
          if(menu === true){
            document.querySelector("#arrowMenu").style.transform="rotate(0deg)";
         } else {
           document.querySelector("#arrowMenu").style.transform="rotate(90deg)";
         }
-     }
+      }
+    }
 
       if(menu == true){
         document.querySelector("#cerrarSesion").addEventListener("click", ()=>{

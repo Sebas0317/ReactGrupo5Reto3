@@ -13,6 +13,13 @@ function Login (){
 	let [pass, setPass] = useState("");
 	let [obj, setObj] = useState(1);
 
+	let session = JSON.parse(localStorage.getItem("session"));
+	if (session) {
+		if (session.estado == true) {
+			history.push("/");
+		}
+	}
+
 	function mostrarPass(){
 		let oculto = true;
 		let btnVerPass = document.querySelector(".inputPass img");

@@ -19,7 +19,7 @@ export default function Admin (){
 	let [menu, setMenu] = useState(false);
 	let [reservas, setReservas] = useState(false);
 	let [usuarios, setUsuarios] = useState(true);
-	let [redi, setRedi] = useState("a");
+	let [redi, setRedi] = useState("");
 	let [modal, setModal] = useState(false);
 	let [modalDel, setModalDel] = useState(false);
 
@@ -31,70 +31,81 @@ export default function Admin (){
 		}
 	}
 
+	function redirigir (){
+		setTimeout(()=>{
+			setRedi("Redirigiendo..");
+		}, 2000);
+		setTimeout(()=>{
+			history.push("/");
+		}, 3200);
+	}
+
 	let users = JSON.parse(localStorage.getItem("users"));
 
 	useEffect(()=>{
-		if (session.user.rol == "admin") {
-			let btnServicios = document.querySelector("#btnServicios");
-			let btnUsuarios = document.querySelector("#btnUsuarios"); 
-			let btnMenu = document.querySelector("#btnMenu");
-			let btnReservas = document.querySelector("#btnReservas");
+		if (session) {
+			if (session.user.rol == "admin") {
+				let btnServicios = document.querySelector("#btnServicios");
+				let btnUsuarios = document.querySelector("#btnUsuarios"); 
+				let btnMenu = document.querySelector("#btnMenu");
+				let btnReservas = document.querySelector("#btnReservas");
 
-			btnServicios.addEventListener("click", ()=>{
-				setMenu(false);
-				setReservas(false);
-				setUsuarios(false);
-				setServicios(true);
-				btnUsuarios.classList.remove("seleccion");
-				btnServicios.classList.add("seleccion");
-				btnMenu.classList.remove("seleccion");
-				btnReservas.classList.remove("seleccion");
-			});
-			btnUsuarios.addEventListener("click", ()=>{
-				setMenu(false);
-				setReservas(false);
-				setUsuarios(true);
-				setServicios(false);
-				btnUsuarios.classList.add("seleccion");
-				btnServicios.classList.remove("seleccion");
-				btnMenu.classList.remove("seleccion");
-				btnReservas.classList.remove("seleccion");
+				btnServicios.addEventListener("click", ()=>{
+					setMenu(false);
+					setReservas(false);
+					setUsuarios(false);
+					setServicios(true);
+					btnUsuarios.classList.remove("seleccion");
+					btnServicios.classList.add("seleccion");
+					btnMenu.classList.remove("seleccion");
+					btnReservas.classList.remove("seleccion");
+				});
+				btnUsuarios.addEventListener("click", ()=>{
+					setMenu(false);
+					setReservas(false);
+					setUsuarios(true);
+					setServicios(false);
+					btnUsuarios.classList.add("seleccion");
+					btnServicios.classList.remove("seleccion");
+					btnMenu.classList.remove("seleccion");
+					btnReservas.classList.remove("seleccion");
 
-			});
-			btnMenu.addEventListener("click", ()=>{
-				setMenu(true);
-				setReservas(false);
-				setUsuarios(false);
-				setServicios(false);
-				btnMenu.classList.add("seleccion");
-				btnServicios.classList.remove("seleccion");
-				btnUsuarios.classList.remove("seleccion");
-				btnReservas.classList.remove("seleccion");
-			});
-			btnReservas.addEventListener("click", ()=>{
-				setMenu(false);
-				setReservas(true);
-				setUsuarios(false);
-				setServicios(false);
-				btnMenu.classList.remove("seleccion");
-				btnServicios.classList.remove("seleccion");
-				btnUsuarios.classList.remove("seleccion");
-				btnReservas.classList.add("seleccion");
-			});
+				});
+				btnMenu.addEventListener("click", ()=>{
+					setMenu(true);
+					setReservas(false);
+					setUsuarios(false);
+					setServicios(false);
+					btnMenu.classList.add("seleccion");
+					btnServicios.classList.remove("seleccion");
+					btnUsuarios.classList.remove("seleccion");
+					btnReservas.classList.remove("seleccion");
+				});
+				btnReservas.addEventListener("click", ()=>{
+					setMenu(false);
+					setReservas(true);
+					setUsuarios(false);
+					setServicios(false);
+					btnMenu.classList.remove("seleccion");
+					btnServicios.classList.remove("seleccion");
+					btnUsuarios.classList.remove("seleccion");
+					btnReservas.classList.add("seleccion");
+				});
+			} else {
+				redirigir();
+			}
 		} else {
-			setTimeout(()=>{
-				setRedi("Redirigiendo..");
-			}, 2000);
-			setTimeout(()=>{
-				history.push("/");
-			}, 3200);
-		}
+			redirigir();
+		}	
 	});
 
 	let img = [];
-	for (let i = 0; i < users.length; i++) {
-		img.push(false);
+	if (users) {
+		for (let i = 0; i < users.length; i++) {
+			img.push(false);
+		}
 	}
+	
 	function verPassFunct(e){
 		let inputPass = document.querySelector("#inputPassAdmin"+e);
 		let imgVerPass = document.querySelector("#imgVerPass"+e);
@@ -119,12 +130,12 @@ export default function Admin (){
 	function deleteUser (){
 		users.splice(idUser, 1);
 		localStorage.setItem("users", JSON.stringify(users));
-		if (redi == "a") {
+		if (redi == "") {
 			setRedi("aaa");
 		} else if (redi == "aaa"){
 			setRedi("eee");
 		} else if (redi == "eee"){
-			setRedi("a");
+			setRedi("");
 		}
 		document.querySelector(".closeModal").click()
 	}
@@ -140,6 +151,7 @@ export default function Admin (){
 		}
 	}
 
+if (session) {
 	if (session.user.rol == "admin") {
 		return (
 			<div className="adminCont">
@@ -223,8 +235,8 @@ export default function Admin (){
 										<div className="contCasilla">
 											<div className="casillaAdmin"><p>{user.name}</p></div>
 											<div className="casillaAdmin"><p>{user.user}</p></div>
-											<div className="casillaAdmin"><input value={user.pass} id={"inputPassAdmin"+index} type="password"/><img id={"imgVerPass"+index} onClick={()=>verPassFunct(index)} src={verPass}/></div>
-											<div className="casillaAdmin"><p style={{marginLeft:"auto"}}>{user.rol}</p><img style={{marginLeft:"20%", width:"9%", height:"auto"}} src={editImg}/><img onClick={()=>{user.user != "admin@salysalsal.co" && setModalDel(true); setIdUser(index)}} style={{marginLeft:"2%", width:"9%", opacity:(user.user == "admin@salysalsal.co") && "0.1"}} src={deleteImg}/></div>
+											<div className="casillaAdmin"><input value={user.pass} id={"inputPassAdmin"+index} type="password"/><img id={"imgVerPass"+index} style={{opacity:user.user == "admin@salysalsa.co" && "0.2"}} onClick={()=>{user.user != "admin@salysalsa.co" && verPassFunct(index)}} src={verPass}/></div>
+											<div className="casillaAdmin"><p style={{marginLeft:"auto"}}>{user.rol}</p><img style={{marginLeft:"20%", width:"9%", height:"auto", opacity:(user.user == "admin@salysalsa.co") && "0.1"}} src={editImg}/><img onClick={()=>{user.user != "admin@salysalsa.co" && setModalDel(true); setIdUser(index)}} style={{marginLeft:"2%", width:"9%", opacity:(user.user == "admin@salysalsa.co") && "0.1"}} src={deleteImg}/></div>
 										</div>
 									)
 								})
@@ -247,5 +259,13 @@ export default function Admin (){
 			</div>
 		)
 	}
-	
+} else {
+	redirigir();
+	return (
+		<div style={{height:"100vh", width:"100%", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center"}}>
+				<h4>Logueate primero..</h4>
+				<p>{redi}</p>
+		</div>
+	)
+}
 }
