@@ -224,10 +224,12 @@ export default function Admin (){
 											<div className="casillaAdmin"><p>{user.name}</p></div>
 											<div className="casillaAdmin"><p>{user.user}</p></div>
 											<div className="casillaAdmin"><input value={user.pass} id={"inputPassAdmin"+index} type="password"/><img id={"imgVerPass"+index} onClick={()=>verPassFunct(index)} src={verPass}/></div>
-											<div className="casillaAdmin"><p style={{marginLeft:"auto"}}>{user.rol}</p><img style={{marginLeft:"20%", width:"9%", height:"auto"}} src={editImg}/><img onClick={()=>{setModalDel(true); setIdUser(index)}} style={{marginLeft:"2%", width:"9%"}} src={deleteImg}/></div>
+											<div className="casillaAdmin"><p style={{marginLeft:"auto"}}>{user.rol}</p><img style={{marginLeft:"20%", width:"9%", height:"auto"}} src={editImg}/><img onClick={()=>{user.user != "admin@salysalsal.co" && setModalDel(true); setIdUser(index)}} style={{marginLeft:"2%", width:"9%", opacity:(user.user == "admin@salysalsal.co") && "0.1"}} src={deleteImg}/></div>
 										</div>
 									)
 								})
+
+
 								}
 								</div>
 							</div>
