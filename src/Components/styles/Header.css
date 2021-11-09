@@ -64,10 +64,10 @@
 	align-items: center;
 	background-color: #fff;
 	z-index: 500;
-	right: 0;
-	padding: 8px;
+	right: 0.7%;
+	padding: 12px;
 	border-radius: 5px;
-	box-shadow: 0px 3px 8px 3px #474747;
+	box-shadow: 0px 1px 6px 1px #474747;
 }
 
 .opcionesNavMenu{
@@ -84,3 +84,28 @@
 	background-color: #F0EFEF;
 }
 
+#fondoCerrarMenu{
+	position: fixed;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	z-index: 100;
+}
+
+#arrowMenu{
+	height: 5vh;
+	transition: transform 0.3s;
+}
+.opcionPerfilMenu{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+.opcionPerfil{
+	display: flex;
+	align-items: center;
+}
+#btnAdmin{
+	margin-top: 2%;
+}

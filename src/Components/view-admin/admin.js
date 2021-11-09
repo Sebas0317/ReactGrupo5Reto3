@@ -115,7 +115,7 @@ export default function Admin (){
 		}
 
 	}
-	let idUser = false;
+	let [idUser, setIdUser] = useState(false);
 	function deleteUser (){
 		users.splice(idUser, 1);
 		localStorage.setItem("users", JSON.stringify(users));
@@ -126,14 +126,15 @@ export default function Admin (){
 		} else if (redi == "eee"){
 			setRedi("a");
 		}
+		document.querySelector(".closeModal").click()
 	}
 
 	
 
 	function addUser (){
 		let form = document.querySelector("form.modalUserAdmin");
-		if (form.name.value && form.email.value && form.pass.value && form.rol.value) {
-			users.push({name:form.name.value, user:form.email.value, pass:form.pass.value, rol:form.rol.value});
+		if (form.name.value && form.email.value && form.pass.value && (form.rol.value != "Selecciona un rol")) {
+			users.push({name:form.name.value, user:form.email.value, pass:form.pass.value, rol:form.rol.value.toLowerCase()});
 			localStorage.setItem("users", JSON.stringify(users));
 			document.querySelector(".closeModal").click();
 		}
@@ -187,7 +188,7 @@ export default function Admin (){
 											</select>
 										</div>
 										<div className="contBtnsAdmin">
-											<input className="closeModal btnCancelAdminUser" value="Cancelar"/>
+											<input className="closeModal btnCancelAdminUser" style={{backgroundColor:"#8E8E8E", marginRight:"5px"}} value="Cancelar"/>
 											<input className="btnSuccesAdminUser" type="button" onClick={()=>addUser()} value="Añadir usuario"/>
 										</div>
 									</form>
@@ -196,9 +197,9 @@ export default function Admin (){
 							{ modalDel &&
 								<Modal isVisible={true} setVisible={()=>setModalDel(false)}>
 									<div style={{display:"flex", flexDirection:"column", backgroundColor:"#fff", padding:"20px", justifyContent:"center"}}>
-										<h3>¿Estas seguro que deseas eliminar este usuario?</h3>
+										<h4>¿Estas seguro que deseas eliminar este usuario?</h4>
 										<div className="contBtnsAdmin">
-											<input className="btnSuccesAdminUser" value="Cancelar" style={{marginRight:"5px"}}/>
+											<input className="btnSuccesAdminUser closeModal" value="Cancelar" style={{marginRight:"15px"}}/>
 											<input className="btnCancelAdminUser" onClick={()=>deleteUser()} value="Eliminar"/>
 										</div>
 									</div>
@@ -223,7 +224,7 @@ export default function Admin (){
 											<div className="casillaAdmin"><p>{user.name}</p></div>
 											<div className="casillaAdmin"><p>{user.user}</p></div>
 											<div className="casillaAdmin"><input value={user.pass} id={"inputPassAdmin"+index} type="password"/><img id={"imgVerPass"+index} onClick={()=>verPassFunct(index)} src={verPass}/></div>
-											<div className="casillaAdmin"><p style={{marginLeft:"auto"}}>{user.rol}</p><img style={{marginLeft:"20%", width:"9%", height:"auto"}} src={editImg}/><img onClick={()=>{setModalDel(true); idUser = index}} style={{marginLeft:"2%", width:"9%"}} src={deleteImg}/></div>
+											<div className="casillaAdmin"><p style={{marginLeft:"auto"}}>{user.rol}</p><img style={{marginLeft:"20%", width:"9%", height:"auto"}} src={editImg}/><img onClick={()=>{setModalDel(true); setIdUser(index)}} style={{marginLeft:"2%", width:"9%"}} src={deleteImg}/></div>
 										</div>
 									)
 								})

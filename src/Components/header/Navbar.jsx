@@ -2,7 +2,9 @@ import React, {useState, useEffect} from "react";
 import { Link, useHistory } from "react-router-dom";
 import logo from "../assets/logo1.png";
 import Profile from "../assets/profile.svg";
+import Arrow from "../assets/arrow.svg";
 import carrito from "../assets/carrito.svg";
+import carrito1 from "../assets/carrito1.png";
 
 function Navbar () {
     let history = useHistory();
@@ -18,13 +20,7 @@ function Navbar () {
       }
     }
 
-    function abrirMenu(){
-      if (menu == true){
-        setMenu(false);
-      } else {
-        setMenu(true);
-      }
-    }
+    let platos = JSON.parse(localStorage.getItem("Platos"));
 
     function logout(){
       session.estado = false;
@@ -35,6 +31,18 @@ function Navbar () {
     }
 
     useEffect(()=>{
+      if(platos.length > 0){
+        document.querySelector(".imgCar").src=carrito1;
+      }
+
+     if (session.estado === true){
+         if(menu === true){
+           document.querySelector("#arrowMenu").style.transform="rotate(0deg)";
+        } else {
+          document.querySelector("#arrowMenu").style.transform="rotate(90deg)";
+        }
+     }
+
       if(menu == true){
         document.querySelector("#cerrarSesion").addEventListener("click", ()=>{
           logout();
@@ -43,17 +51,30 @@ function Navbar () {
           history.push("/admin");
           setMenu(false)
         });
+        document.querySelector("#fondoCerrarMenu").addEventListener("click", ()=>{
+          setMenu(false)
+        });
       }
     })
 
     return (
       <div>
         { menu &&
-          <div className="MenuOpcionesCont">
-            <div id="btnAdmin" style={{display:(session.user.rol == "admin") ? "flex" : "none"}} className="opcionesNavMenu">Administracion</div>
-            <div className="opcionesNavMenu">Historial pedidos/reservas</div>
-            <div className="opcionesNavMenu">Reservas</div>
-            <div id="cerrarSesion" className="opcionesNavMenu">Cerrar sesion</div>
+          <div>
+            <div id="fondoCerrarMenu"></div>
+            <div className="MenuOpcionesCont">
+              <div className="opcionPerfilMenu">
+                <img style={{height:"10vh"}} src={Profile}/>
+                <div>
+                  <h3 style={{margin:"0px", fontSize:"23px", color:"#430202"}}>{session.user.name}</h3>
+                  <p  style={{margin:"0px", fontSize:"15px", color:"#929292"}}>{session.user.user}</p>
+                </div>
+              </div>
+              <div id="btnAdmin" style={{display:(session.user.rol == "admin") ? "flex" : "none"}} className="opcionesNavMenu">Administracion</div>
+              <div className="opcionesNavMenu">Historial pedidos/reservas</div>
+              <div className="opcionesNavMenu">Reservas</div>
+              <div id="cerrarSesion" className="opcionesNavMenu">Cerrar sesion</div>
+            </div>
           </div>
         }
         <input id="btnActualizar" onClick={()=>setObj("ee")} style={{display:"none"}}/>
@@ -71,8 +92,8 @@ function Navbar () {
             <Link className="pocoMargin" to="/carrito">
               <img className="imgCar" src={carrito} />
             </Link>
-            {logueado ?<a className="marginLogin" onClick={()=>abrirMenu()}>{session.user.name} <img src={Profile}/></a> : <Link className="pocoMargin" to="/login">INICIAR SESION</Link>}
           </div>
+          {logueado ? <a className="marginLogin opcionPerfil" onClick={()=>{menu ? setMenu(false) : setMenu(true)}}>{session.user.name}<img id="arrowMenu" src={Arrow}/></a> : <Link className="pocoMargin" to="/login">INICIAR SESION</Link>}
         </div>
       </div>
     );

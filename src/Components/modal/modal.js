@@ -14,7 +14,9 @@ export default function Modal ({isVisible, setVisible, children}){
 		if (closeModal) {
 			closeModal.addEventListener("click", ()=>{
 				document.querySelector(".modalContainer").style.top="-100%";
-				setVisible(false);
+				setTimeout(()=>{
+					setVisible(false);
+				}, 300)
 			});
 
 		}
