@@ -7,7 +7,6 @@ export default function Modal ({isVisible, setVisible, children}){
 		document.querySelector(".fondoModal").addEventListener("click", ()=>{
 			document.querySelector(".modalContainer").style.top="-100%";
 			setTimeout(()=>{
-				document.querySelector(".modalContainer").style.display="none";
 				setVisible(false);
 			}, 300)
 		})
@@ -15,19 +14,13 @@ export default function Modal ({isVisible, setVisible, children}){
 		if (closeModal) {
 			closeModal.addEventListener("click", ()=>{
 				document.querySelector(".modalContainer").style.top="-100%";
-				setTimeout(()=>{
-					document.querySelector(".modalContainer").style.display="none";
-					setVisible(false);
-				}, 300)
+				setVisible(false);
 			});
 
 		}
 			
 		if (isVisible === true){
-			document.querySelector(".modalContainer").style.display="flex";
-			setTimeout(()=>{
-				document.querySelector(".modalContainer").style.top="0px";
-			}, 100)
+			document.querySelector(".modalContainer").style.top="0px";
 		}
 	})
 	return (

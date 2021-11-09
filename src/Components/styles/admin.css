@@ -29,6 +29,7 @@
 }
 .parteAdmin{
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
@@ -91,4 +92,81 @@
 
 .casillaName{
 
+}
+.menuUsersAdmin{
+    width: 90%;
+    margin-bottom: 10px;
+}
+
+.menuUsersAdmin button{
+    background-color: #C6EDFC;
+    border: none;
+    display: flex;
+    border-radius: 3px;
+    padding: 6px;
+    margin-left: 5px;
+}
+.menuUsersAdmin p{
+    margin: 0px 5px 0px 0px;
+}
+
+.modalUserAdmin{
+    z-index: 100;
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+}
+
+.modalUserAdmin label{
+    margin-top: 5px;
+    margin-right: auto;
+}
+
+.modalUserAdmin input {
+    width: auto;
+    border: 1px solid gray;
+    outline: none;
+    padding: 3px;
+    border-radius: 3px;
+}
+
+.btnSuccesAdminUser {
+    width: 50%!important;
+    background-color: #2D9E45;
+    color: #fff;
+    border: none!important;
+    padding: 5px!important;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+}
+
+.contBtnsAdmin{
+    margin-top: 30px;
+    display: flex;
+}
+
+.btnCancelAdminUser{
+    width: 50%!important;
+    cursor: pointer;
+    text-align: center;
+    background-color: #CA3B3B;
+    outline: none;
+    color: #fff;
+    border: none!important;
+    padding: 5px!important;
+}
+
+.selectAdminUser{
+    margin-top: 10px;
+    display: flex;
+}
+
+.selectAdminUser select {
+    width: 50%;
+    outline: none;
+    padding: 3px;
+    border-radius: 3px;
 }

@@ -1,9 +1,16 @@
 import {useState, useEffect} from "react";
 import {useHistory} from "react-router-dom";
 import Services from "../view-services/Admin_Services";
+import "../styles/admin.css";
+import Modal from "../modal/modal";
+
+//Imagenes
 import verPass from "../assets/verPass.svg";
 import verPass1 from "../assets/verPassNone.svg";
-import "../styles/admin.css";
+import deleteImg from "../assets/car-ico-basura.png";
+import editImg from "../assets/ad-ser-edit.png";
+import addUsuario from "../assets/addUser.svg";
+
 
 export default function Admin (){
 	const history = useHistory();
@@ -13,6 +20,8 @@ export default function Admin (){
 	let [reservas, setReservas] = useState(false);
 	let [usuarios, setUsuarios] = useState(true);
 	let [redi, setRedi] = useState("a");
+	let [modal, setModal] = useState(false);
+	let [modalDel, setModalDel] = useState(false);
 
 	let session = JSON.parse(localStorage.getItem("session"));
 
@@ -82,7 +91,10 @@ export default function Admin (){
 		}
 	});
 
-	let img = [false, false, false, false];
+	let img = [];
+	for (let i = 0; i < users.length; i++) {
+		img.push(false);
+	}
 	function verPassFunct(e){
 		let inputPass = document.querySelector("#inputPassAdmin"+e);
 		let imgVerPass = document.querySelector("#imgVerPass"+e);
@@ -102,6 +114,29 @@ export default function Admin (){
 			img[e] = false;
 		}
 
+	}
+	let idUser = false;
+	function deleteUser (){
+		users.splice(idUser, 1);
+		localStorage.setItem("users", JSON.stringify(users));
+		if (redi == "a") {
+			setRedi("aaa");
+		} else if (redi == "aaa"){
+			setRedi("eee");
+		} else if (redi == "eee"){
+			setRedi("a");
+		}
+	}
+
+	
+
+	function addUser (){
+		let form = document.querySelector("form.modalUserAdmin");
+		if (form.name.value && form.email.value && form.pass.value && form.rol.value) {
+			users.push({name:form.name.value, user:form.email.value, pass:form.pass.value, rol:form.rol.value});
+			localStorage.setItem("users", JSON.stringify(users));
+			document.querySelector(".closeModal").click();
+		}
 	}
 
 	if (session.user.rol == "admin") {
@@ -133,6 +168,48 @@ export default function Admin (){
 						}
 						{ usuarios &&
 							<div className="parteAdmin">
+							{ modal &&	
+								<Modal isVisible={modal} setVisible={()=>setModal(false)}>
+									<form className="modalUserAdmin">
+										<h3>Añade un nuevo usuario</h3>
+										<label>Nombre</label>
+										<input name="name" className="inputUserModalAdmin" type="text" placeholder="Escribe el nombre"/>
+										<label>Correo</label>
+										<input name="email" className="inputUserModalAdmin" type="text" placeholder="Escribe el correo electronico"/>
+										<label>Contraseña</label>
+										<input name="pass" className="inputUserModalAdmin" type="password" placeholder="Escribe la contraseña"/>
+										<div className="selectAdminUser">
+											<label>Rol</label>
+											<select name="rol" id="">
+												<option disabled selected>Selecciona un rol</option>
+												<option>Cliente</option>
+												<option>Admin</option>
+											</select>
+										</div>
+										<div className="contBtnsAdmin">
+											<input className="closeModal btnCancelAdminUser" value="Cancelar"/>
+											<input className="btnSuccesAdminUser" type="button" onClick={()=>addUser()} value="Añadir usuario"/>
+										</div>
+									</form>
+								</Modal>
+							}
+							{ modalDel &&
+								<Modal isVisible={true} setVisible={()=>setModalDel(false)}>
+									<div style={{display:"flex", flexDirection:"column", backgroundColor:"#fff", padding:"20px", justifyContent:"center"}}>
+										<h3>¿Estas seguro que deseas eliminar este usuario?</h3>
+										<div className="contBtnsAdmin">
+											<input className="btnSuccesAdminUser" value="Cancelar" style={{marginRight:"5px"}}/>
+											<input className="btnCancelAdminUser" onClick={()=>deleteUser()} value="Eliminar"/>
+										</div>
+									</div>
+								</Modal>
+							}
+								<div className="menuUsersAdmin">
+										<button onClick={()=>setModal(true)} type="button">
+											<p>Agregar usuario</p>
+											<img src={addUsuario}/>
+										</button>
+								</div>
 								<div className="casillasAdmin">
 									<div className="contCasilla">
 										<div className="casillaAdmin" id="contCasillaTop">Nombre</div>
@@ -146,7 +223,7 @@ export default function Admin (){
 											<div className="casillaAdmin"><p>{user.name}</p></div>
 											<div className="casillaAdmin"><p>{user.user}</p></div>
 											<div className="casillaAdmin"><input value={user.pass} id={"inputPassAdmin"+index} type="password"/><img id={"imgVerPass"+index} onClick={()=>verPassFunct(index)} src={verPass}/></div>
-											<div className="casillaAdmin"><p>{user.rol}</p></div>
+											<div className="casillaAdmin"><p style={{marginLeft:"auto"}}>{user.rol}</p><img style={{marginLeft:"20%", width:"9%", height:"auto"}} src={editImg}/><img onClick={()=>{setModalDel(true); idUser = index}} style={{marginLeft:"2%", width:"9%"}} src={deleteImg}/></div>
 										</div>
 									)
 								})
