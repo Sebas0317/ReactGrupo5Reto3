@@ -7,12 +7,12 @@ function All_menus (){
   let [modal, setModal] = useState(false);
   let [number, setNumber] = useState(0);
   let list = []
-  let val = localStorage.getItem('Platos')
+  let val = localStorage.getItem('pedidos')
   if (val) {list = JSON.parse(val);}
 
   function eliminar(e) {
     list.splice(e,1);
-    localStorage.setItem('Platos', JSON.stringify(list));
+    localStorage.setItem('pedidos', JSON.stringify(list));
     window.location.reload(false);
   }
 

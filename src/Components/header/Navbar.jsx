@@ -12,15 +12,21 @@ function Navbar () {
     let [obj, setObj] = useState(1);
 
     let logueado = false;
-    let session = JSON.parse(localStorage.getItem("session"));
-    if (session){
-      if (session.estado === true){
-        logueado = true;
-        
+    let session = false
+
+    let valSession = localStorage.getItem("session")
+    if (valSession) {
+      session = JSON.parse(valSession);
+      if (session){
+        if (session.estado === true){
+          logueado = true;
+        }
       }
     }
-
-    let platos = JSON.parse(localStorage.getItem("Platos"));
+    
+    let platos = false
+    let valPlatos = localStorage.getItem("pedidos")
+    if (valPlatos) {platos = JSON.parse(valPlatos)}
 
     function logout(){
       session.estado = false;

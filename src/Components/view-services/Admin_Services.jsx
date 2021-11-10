@@ -15,6 +15,7 @@ function Admin_Services() {
 
   const [modal, setModal] = useState(false);
   const [modal1, setModal1] = useState(false);
+  const [modal2, setModal2] = useState(false);
   let [obj, setObj] = useState("aaa");
 
   let name = false;
@@ -51,6 +52,7 @@ function Admin_Services() {
     } else if (obj == "ooo"){
       setObj("aaa");
     }
+    setModal2(false);
   }
 
   function actualizarServicio() {
@@ -125,6 +127,23 @@ function Admin_Services() {
           </div>
         </Modal>
       }
+      {
+        modal2 &&
+        <Modal isVisible={true} setVisible={()=>setModal2(false)}>
+          <div className="styleModal">
+            <h3 className="text-center">
+              Eliminar servicio
+            </h3>
+            <h5 className="mt-2 text-center">
+              ¿Desea eliminar el servicio {infoservices[servicio].nombre}?
+            </h5>
+            <div className="btns">
+              <button className="closeModal">CANCELAR</button>
+              <button onClick={()=>eliminarServicios(servicio)} className="btnOk">Ok</button>
+            </div>
+          </div>
+        </Modal>
+      }
       <div className="container-fluit pt-4 my-5">
         <div className="row mt-5 mx-0 p-0">
           <div className="col-sm-12 top-serv ps-5 pe-1">
@@ -169,7 +188,7 @@ function Admin_Services() {
                           alt="img_trash"
                           width="22"
                           height="22"
-                          onClick={() => eliminarServicios(index)}
+                          onClick={()=>{setServicio(index);setModal2(true)}}
                         />
                       </div>
                     </div>

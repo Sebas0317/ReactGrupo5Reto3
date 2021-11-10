@@ -27,25 +27,38 @@ function Menu () {
   let [precio, setPrecio] = useState(0);
   let [cant, setCant] = useState(1);
   let [foto, setFoto] = useState("");
-  let platos = [plato1, plato2, plato3, plato4, plato5, plato6, plato7, plato8, plato9, plato10, plato11, plato12];
+  let platos = [
+    plato1, plato2, plato3, 
+    plato4, plato5, plato6, 
+    plato7, plato8, plato9, 
+    plato10, plato11, plato12
+  ];
   
+  let listPlatos = []
+  if (localStorage.getItem('platos')) {
+    listPlatos = JSON.parse(localStorage.getItem('platos'))
+  } else {
+    localStorage.setItem('platos', JSON.stringify(json.platos)); 
+    listPlatos = json.platos
+  }
+
   function guardar() {
     let Obj_Plato = {Nombre: nombre, Precio: precio, Total: precio*cant, Foto: foto};
     let list = []
 
-    if (localStorage.getItem('Platos')) {
-      list = JSON.parse(localStorage.getItem('Platos'));
+    if (localStorage.getItem('pedidos')) {
+      list = JSON.parse(localStorage.getItem('pedidos'));
       let index = list.findIndex(plato => plato['Nombre'] === nombre);
       index == -1 ? list.push(Obj_Plato) : list[index] = Obj_Plato;
-      localStorage.setItem('Platos', JSON.stringify(list));
+      localStorage.setItem('pedidos', JSON.stringify(list));
 
     }else{
       list.push(Obj_Plato);
-      localStorage.setItem('Platos', JSON.stringify(list));
+      localStorage.setItem('pedidos', JSON.stringify(list));
     }
     document.querySelector(".closeModal").click();
   }
-
+  
   function actDatos(n,p,c,f){
     setNombre(n)
     setPrecio(p)
@@ -82,17 +95,20 @@ function Menu () {
       }
       <p className="title">Haz tu pedido</p>
       <div className="platos">
-        {json.platos.map((plato, index)=>{
-          return (
-            <MenuContainer 
-              foto={platos[index]} 
-              nombre={plato.nombre}
-              descripcion={plato.descripcion}
-              precio={plato.precio}
-              act={(n,p,c,f)=>{actDatos(n,p,c,f)}}
-            />
-          )
-        })}
+        {listPlatos.length ?
+          listPlatos.map((plato, index)=>{
+            return (
+              <MenuContainer 
+                foto={platos[index]} 
+                nombre={plato.nombre}
+                descripcion={plato.descripcion}
+                precio={plato.precio}
+                act={(n,p,c,f)=>{actDatos(n,p,c,f)}}
+              />
+            )
+          }):
+          <h2 className="text">No hay menús disponibles</h2>
+        }
       </div>
       <div className="row gestion-menu p-5">
           <a type="button" className="btn" href="gestionmenu">

@@ -7,7 +7,7 @@ function Card (){
   let [name, setName] = useState("");
 	let [email, setEmail] = useState("");
   let list = []
-  let val = localStorage.getItem('Platos')
+  let val = localStorage.getItem('pedidos')
   if (val) {list = JSON.parse(val);}
   
   
@@ -99,7 +99,7 @@ function Card (){
         document.querySelector(".closeModal").click();
         alert("¡Pedido exitoso! Se ha enviado la confirmación a su correo electrónico")
         list.splice(0, list.length);
-        localStorage.setItem('Platos', JSON.stringify(list));
+        localStorage.setItem('pedidos', JSON.stringify(list));
         window.location.reload(false);
       })
       .catch((error)=>{

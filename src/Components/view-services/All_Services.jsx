@@ -34,15 +34,18 @@ class All_Services extends React.Component {
     return (
       <>
         <div className="row services g-3 m-0 py-4 px-5">
-          {infoservices.map((servicio, index) => {
-            return (
-              <Service
-                imagen={servicios[index]}
-                nombre={servicio.nombre}
-                descripcion={servicio.descripcion}
-              />
-            );
-          })}
+          {infoservices.length ?
+            infoservices.map((servicio, index) => {
+              return (
+                <Service
+                  imagen={servicios[index]}
+                  nombre={servicio.nombre}
+                  descripcion={servicio.descripcion}
+                />
+              );
+            }):
+            <p style={{ fontSize: "30px", fontFamily:"Branding" }}>No hay servicios disponibles</p>
+          }
         </div>
         <div className="row gestion-ser p-5">
           <Link type="button" className="btn" to="/gestionservicios">
