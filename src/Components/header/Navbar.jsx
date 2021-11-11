@@ -39,6 +39,8 @@ function Navbar () {
     useEffect(()=>{
       if(platos.length > 0){
         document.querySelector(".imgCar").src=carrito1;
+      } else {
+        document.querySelector(".imgCar").src=carrito;
       }
 
     if(session){
@@ -85,7 +87,7 @@ function Navbar () {
             </div>
           </div>
         }
-        <input id="btnActualizar" onClick={()=>setObj("ee")} style={{display:"none"}}/>
+        <input id="btnActualizar" onClick={()=>{obj++; setObj(obj)}} style={{display:"none"}}/>
         <div className="navbar-index">
           <div className="logo">
             <Link to="/">

@@ -57,6 +57,7 @@ function Menu () {
       localStorage.setItem('pedidos', JSON.stringify(list));
     }
     document.querySelector(".closeModal").click();
+    document.querySelector("#btnActualizar").click();
   }
   
   function actDatos(n,p,c,f){

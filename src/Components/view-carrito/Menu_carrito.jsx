@@ -2,23 +2,46 @@ import React, {useState, useEffect} from "react";
 import ico_mas from "../assets/mas1.svg"
 import ico_basura from "../assets/car-ico-basura.png"
 
-function Menu_carrito ({nombre, precio, total, foto, cant, id, abr}){
+function Menu_carrito ({nombre, precio, total, foto, cant, id, abr, del, del1}){
 
   let list = JSON.parse(localStorage.getItem('pedidos'));
   let [Newcant, setNewcant] = useState(cant);
+  let [active, setActive] = useState(true);
+  let [sinPlatos, setSinPlatos] = useState(false);
+
+  function devolverID (){
+    list =  JSON.parse(localStorage.getItem('pedidos'));
+    let id = list.findIndex(obj => obj.Nombre == nombre);
+
+    return id;
+  }
 
   // SUMAR Y RESTAR CANTIDAD 
   function sumar_restar(e){
     e=='s' ? Newcant++ : Newcant--
     if (Newcant <= 0){
+      setActive(false);
+      let id = devolverID();
       list.splice(id,1);
       localStorage.setItem('pedidos', JSON.stringify(list));
-      window.location.reload(false);
+      if(list.length == 0){
+        document.querySelector("#btnActualizar").click();
+        setSinPlatos(true);
+      }
     }else{
-      setNewcant(Newcant)
-      list = JSON.parse(localStorage.getItem('pedidos'))
+      setNewcant(Newcant);
+      let id = devolverID();
       list[id].Total = precio*Newcant;
-      localStorage.setItem('pedidos', JSON.stringify(list))
+      localStorage.setItem('pedidos', JSON.stringify(list));
+    }
+  }
+
+  if(del[1] === true){
+    let listt = JSON.parse(localStorage.getItem('pedidos'));
+    let id = listt.findIndex(obj => obj.Nombre == nombre);
+    if (del[0] == id){   
+      listt.splice(id, 1);
+      localStorage.setItem('pedidos', JSON.stringify(listt)); 
     }
   }
 
@@ -32,7 +55,7 @@ function Menu_carrito ({nombre, precio, total, foto, cant, id, abr}){
   });
   
   return(
-    <>
+    active ?
       <div className="menu-car d-flex">
         <div className="col-sm-4 p-3 img-car">
           <img src={foto} alt="img_menu" />
@@ -69,12 +92,11 @@ function Menu_carrito ({nombre, precio, total, foto, cant, id, abr}){
               alt="img_trash" 
               width="25" 
               height="25" 
-              onClick={()=>abr(id)}
+              onClick={()=>abr(devolverID())}
             />
           </div>
         </div>
-      </div>
-    </>
+      </div> : <h2 style={{display:sinPlatos ? "flex" : "none"}}>No hay menus en el carrito</h2>
   );
 }
 

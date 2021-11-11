@@ -5,28 +5,34 @@ import Modal from "../modal/modal";
 function All_menus (){
 
   let [modal, setModal] = useState(false);
-  let [number, setNumber] = useState(0);
+  let [number, setNumber] = useState(false);
+  let [del, setDel] = useState(false);
   let list = []
   let val = localStorage.getItem('pedidos')
-  if (val) {list = JSON.parse(val);}
+  if (val) {
+    list = JSON.parse(val);
+  }
 
   function eliminar(e) {
-    list.splice(e,1);
-    localStorage.setItem('pedidos', JSON.stringify(list));
-    window.location.reload(false);
+    let list = JSON.parse(localStorage.getItem("pedidos"));
+    let id = list.findIndex(obj => obj.Nombre == e);
+    list.splice(id, 1);
+    localStorage.setItem("pedidos", JSON.stringify(list));
+    document.querySelector(".closeModal").click();
+    if(list.length == 0){
+      document.querySelector("#btnActualizar").click();
+    }
   }
 
   return(
     <div className="col-sm-8 menus-car" id="lista_menus">
-      {
-        modal &&
         <Modal isVisible={modal} setVisible={()=>setModal(false)}>
           <div className="styleModal">
             <h3 className="text-center">
               Eliminar menú
             </h3>
             <h5 className="mt-2 text-center">
-              ¿Desea eliminar el menú {list[number]['Nombre']} del carrito?
+              ¿Desea eliminar el menú {number && number} del carrito?
             </h5>
             <div className="btns">
               <button className="closeModal">CANCELAR</button>
@@ -34,7 +40,6 @@ function All_menus (){
             </div>
           </div>
         </Modal>
-      }
       {list.length ? 
         list.map((menu,index)=>{
           return (
@@ -44,8 +49,10 @@ function All_menus (){
               total={menu['Total']}
               foto={menu['Foto']}
               cant ={eval(menu['Total'] + "/" + menu['Precio'])}
-              id={index++}
-              abr={(e)=>{setNumber(e); setModal(true)}}
+              id={index}
+              abr={(e)=>{setNumber(menu["Nombre"]); setModal(true)}}
+              del={del}
+              del1={()=>{setDel([0, false])}}
             />
           )
         }) :
