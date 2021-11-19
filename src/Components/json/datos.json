@@ -104,24 +104,24 @@
 
 	"comentarios": [
 		{
-			"user": "Mario García",
-			"comentario": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum vitae similique illum id dolores quos non pariatur sapiente voluptates earum, atque numquam iure deleniti explicabo modi perspiciatis accusantium aliquam dolor!",
+			"usuario": "Mario García",
+			"comentarioText": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum vitae similique illum id dolores quos non pariatur sapiente voluptates earum, atque numquam iure deleniti explicabo modi perspiciatis accusantium aliquam dolor!",
 			"fecha": "02/11/2021"
 		},
 		{
-			"user": "Miguel Ospino",
-			"comentario": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum vitae similique illum id dolores quos non pariatur sapiente voluptates earum, atque numquam iure deleniti explicabo modi perspiciatis accusantium aliquam dolor!",
+			"usuario": "Miguel Ospino",
+			"comentarioText": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum vitae similique illum id dolores quos non pariatur sapiente voluptates earum, atque numquam iure deleniti explicabo modi perspiciatis accusantium aliquam dolor!",
 			"fecha": "02/11/2021"
 		},
 		{
-			"user": "Vanessa Montero",
-			"comentario": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum vitae similique illum id dolores quos non pariatur sapiente voluptates earum, atque numquam iure deleniti explicabo modi perspiciatis accusantium aliquam dolor!",
+			"usuario": "Vanessa Montero",
+			"comentarioText": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum vitae similique illum id dolores quos non pariatur sapiente voluptates earum, atque numquam iure deleniti explicabo modi perspiciatis accusantium aliquam dolor!",
 			"fecha": "02/11/2021"
 		},
 
 		{
-			"user": "Pedro PicaPiedra",
-			"comentario": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum vitae similique illum id dolores quos non pariatur sapiente voluptates earum, atque numquam iure deleniti explicabo modi perspiciatis accusantium aliquam dolor!",
+			"usuario": "Pedro PicaPiedra",
+			"comentarioText": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum vitae similique illum id dolores quos non pariatur sapiente voluptates earum, atque numquam iure deleniti explicabo modi perspiciatis accusantium aliquam dolor!",
 			"fecha": "02/11/2021"
 		}
 	]

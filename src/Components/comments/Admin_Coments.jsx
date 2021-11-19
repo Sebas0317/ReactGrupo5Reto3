@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import json from "../json/datos.json";
 import cliente1 from "../assets/cliente1.png";
 import cliente2 from "../assets/cliente2.png";
@@ -13,14 +13,12 @@ function Admin_Coments() {
   const [modal, setModal] = useState(false);
   const [modal1, setModal1] = useState(false);
   const [modal2, setModal2] = useState(false);
-  let [obj, setObj] = useState(0);
+  let [obj, setObj] = useState("aaa");
 
-  let user = false;
-  let context = false;
+  let name = false;
+  let description = false;
 
-  const [comentario, setComentario] = useState("0");
-
-  let comentarios = [cliente1, cliente2, cliente3];
+  const [comentario, setComentario] = useState("");
 
   let infocomentaries = false;
 
@@ -46,14 +44,14 @@ function Admin_Coments() {
   }
 
   function actualizarComentario() {
-    infocomentaries[comentario].usuario = user;
-    infocomentaries[comentario].text = context;
+    infocomentaries[comentario].usuario = name;
+    infocomentaries[comentario].comentarioText = description;
     localStorage.setItem("comentarios", JSON.stringify(infocomentaries));
     setModal(false);
   }
 
   function addComentario() {
-    infocomentaries.push({ usuario: user, text: context });
+    infocomentaries.push({usuario: name, comentarioText:description });
     localStorage.setItem("comentarios", JSON.stringify(infocomentaries));
     setModal1(false);
   }
@@ -69,13 +67,13 @@ function Admin_Coments() {
                 className="form-control"
                 placeholder={comentario && infocomentaries[comentario].usuario}
                 onChange={(e) => {
-                  user = e.target.value;
+                  name = e.target.value;
                 }}
               />
               <textarea
-                placeholder={comentario && infocomentaries[comentario].context}
+                placeholder={comentario && infocomentaries[comentario].comentarioText}
                 onChange={(e) => {
-                  context = e.target.value;
+                  description = e.target.value;
                 }}
                 id=""
                 cols="30"
@@ -103,13 +101,13 @@ function Admin_Coments() {
                 type="text"
                 className="form-control"
                 onChange={(e) => {
-                  user = e.target.value;
+                  name = e.target.value;
                 }}
                 placeholder="Quien Comenta"
               />
               <textarea
                 onChange={(e) => {
-                  context = e.target.value;
+                  description = e.target.value;
                 }}
                 id=""
                 cols="30"
@@ -128,12 +126,11 @@ function Admin_Coments() {
         </Modal>
       )}
       {modal2 && (
-        <Modal isVisible={true} setVisible={() => setModal1(false)}>
+        <Modal isVisible={true} setVisible={() => setModal2(false)}>
           <div className="styleModal">
             <h3 className="text-center">Eliminar comentario</h3>
             <h5 className="mt-2 text-center">
-              ¿Desea eliminar el comentario{" "}
-              {infocomentaries[comentario].usuario}?
+            ¿Desea eliminar el servicio {infocomentaries[comentario]}?
             </h5>
             <div className="btns">
               <button className="closeModal">CANCELAR</button>
@@ -155,17 +152,12 @@ function Admin_Coments() {
           </div>
         </div>
         <div className="row services g-3 m-0 py-4 px-5">
-          {comentarios.map((comentarios, index) => {
+          {json.comentarios.map((comentarios, index) => {
             return (
               <div className="col-sm-6 d-flex mb-4 item-Ad">
-                <img
-                  className="w-50 h-100"
-                  src={comentarios[index]}
-                  alt="img-plato"
-                />
                 <div className="context-Ad">
                   <div className="d-flex align-items-center justify-content-between">
-                    <h2 className="titleItem">{comentario.user}</h2>
+                    <h2 className="titleItem">{comentarios.usuario}</h2>
                     <div className="d-flex justify-content-end">
                       <img
                         src={ico_edit}
@@ -187,11 +179,11 @@ function Admin_Coments() {
                         alt="img_trash"
                         width="25"
                         height="25"
-                        onClick={()=>{setComentario(index);setModal1(true)}}
+                        onClick={()=>{setComentario(index);setModal2(true)}}
                       />
                     </div>
                   </div>
-                  <p>{comentarios.comentario}</p>
+                  <p>{comentarios.comentarioText}</p>
                 </div>
                 
               </div>
@@ -199,7 +191,7 @@ function Admin_Coments() {
           })}
           {infocomentaries.length == 0 && (
             <p style={{ fontSize: "30px", fontFamily: "Branding" }}>
-              Sin servicios, ¿por qué no agregas uno?
+              Sin Comentarios, ¿por qué no agregas uno?
             </p>
           )}
         </div>
