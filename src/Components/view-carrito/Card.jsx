@@ -8,7 +8,9 @@ function Card (){
 	let [email, setEmail] = useState("");
   let list = []
   let val = localStorage.getItem('pedidos')
-  if (val) {list = JSON.parse(val);}
+  if (val) {
+    list = JSON.parse(val);
+  }
   
   
   //VALIDANDO NOMBRE
@@ -100,7 +102,7 @@ function Card (){
         alert("¡Pedido exitoso! Se ha enviado la confirmación a su correo electrónico")
         list.splice(0, list.length);
         localStorage.setItem('pedidos', JSON.stringify(list));
-        window.location.reload(false);
+        document.querySelector("#btnActualizarMenu").click();
       })
       .catch((error)=>{
         alert("Ha ocurrido un error al intentar enviar el pedido, disculpanos..")
