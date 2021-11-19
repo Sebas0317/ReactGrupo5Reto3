@@ -10,7 +10,6 @@ import ico_basura from "../assets/car-ico-basura.png";
 import ico_edit from "../assets/ad-ser-edit.png";
 import Modal from "../modal/modal.js";
 
-
 function Admin_Services() {
 
   const [modal, setModal] = useState(false);
@@ -20,7 +19,6 @@ function Admin_Services() {
 
   let name = false;
   let description = false;
-
 
   const [servicio, setServicio] = useState("");
 
