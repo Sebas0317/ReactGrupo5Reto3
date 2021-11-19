@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import Comentario from "./Comment";
 import json from "../json/datos.json"
 import cliente1 from "../assets/cliente1.png"
@@ -21,7 +22,9 @@ class All_comments extends React.Component{
                   comentario={comentario.comentario}
                 />
               )
+              
             })}
+             
           </div>
           <button className="carousel-control-prev" type="button" data-bs-target="#controls" data-bs-slide="prev">
             <span className="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -30,8 +33,16 @@ class All_comments extends React.Component{
             <span className="carousel-control-next-icon" aria-hidden="true"></span>
           </button>
         </div>
+
+        <div className="row gestion-ser p-5 mt-50">
+          <Link type="button" className="btn" to="/gestioncomentarios">
+            Gestionar Comentarios
+          </Link>
+        </div>
       </div>
+      
     );
+    
   }
 }
 

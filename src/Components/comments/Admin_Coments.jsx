@@ -3,7 +3,7 @@ import json from "../json/datos.json";
 import cliente1 from "../assets/cliente1.png";
 import cliente2 from "../assets/cliente2.png";
 import cliente3 from "../assets/cliente3.png";
-import Modal from "../modal/moda.js";
+import Modal from "../modal/modal.js";
 import ico_basura from "../assets/car-ico-basura.png";
 import ico_edit from "../assets/ad-ser-edit.png";
 
@@ -13,12 +13,12 @@ function Admin_Coments() {
   const [modal, setModal] = useState(false);
   const [modal1, setModal1] = useState(false);
   const [modal2, setModal2] = useState(false);
-  let [obj, setObj] = useState("aaa");
+  let [obj, setObj] = useState(0);
 
   let user = false;
   let context = false;
 
-  const [comentario, setComentario] = useState("");
+  const [comentario, setComentario] = useState("0");
 
   let comentarios = [cliente1, cliente2, cliente3];
 
@@ -33,7 +33,7 @@ function Admin_Coments() {
   }
 
   function eliminarComentarios(props) {
-    infocomentaries = splice(props, 1);
+    infocomentaries.splice(props, 1);
     localStorage.setItem("comentarios", JSON.stringify(infocomentaries));
     if (obj === "aaa") {
       setObj("eee");
@@ -155,7 +155,7 @@ function Admin_Coments() {
           </div>
         </div>
         <div className="row services g-3 m-0 py-4 px-5">
-          {infocomentaries.map((comentario, index) => {
+          {comentarios.map((comentarios, index) => {
             return (
               <div className="col-sm-6 d-flex mb-4 item-Ad">
                 <img
@@ -165,7 +165,7 @@ function Admin_Coments() {
                 />
                 <div className="context-Ad">
                   <div className="d-flex align-items-center justify-content-between">
-                    <h2 className="titleItem">{comentario.usuario}</h2>
+                    <h2 className="titleItem">{comentario.user}</h2>
                     <div className="d-flex justify-content-end">
                       <img
                         src={ico_edit}
@@ -191,7 +191,7 @@ function Admin_Coments() {
                       />
                     </div>
                   </div>
-                  <p>{comentario.text}</p>
+                  <p>{comentarios.comentario}</p>
                 </div>
                 
               </div>

@@ -7,6 +7,7 @@ import Reserva from "./Components/view-reserva/reserva";
 import Services_Container from './Components/view-services/Services_Container';
 import Admin_Services from './Components/view-services/Admin_Services';
 import Admin_Menu from './Components/view-menu/Admin_Menu';
+import Admin_Coments from './Components/comments/Admin_Coments';
 import Carrito_Container from './Components/view-carrito/Carrito_Container';
 import Contacto from "./Components/view-contacto/contacto";
 import Menu from "./Components/view-menu/Menu";
@@ -26,6 +27,7 @@ function App() {
         <Route exact path="/carrito" component={Carrito_Container} />
         <Route exact path="/servicios" component={Services_Container}/>
         <Route exact path="/gestionservicios" component={Admin_Services}/>
+        <Route exact path="/gestioncomentarios" component={Admin_Coments}/>
         <Route exact path="/gestionmenu" component={Admin_Menu}/>
         <Route exact path="/reserva" component={Reserva}/>
         <Route exact path="/contacto" component={Contacto}/>
