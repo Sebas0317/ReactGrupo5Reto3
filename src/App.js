@@ -15,6 +15,7 @@ import Nosotros from "./Components/view-nosotros/Nosotros"
 import Login from "./Components/view-login/login";
 import Register from "./Components/view-register/register";
 import Admin from "./Components/view-admin/admin";
+import History from "./Components/view-history/history";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
         <Route exact path="/login" component={Login}/>
         <Route exact path="/register" component={Register}/>
         <Route exact path="/admin" component={Admin}/>
+        <Route exact path="/history" component={History}/>
         <Route exact component={Pagina404}/>
       </Switch>
       </Layout>

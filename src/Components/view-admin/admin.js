@@ -10,6 +10,7 @@ import verPass1 from "../assets/verPassNone.svg";
 import deleteImg from "../assets/car-ico-basura.png";
 import editImg from "../assets/ad-ser-edit.png";
 import addUsuario from "../assets/addUser.svg";
+import Search from "../assets/search.svg";
 
 
 export default function Admin (){
@@ -130,13 +131,6 @@ export default function Admin (){
 	function deleteUser (){
 		users.splice(idUser, 1);
 		localStorage.setItem("users", JSON.stringify(users));
-		if (redi == "") {
-			setRedi("aaa");
-		} else if (redi == "aaa"){
-			setRedi("eee");
-		} else if (redi == "eee"){
-			setRedi("");
-		}
 		document.querySelector(".closeModal").click()
 	}
 
@@ -161,7 +155,7 @@ if (session) {
 						<div id="btnMenu" className="opcionAdmin"><span>Editar menu</span></div>
 						<div id="btnReservas" className="opcionAdmin"><span>Editar reservas</span></div>
 					</div>
-					<div style={{display:"flex", width:"100%", height:"100vh"}}>
+					<div style={{paddingTop:"6%", display:"flex", width:"100%"}}>
 						{ servicios &&
 							<div className="parteAdmin">
 								<input type="button" onClick={()=>history.push("/gestionservicios")} value="Ir a la seccion editar servicios"/>
@@ -222,6 +216,19 @@ if (session) {
 											<p>Agregar usuario</p>
 											<img src={addUsuario}/>
 										</button>
+										<div className="searchContAdmin">
+											<img src={Search}/>
+											<input placeholder="Busca un usuario"/>
+											<select name="" id="">
+												<option disabled selected>Categoria</option>
+												<option>Nombre</option>
+												<option>Correo</option>
+												<option>Admin/Nombre</option>
+												<option>Admin/Correo</option>
+												<option>Cliente/Nombre</option>
+												<option>Cliente/Correo</option>
+											</select>
+										</div>
 								</div>
 								<div className="casillasAdmin">
 									<div className="contCasilla">

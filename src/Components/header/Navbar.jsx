@@ -53,13 +53,19 @@ function Navbar () {
       }
     }
 
-      if(menu == true){
+     if(menu == true){
+        document.querySelector("#btnHistory").addEventListener("click", ()=>{
+          history.push("/history");
+          setMenu(false);
+        });
+
         document.querySelector("#cerrarSesion").addEventListener("click", ()=>{
           logout();
+          setMenu(false);
         })
         document.querySelector("#btnAdmin").addEventListener("click", ()=>{
           history.push("/admin");
-          setMenu(false)
+          setMenu(false);
         });
         document.querySelector("#fondoCerrarMenu").addEventListener("click", ()=>{
           setMenu(false)
@@ -81,7 +87,7 @@ function Navbar () {
                 </div>
               </div>
               <div id="btnAdmin" style={{display:(session.user.rol == "admin") ? "flex" : "none"}} className="opcionesNavMenu">Administracion</div>
-              <div className="opcionesNavMenu">Historial pedidos/reservas</div>
+              <div id="btnHistory" className="opcionesNavMenu">Historial pedidos/reservas</div>
               <div className="opcionesNavMenu">Reservas</div>
               <div id="cerrarSesion" className="opcionesNavMenu">Cerrar sesion</div>
             </div>
