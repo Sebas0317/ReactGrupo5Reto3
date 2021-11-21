@@ -13,7 +13,7 @@ function Admin_Coments() {
   const [modal, setModal] = useState(false);
   const [modal1, setModal1] = useState(false);
   const [modal2, setModal2] = useState(false);
-  let [obj, setObj] = useState("aaa");
+  let [obj, setObj] = useState(0);
 
   let name = false;
   let description = false;
@@ -33,13 +33,7 @@ function Admin_Coments() {
   function eliminarComentarios(props) {
     infocomentaries.splice(props, 1);
     localStorage.setItem("comentarios", JSON.stringify(infocomentaries));
-    if (obj === "aaa") {
-      setObj("eee");
-    } else if (obj === "eee") {
-      setObj("ooo");
-    } else if (obj === "ooo") {
-      setObj("aaa");
-    }
+    
     setModal2(false);
   }
 
@@ -152,7 +146,7 @@ function Admin_Coments() {
           </div>
         </div>
         <div className="row services g-3 m-0 py-4 px-5">
-          {json.comentarios.map((comentarios, index) => {
+          {infocomentaries.map((comentarios, index) => {
             return (
               <div className="col-sm-6 d-flex mb-4 item-Ad">
                 <div className="context-Ad">

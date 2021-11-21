@@ -7,18 +7,22 @@ import cliente2 from "../assets/cliente2.png"
 import cliente3 from "../assets/cliente3.png"
 
 class All_comments extends React.Component{
+
   render(props){
     let comentariosimg = [cliente1, cliente2, cliente3]
+
+    let comentaries = JSON.parse(localStorage.getItem('comentarios'))
+    
     return(
       <div className="row testimony m-0">
         <div id="controls" className="carousel carousel-dark slide" data-bs-ride="carousel">
           <div className="carousel-inner">
-            {json.comentarios.map((comentario, index)=>{
+            {comentaries.map((comentario, index)=>{
               return (
                 <Comentario 
                   act={index==0 ? "carousel-item active" : "carousel-item"} 
                   img={comentariosimg[index]} 
-                  user={comentario.us} 
+                  user={comentario.usuario} 
                   comentario={comentario.comentarioText}
                 />
               )
