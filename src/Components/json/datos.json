@@ -124,5 +124,13 @@
 			"comentarioText": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum vitae similique illum id dolores quos non pariatur sapiente voluptates earum, atque numquam iure deleniti explicabo modi perspiciatis accusantium aliquam dolor!",
 			"fecha": "02/11/2021"
 		}
+	],
+	"footer": [
+		{
+			"restaurante":  "Restaurante Sal y Salsa Ltda.",
+			"direccion": "Calle 19 No. 7 - 30, Bogotá",
+			"correo": "reservas@salysalsa.com",
+			"telefono": "312 325 25 321"
+		}
 	]
 }

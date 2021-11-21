@@ -2,7 +2,7 @@
 import logofooter from "../assets/logo.png";
 import "../styles/Footer.css"
 import MapaSitio from "./MapaSitio";
-
+import json from "../json/datos.json";
 class Footer extends Component {
   render() {
 
@@ -37,7 +37,15 @@ class Footer extends Component {
       mapa.style.display = '';
     }
 
-    return (
+    let footerInfo = json.footer[0];
+    if (!localStorage.getItem("footerInfo")) {
+      localStorage.setItem("footerInfo", JSON.stringify(footerInfo));
+    } else {
+      footerInfo = JSON.parse(localStorage.getItem("footerInfo"));
+    }
+
+    /*let footer = prompt("Ingresa el nombre del restaurante");*/
+  return (
       <footer>
         <div className="img-foot">
           <img src={logofooter} alt="sal&salsa" width="320px" />
@@ -56,10 +64,10 @@ class Footer extends Component {
           </div>
           <div id="contactos">
             <div className="contactos-footer">
-              <li>Restaurante Sal y Salsa Ltda.</li>
-              <li>Calle 19 No. 7 - 30, Bogotá</li>
-              <li>reservas@salysalsa.com</li>
-              <li>312 325 25 321</li>
+              <li>{footerInfo.restaurante}</li>
+              <li>{footerInfo.direccion}</li>
+              <li>{footerInfo.correo}</li>
+              <li>{footerInfo.telefono}</li>
             </div>
             <div className="copy">
               <p className="m-0">© 2020 all rights reserved</p>

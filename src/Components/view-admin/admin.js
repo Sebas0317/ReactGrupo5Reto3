@@ -1,8 +1,12 @@
 import {useState, useEffect} from "react";
 import {useHistory} from "react-router-dom";
-import Services from "../view-services/Admin_Services";
+
 import "../styles/admin.css";
 import Modal from "../modal/modal";
+import Admin_Services from "../view-services/Admin_Services";
+import Admin_Menu from "../view-menu/Admin_Menu";
+import Admin_Coments from "../comments/Admin_Coments";
+import Admin_Footer from "../footer/Admin_Footer";
 
 //Imagenes
 import verPass from "../assets/verPass.svg";
@@ -12,13 +16,14 @@ import editImg from "../assets/ad-ser-edit.svg";
 import addUsuario from "../assets/addUser.svg";
 import Search from "../assets/search.svg";
 
-
 export default function Admin (){
 	const history = useHistory();
 
 	let [servicios, setServicios] = useState(false);
 	let [menu, setMenu] = useState(false);
 	let [reservas, setReservas] = useState(false);
+	let [footer, setFooter] = useState(false);
+	let [comentarios, setComentarios] = useState(false);
 	let [usuarios, setUsuarios] = useState(true);
 	let [redi, setRedi] = useState("");
 	let [modal, setModal] = useState(false);
@@ -119,13 +124,16 @@ export default function Admin (){
 				let btnUsuarios = document.querySelector("#btnUsuarios"); 
 				let btnMenu = document.querySelector("#btnMenu");
 				let btnReservas = document.querySelector("#btnReservas");
-
+				let btnComentarios = document.querySelector("#btnComentarios");
+				let btnFooter = document.querySelector("#btnFooter");
 				btnServicios.addEventListener("click", ()=>{
 					setMenu(false);
 					setReservas(false);
 					setUsuarios(false);
+					setFooter(false);
 					setServicios(true);
 					btnUsuarios.classList.remove("seleccion");
+					btnFooter.classList.remove("seleccion");
 					btnServicios.classList.add("seleccion");
 					btnMenu.classList.remove("seleccion");
 					btnReservas.classList.remove("seleccion");
@@ -134,9 +142,13 @@ export default function Admin (){
 					setMenu(false);
 					setReservas(false);
 					setUsuarios(true);
+					setFooter(false);
 					setServicios(false);
+					setComentarios(false);
 					btnUsuarios.classList.add("seleccion");
 					btnServicios.classList.remove("seleccion");
+					btnFooter.classList.remove("seleccion");
+					btnComentarios.classList.remove("seleccion");
 					btnMenu.classList.remove("seleccion");
 					btnReservas.classList.remove("seleccion");
 
@@ -145,9 +157,13 @@ export default function Admin (){
 					setMenu(true);
 					setReservas(false);
 					setUsuarios(false);
+					setFooter(false);
 					setServicios(false);
+					setComentarios(false);
 					btnMenu.classList.add("seleccion");
+					btnComentarios.classList.remove("seleccion");
 					btnServicios.classList.remove("seleccion");
+					btnFooter.classList.remove("seleccion");
 					btnUsuarios.classList.remove("seleccion");
 					btnReservas.classList.remove("seleccion");
 				});
@@ -156,12 +172,44 @@ export default function Admin (){
 					setReservas(true);
 					setUsuarios(false);
 					setServicios(false);
+					setFooter(false);
+					setComentarios(false);
 					btnMenu.classList.remove("seleccion");
 					btnServicios.classList.remove("seleccion");
+					btnComentarios.classList.remove("seleccion");
+					btnFooter.classList.remove("seleccion");
 					btnUsuarios.classList.remove("seleccion");
 					btnReservas.classList.add("seleccion");
 				});
-			} else {
+				btnComentarios.addEventListener("click", ()=>{
+					setMenu(false);
+					setReservas(false);
+					setUsuarios(false);
+					setServicios(false);
+					setFooter(false);
+					setComentarios(true);
+					btnMenu.classList.remove("seleccion");
+					btnServicios.classList.remove("seleccion");
+					btnFooter.classList.remove("seleccion");
+					btnComentarios.classList.add("seleccion");
+					btnUsuarios.classList.remove("seleccion");
+					btnReservas.classList.remove("seleccion");
+				});
+				btnFooter.addEventListener("click", ()=>{
+					setMenu(false);
+					setReservas(false);
+					setUsuarios(false);
+					setServicios(false);
+					setFooter(true);
+					setComentarios(false);
+					btnMenu.classList.remove("seleccion");
+					btnServicios.classList.remove("seleccion");
+					btnFooter.classList.add("seleccion");
+					btnComentarios.classList.remove("seleccion");
+					btnUsuarios.classList.remove("seleccion");
+					btnReservas.classList.remove("seleccion");
+				});
+			}else {
 				redirigir();
 			}
 		} else {
@@ -186,7 +234,6 @@ export default function Admin (){
 			inputPass.type="text";
 		}
 
-
 		if (img[e] == false) {
 			imgVerPass.src = verPass1;
 			img[e] = true;
@@ -203,8 +250,6 @@ export default function Admin (){
 		document.querySelector(".closeModal").click()
 	}
 
-	
-
 	function addUser (){
 		let form = document.querySelector("form.modalUserAdmin");
 		if (form.name.value && form.email.value && form.pass.value && (form.rol.value != "Selecciona un rol")) {
@@ -214,21 +259,23 @@ export default function Admin (){
 		}
 	}
 
-	
 if (session) {
 	if (session.user.rol == "admin") {
 		return (
 			<div className="adminCont">
 					<div className="navAdmin">
 						<div id="btnUsuarios" className="opcionAdmin seleccion"><span>Editar usuarios</span></div>
-						<div id="btnServicios" className="opcionAdmin marginTop"><span>Editar servicios</span></div>
-						<div id="btnMenu" className="opcionAdmin"><span>Editar menu</span></div>
 						<div id="btnReservas" className="opcionAdmin"><span>Editar reservas</span></div>
+						<div id="btnFooter" className="opcionAdmin"><span>Editar Footer</span></div>
+						<div id="btnMenu" className="opcionAdmin"><span>Editar menu</span></div>
+						<div id="btnServicios" className="opcionAdmin marginTop"><span>Editar servicios</span></div>
+						
+						<div id="btnComentarios" className="opcionAdmin"><span>Editar Comentarios</span></div>
 					</div>
 					<div style={{paddingTop:"6%", display:"flex", width:"100%"}}>
 						{ servicios &&
 							<div className="parteAdmin">
-								<input type="button" onClick={()=>history.push("/gestionservicios")} value="Ir a la seccion editar servicios"/>
+								<Admin_Services/>
 							</div>
 						}
 						{ reservas &&
@@ -237,9 +284,21 @@ if (session) {
 							</div>
 
 						}
+						{ comentarios &&
+							<div className="parteAdmin">
+							<Admin_Coments/>
+							</div>
+						}
+
 						{ menu &&
 							<div className="parteAdmin">
-								<input type="button" onClick={()=>history.push("/gestionmenu")} value="Ir a la seccion editar menu"/>
+								<Admin_Menu/>
+							</div>
+
+						}
+						{ footer &&
+							<div className="parteAdmin">
+								<Admin_Footer/>
 							</div>
 
 						}
@@ -313,7 +372,6 @@ if (session) {
 										</div>
 									)
 								})
-
 
 								}
 								</div>
