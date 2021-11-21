@@ -137,6 +137,7 @@ export default function Admin (){
 					btnServicios.classList.add("seleccion");
 					btnMenu.classList.remove("seleccion");
 					btnReservas.classList.remove("seleccion");
+					btnComentarios.classList.remove("seleccion");
 				});
 				btnUsuarios.addEventListener("click", ()=>{
 					setMenu(false);
@@ -265,11 +266,10 @@ if (session) {
 			<div className="adminCont">
 					<div className="navAdmin">
 						<div id="btnUsuarios" className="opcionAdmin seleccion"><span>Editar usuarios</span></div>
-						<div id="btnReservas" className="opcionAdmin"><span>Editar reservas</span></div>
+						<div id="btnReservas" className="opcionAdmin"><span>Editar Reservas</span></div>
 						<div id="btnFooter" className="opcionAdmin"><span>Editar Footer</span></div>
-						<div id="btnMenu" className="opcionAdmin"><span>Editar menu</span></div>
-						<div id="btnServicios" className="opcionAdmin marginTop"><span>Editar servicios</span></div>
-						
+						<div id="btnMenu" className="opcionAdmin"><span>Editar Menu</span></div>
+						<div id="btnServicios" className="opcionAdmin"><span>Editar servicios</span></div>
 						<div id="btnComentarios" className="opcionAdmin"><span>Editar Comentarios</span></div>
 					</div>
 					<div style={{paddingTop:"6%", display:"flex", width:"100%"}}>
