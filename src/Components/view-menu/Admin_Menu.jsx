@@ -1,7 +1,7 @@
 import React, { Component, useState } from "react";
 import "../styles/admin.css";
-import ico_basura from "../assets/car-ico-basura.png";
-import ico_edit from "../assets/ad-ser-edit.png";
+import ico_basura from "../assets/car-ico-basura.svg";
+import ico_edit from "../assets/ad-ser-edit.svg";
 import Modal from "../modal/modal.js";
 
 //Imagenes del menu

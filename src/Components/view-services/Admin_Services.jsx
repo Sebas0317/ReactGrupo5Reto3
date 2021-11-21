@@ -6,8 +6,8 @@ import Propuestas from "../assets/serv_propuesta.png";
 import Despedidas from "../assets/serv_despedida.png";
 import Amigos from "../assets/serv_amigos.png";
 import json from "../json/datos.json";
-import ico_basura from "../assets/car-ico-basura.png";
-import ico_edit from "../assets/ad-ser-edit.png";
+import ico_basura from "../assets/car-ico-basura.svg";
+import ico_edit from "../assets/ad-ser-edit.svg";
 import Modal from "../modal/modal.js";
 
 function Admin_Services() {
