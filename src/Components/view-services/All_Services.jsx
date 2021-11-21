@@ -21,6 +21,8 @@ class All_Services extends React.Component {
       Despedidas,
       Amigos,
     ];
+
+    let session = JSON.parse(localStorage.getItem("session"));
     
     let infoservices = false;
 
@@ -48,9 +50,10 @@ class All_Services extends React.Component {
           }
         </div>
         <div className="row gestion-ser p-5">
-          <Link type="button" className="btn" to="/gestionservicios">
+          { session.user.rol == "admin" &&
+            <Link type="button" className="btn" to="/gestionservicios">
             Gestionar Servicios
-          </Link>
+          </Link>}
         </div>
       </>
     );

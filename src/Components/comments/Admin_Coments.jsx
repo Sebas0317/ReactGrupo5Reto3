@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, } from "react";
+import { useHistory } from "react-router";
 import json from "../json/datos.json";
 import cliente1 from "../assets/cliente1.png";
 import cliente2 from "../assets/cliente2.png";
@@ -50,6 +51,13 @@ function Admin_Coments() {
     setModal1(false);
   }
 
+  let history = useHistory();
+
+  let session = JSON.parse(localStorage.getItem("session"));
+  if (session.user.rol != "admin" || session.estado === false) {
+    history.push("/");
+  }
+  
   return (
     <main>
       {modal && (
@@ -124,7 +132,7 @@ function Admin_Coments() {
           <div className="styleModal">
             <h3 className="text-center">Eliminar comentario</h3>
             <h5 className="mt-2 text-center">
-            ¿Desea eliminar el servicio {infocomentaries[comentario]}?
+            ¿Desea eliminar el comentario {infocomentaries[comentario].comentarioText}?
             </h5>
             <div className="btns">
               <button className="closeModal">CANCELAR</button>
@@ -190,9 +198,9 @@ function Admin_Coments() {
           )}
         </div>
         <div className="row gestion-com p-5">
-          <a type="button" onClick={() => setModal(true)} className="btn">
+          <button type="button" onClick={() => setModal1(true)} className="btn">
             Agregar comentarios
-          </a>
+          </button>
         </div>
       </div>
     </main>

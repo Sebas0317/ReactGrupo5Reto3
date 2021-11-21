@@ -4,6 +4,7 @@ import Social from "../social/Social"
 import Modal from "../modal/modal";
 import "../styles/menu.css";
 import json from "../json/datos.json"
+import {Link} from "react-router-dom";
 
 //Imagenes del menu
 import plato1 from "../assets/menu_pl1.png"
@@ -18,7 +19,6 @@ import plato9 from "../assets/menu_pl9.jpeg"
 import plato10 from "../assets/menu_pl10.jpg"
 import plato11 from "../assets/menu_pl11.jpeg"
 import plato12 from "../assets/menu_pl12.jpg"
-
 
 function Menu () {
 
@@ -68,7 +68,7 @@ function Menu () {
     setModal(true)
   }
 
-  return (
+  let session = JSON.parse(localStorage.getItem("session"));return (
     <div className="contenedorPlatos">
       <Social />
       {
@@ -112,9 +112,10 @@ function Menu () {
         }
       </div>
       <div className="row gestion-menu p-5">
-          <a type="button" className="btn" href="gestionmenu">
+      { session.user.rol == "admin" &&
+      <Link type="button" className="btn" to="gestionmenu">
             Gestionar menús
-          </a>
+          </Link>}
         </div>
     </div>
   );

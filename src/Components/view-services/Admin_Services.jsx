@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router";
 import Cumple from "../assets/serv_cumple.png";
 import Aniversarios from "../assets/serv_aniversario.png";
 import Infantil from "../assets/serv_infantil.png";
@@ -64,6 +65,12 @@ function Admin_Services() {
     infoservices.push({nombre:name, descripcion:description});
     localStorage.setItem("servicios", JSON.stringify(infoservices));
     setModal1(false);
+  }
+
+  let history = useHistory();
+  let session = JSON.parse(localStorage.getItem("session"));
+  if (session.user.rol != "admin" || session.estado === false) {
+    history.push("/");
   }
 
   return (
