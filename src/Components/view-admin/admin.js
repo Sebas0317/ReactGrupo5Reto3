@@ -7,8 +7,8 @@ import Modal from "../modal/modal";
 //Imagenes
 import verPass from "../assets/verPass.svg";
 import verPass1 from "../assets/verPassNone.svg";
-import deleteImg from "../assets/car-ico-basura.png";
-import editImg from "../assets/ad-ser-edit.png";
+import deleteImg from "../assets/car-ico-basura.svg";
+import editImg from "../assets/ad-ser-edit.svg";
 import addUsuario from "../assets/addUser.svg";
 import Search from "../assets/search.svg";
 

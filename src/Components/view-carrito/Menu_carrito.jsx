@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import ico_mas from "../assets/mas1.svg"
-import ico_basura from "../assets/car-ico-basura.png"
+import ico_basura from "../assets/car-ico-basura.svg"
 
 function Menu_carrito ({nombre, precio, total, foto, cant, id, abr, sum, res}){
 

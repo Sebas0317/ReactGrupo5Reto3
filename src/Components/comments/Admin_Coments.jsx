@@ -4,8 +4,8 @@ import cliente1 from "../assets/cliente1.png";
 import cliente2 from "../assets/cliente2.png";
 import cliente3 from "../assets/cliente3.png";
 import Modal from "../modal/modal.js";
-import ico_basura from "../assets/car-ico-basura.png";
-import ico_edit from "../assets/ad-ser-edit.png";
+import ico_basura from "../assets/car-ico-basura.svg";
+import ico_edit from "../assets/ad-ser-edit.svg";
 
 //agregar funcion de Admin_Coments con el modal
 

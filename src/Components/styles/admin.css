@@ -121,6 +121,7 @@
     align-items: center;
     border: 1px solid gray;
     outline: none;
+    border-radius: 5px;
 }
 
 .menuUsersAdmin button{
