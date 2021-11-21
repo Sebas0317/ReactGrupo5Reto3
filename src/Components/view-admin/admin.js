@@ -132,6 +132,7 @@ export default function Admin (){
 					setUsuarios(false);
 					setFooter(false);
 					setServicios(true);
+					setComentarios(false);
 					btnUsuarios.classList.remove("seleccion");
 					btnFooter.classList.remove("seleccion");
 					btnServicios.classList.add("seleccion");
@@ -246,7 +247,9 @@ export default function Admin (){
 	}
 	let [idUser, setIdUser] = useState(false);
 	function deleteUser (){
+		let name = users[idUser].Nombre
 		users.splice(idUser, 1);
+		let usersNew = JSON.parse(localStorage.getItem("users"));
 		localStorage.setItem("users", JSON.stringify(users));
 		document.querySelector(".closeModal").click()
 	}
