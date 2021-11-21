@@ -247,11 +247,26 @@ export default function Admin (){
 	}
 	let [idUser, setIdUser] = useState(false);
 	function deleteUser (){
-		let name = users[idUser].Nombre
-		users.splice(idUser, 1);
-		let usersNew = JSON.parse(localStorage.getItem("users"));
-		localStorage.setItem("users", JSON.stringify(users));
-		document.querySelector(".closeModal").click()
+		if (buscar.length == 0) {
+			users.splice(idUser, 1);
+			localStorage.setItem("users", JSON.stringify(users));
+			document.querySelector(".closeModal").click()
+		} else {
+			let name = users[idUser].user;
+			let val = -1;
+			users.splice(idUser, 1);
+			let usersNew = JSON.parse(localStorage.getItem("users"));
+			usersNew.filter((user, index) => {
+				if (user.user == name) {
+					val = index;
+				}
+				 return user.Nombre == name;
+
+			})
+			usersNew.splice(val, 1);
+			localStorage.setItem("users", JSON.stringify(usersNew));
+			document.querySelector(".closeModal").click()
+		}
 	}
 
 	function addUser (){
