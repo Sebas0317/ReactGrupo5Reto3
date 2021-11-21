@@ -23,6 +23,9 @@ export default function Admin (){
 	let [redi, setRedi] = useState("");
 	let [modal, setModal] = useState(false);
 	let [modalDel, setModalDel] = useState(false);
+	let [buscar, setBuscar] = useState("");
+	let [tipo, setTipo] = useState("nombre");
+	let [obj, setObj] = useState(0);
 
 	let session = JSON.parse(localStorage.getItem("session"));
 
@@ -42,6 +45,72 @@ export default function Admin (){
 	}
 
 	let users = JSON.parse(localStorage.getItem("users"));
+
+	function searchUser(e, tipo){
+		let x = 0;
+		if (tipo == "nombre") {
+			x = 0
+		} else if (tipo == "correo") {
+			x = 3;
+		} else {
+			x = "error";
+		}
+
+		let val = [];
+		for (let i = 0; i < users.length; i++){
+			if (x == 0) {
+				val.push(users[i].name)
+			} else {
+				val.push(users[i].user)
+			}
+		}
+
+		function buscar(e){
+			return val.filter(function(a){
+				return a.toLowerCase().indexOf(e.toLowerCase()) > -1;
+			});
+		}
+
+		let result = buscar(e);
+		let obj = [];
+
+		for(let i =0; i < users.length; i++){
+			let a = users.filter((user, index) => {
+				let o = false;
+				if (x == 0) {
+					o = user.name == result[i];
+				} else {
+					o = user.user == result[i]; 
+				}
+				return o;
+			});
+
+			if (a.length != 0) {
+				obj.push(a[0]);
+			}
+		}
+
+		let resultado = false;
+		if (obj.length != 0) {
+			resultado = obj;
+			if (x == "error") {
+				resultado = "Error en el segundo parametro";
+			}
+		}
+
+		return resultado
+	}
+
+	function searching(){
+		if (buscar.length != 0) {
+			let result = searchUser(buscar, tipo.toLowerCase());
+			users = result;
+		} else {
+			users = JSON.parse(localStorage.getItem("users"));
+		}
+	}
+
+	searching();
 
 	useEffect(()=>{
 		if (session) {
@@ -145,6 +214,7 @@ export default function Admin (){
 		}
 	}
 
+	
 if (session) {
 	if (session.user.rol == "admin") {
 		return (
@@ -218,15 +288,11 @@ if (session) {
 										</button>
 										<div className="searchContAdmin">
 											<img src={Search}/>
-											<input placeholder="Busca un usuario"/>
-											<select name="" id="">
+											<input onChange={(e)=>setBuscar(e.target.value)} placeholder="Busca un usuario"/>
+											<select name="" id="" onChange={(e)=>setTipo(e.target.value)}>
 												<option disabled selected>Categoria</option>
 												<option>Nombre</option>
 												<option>Correo</option>
-												<option>Admin/Nombre</option>
-												<option>Admin/Correo</option>
-												<option>Cliente/Nombre</option>
-												<option>Cliente/Correo</option>
 											</select>
 										</div>
 								</div>
@@ -243,7 +309,7 @@ if (session) {
 											<div className="casillaAdmin"><p>{user.name}</p></div>
 											<div className="casillaAdmin"><p>{user.user}</p></div>
 											<div className="casillaAdmin"><input value={user.pass} id={"inputPassAdmin"+index} type="password"/><img id={"imgVerPass"+index} style={{opacity:user.user == "admin@salysalsa.co" && "0.2"}} onClick={()=>{user.user != "admin@salysalsa.co" && verPassFunct(index)}} src={verPass}/></div>
-											<div className="casillaAdmin"><p style={{marginLeft:"auto"}}>{user.rol}</p><img style={{marginLeft:"20%", width:"9%", height:"auto", opacity:(user.user == "admin@salysalsa.co") && "0.1"}} src={editImg}/><img onClick={()=>{user.user != "admin@salysalsa.co" && setModalDel(true); setIdUser(index)}} style={{marginLeft:"2%", width:"9%", opacity:(user.user == "admin@salysalsa.co") && "0.1"}} src={deleteImg}/></div>
+											<div className="casillaAdmin"><p style={{marginLeft:"auto"}}>{user.rol}</p><img onClick={()=>searchUser("e")} style={{marginLeft:"20%", width:"9%", height:"auto", opacity:(user.user == "admin@salysalsa.co") && "0.1"}} src={editImg}/><img onClick={()=>{user.user != "admin@salysalsa.co" && setModalDel(true); setIdUser(index)}} style={{marginLeft:"2%", width:"9%", opacity:(user.user == "admin@salysalsa.co") && "0.1"}} src={deleteImg}/></div>
 										</div>
 									)
 								})
