@@ -91,11 +91,11 @@ function Navbar () {
               <div className="opcionPerfilMenu">
                 <img style={{height:"10vh"}} src={Profile}/>
                 <div>
-                  <h3 style={{margin:"0px", fontSize:"23px", color:"#430202"}}>{session.user.name}</h3>
-                  <p  style={{margin:"0px", fontSize:"15px", color:"#929292"}}>{session.user.user}</p>
+                  <h3 style={{margin:"0px", fontSize:"23px", color:"#430202"}}>{session && session.user.name}</h3>
+                  <p  style={{margin:"0px", fontSize:"15px", color:"#929292"}}>{session && session.user.email}</p>
                 </div>
               </div>
-              <div id="btnAdmin" style={{display:(session.user.rol == "admin") ? "flex" : "none"}} className="opcionesNavMenu">Administracion</div>
+              <div id="btnAdmin" style={{display:(session && session.user.rol == "admin") ? "flex" : "none"}} className="opcionesNavMenu">Administracion</div>
               <div id="btnHistory" className="opcionesNavMenu">Historial pedidos/reservas</div>
               <div className="opcionesNavMenu">Reservas</div>
               <div id="cerrarSesion" className="opcionesNavMenu">Cerrar sesion</div>
@@ -117,10 +117,10 @@ function Navbar () {
             <Link className="pocoMargin" to="/carrito">
               <img className="imgCar" src={carrito} />
             </Link>
-            <b style={{margin:"0px", cursor:"pointer"}} onClick={()=>toggleMenu()}>
+            <b style={{margin:"0px", cursor:"pointer"}}>
               
               {logueado ? 
-                <b>
+                <b onClick={()=>toggleMenu()}>
                   {session.user.name}
                   <img id="arrowMenu" src={Arrow}/>
                 </b>
