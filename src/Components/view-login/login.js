@@ -1,9 +1,10 @@
-import {useState, useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import "../styles/login.css";
 import verPass from "../assets/verPass.svg";
 import verPassNone from "../assets/verPassNone.svg";
 import {Link, useHistory} from "react-router-dom";
 import Logo from "../assets/logo.png";
+import Loading from "../modal/loading";
 
 function Login (){
 	
@@ -12,6 +13,8 @@ function Login (){
 	let [email, setEmail] = useState("");
 	let [pass, setPass] = useState("");
 	let [obj, setObj] = useState(1);
+	let [users, setUsers] = useState("");
+	let [load, setLoad] = useState(false);
 
 	let session = JSON.parse(localStorage.getItem("session"));
 	if (session) {
@@ -20,19 +23,6 @@ function Login (){
 		}
 	}
 
-	// const response = fetch(url, {
-	//     method: 'POST',
-	//     mode: 'cors',
-	//     cache: 'no-cache',
-	//     credentials: 'same-origin',
-	//     headers: {
-	//       'Content-Type': 'application/json'
-	//     },
-	//     redirect: 'follow', 
-	//     referrerPolicy: 'no-referrer',
-	//     body: JSON.stringify(data)
-	//   });
-	// }
 
 	function mostrarPass(){
 		let oculto = true;
@@ -105,24 +95,53 @@ function Login (){
 			}
 		}
 	}
+	
 
-	let users = false;
-	if (!localStorage.getItem("users")) {
-		localStorage.setItem("users", JSON.stringify([{"user":"admin@salysalsa.co", pass:"admin123", rol:"admin", name:"Administrador"}]))
-	} else {
-		users = JSON.parse(localStorage.getItem("users"));
-	}
+	
+	useEffect(()=>{
+		mostrarPass();
 
-	function validarCuenta(){
+		async function obtenerUsuariosBD(){
+			await fetch("https://avilap.herokuapp.com/api/users",{
+				method:"GET"
+			})
+			.then((response)=>{
+				if (response.ok) {
+					response.json()
+					.then((res)=>{
+						setUsers(res);
+					});
+				};
+			})
+			.catch((err)=>{
+				setLoad(false);
+				alert("Comprueba tu conexion");
+				console.log(err)
+			});
+		}
+		obtenerUsuariosBD();
+	},[obj]);
+
+	
+
+	
+
+
+	async function validarCuenta(){
+		
 		let inputEmail = document.querySelector(".inputEmail");
 		let emailMensaje = document.querySelector(".loginEmailVal");
 		let inputPass = document.querySelector(".inputPass");
 		let passMensaje = document.querySelector(".loginPassVal");
 
+		obj++
+		setObj(obj);
+
 		for (let i = 0; i < users.length; i++) {
-			if (email == users[i].user) {
+			if (email == users[i].email) {
 				if (pass == users[i].pass) {
 					localStorage.setItem("session", JSON.stringify({estado:true, user:users[i]}))
+					setLoad(false);
 					document.querySelector("#btnActualizar").click();
 					if (users[i].rol == "admin") {
 						history.push("/admin");
@@ -130,6 +149,7 @@ function Login (){
 						history.push("/");
 					}
 				} else {
+					setLoad(false);
 					inputPass.style.border="1px solid #C42424";
 					passMensaje.textContent="La contraseña es incorrecta.";
 					passMensaje.style.opacity=1;
@@ -137,8 +157,9 @@ function Login (){
 				break;
 			} else {
 				let val = i;
-				val++
+				val++;
 				if (val == users.length) {
+					setLoad(false);
 					emailMensaje.textContent="El usuario no existe.";
 					emailMensaje.style.opacity=1;
 					inputEmail.style.border="1px solid #C42424";
@@ -148,13 +169,10 @@ function Login (){
 		
 	}
 
-	
 
-	useEffect(()=>{
-		mostrarPass()
-	})
 	return (
 		<div className="loginContainer">
+			<Loading isVisible={load}/>
 			<form>
 				<div className="loginFoto2"/>
 				<div className="formCont">
@@ -169,12 +187,7 @@ function Login (){
 					</div>
 					<div style={{position:"absolute", width:"100%", left:0, alignItems:"center", bottom:8, display:"flex", flexDirection:"column"}}>
 						<button onClick={(e)=>validar(e)}>Iniciar sesion</button>
-						<p style={{margin:0, marginTop:3}}>
-							¿No tienes cuenta? Regístrate&nbsp;
-							<Link to="/register" style={{textDecoration:'none',color:'#4F2634',fontWeight:'bolder'}}>
-								Aquí
-							</Link>
-						</p>
+						<p style={{margin:0, marginTop:3}}>¿No tienes cuenta? registrate <Link to="/register">Aqui</Link></p>
 					</div>
 				</div>
 			</form>

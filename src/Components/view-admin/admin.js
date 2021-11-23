@@ -7,6 +7,7 @@ import Admin_Services from "../view-services/Admin_Services";
 import Admin_Menu from "../view-menu/Admin_Menu";
 import Admin_Coments from "../comments/Admin_Coments";
 import Admin_Footer from "../footer/Admin_Footer";
+import Loading from "../modal/loading";
 
 //Imagenes
 import verPass from "../assets/verPass.svg";
@@ -26,11 +27,13 @@ export default function Admin (){
 	let [comentarios, setComentarios] = useState(false);
 	let [usuarios, setUsuarios] = useState(true);
 	let [redi, setRedi] = useState("");
+	let [load, setLoad] = useState(false);
+	let [users, setUsers] = useState([]);
+	let [obj, setObj] = useState(0);
 	let [modal, setModal] = useState(false);
 	let [modalDel, setModalDel] = useState(false);
 	let [buscar, setBuscar] = useState("");
 	let [tipo, setTipo] = useState("nombre");
-	let [obj, setObj] = useState(0);
 
 	let session = JSON.parse(localStorage.getItem("session"));
 
@@ -49,7 +52,6 @@ export default function Admin (){
 		}, 3200);
 	}
 
-	let users = JSON.parse(localStorage.getItem("users"));
 
 	function searchUser(e, tipo){
 		let x = 0;
@@ -111,7 +113,7 @@ export default function Admin (){
 			let result = searchUser(buscar, tipo.toLowerCase());
 			users = result;
 		} else {
-			users = JSON.parse(localStorage.getItem("users"));
+			
 		}
 	}
 
@@ -216,65 +218,70 @@ export default function Admin (){
 			}
 		} else {
 			redirigir();
-		}	
-	});
-
-	let img = [];
-	if (users) {
-		for (let i = 0; i < users.length; i++) {
-			img.push(false);
 		}
-	}
-	
-	function verPassFunct(e){
-		let inputPass = document.querySelector("#inputPassAdmin"+e);
-		let imgVerPass = document.querySelector("#imgVerPass"+e);
+	}, []);
 
-		if (inputPass.type == "text") {
-			inputPass.type="password";
-		} else if (inputPass.type == "password"){
-			inputPass.type="text";
-		}
+	useEffect(()=>{	
+		fetch("https://avilap.herokuapp.com/api/users",{
+			method:"GET"
+		})
+		.then((response)=>{
+			if (response.ok) {
+				response.json()
+				.then((res)=>{
+					setUsers(res);
+				});
+			}
+		})
+		.catch((err)=>{
+			console.log(err);
+		});
+	}, [obj]);
 
-		if (img[e] == false) {
-			imgVerPass.src = verPass1;
-			img[e] = true;
-		} else {
-			imgVerPass.src = verPass;
-			img[e] = false;
-		}
-
-	}
 	let [idUser, setIdUser] = useState(false);
 	function deleteUser (){
-		if (buscar.length == 0) {
-			users.splice(idUser, 1);
-			localStorage.setItem("users", JSON.stringify(users));
-			document.querySelector(".closeModal").click()
-		} else {
-			let name = users[idUser].user;
-			let val = -1;
-			users.splice(idUser, 1);
-			let usersNew = JSON.parse(localStorage.getItem("users"));
-			usersNew.filter((user, index) => {
-				if (user.user == name) {
-					val = index;
-				}
-				 return user.Nombre == name;
-
-			})
-			usersNew.splice(val, 1);
-			localStorage.setItem("users", JSON.stringify(usersNew));
-			document.querySelector(".closeModal").click()
-		}
+		setLoad(true);
+		document.querySelector(".closeModal").click();
+		let url = "https://avilap.herokuapp.com/api/users/"+idUser;
+		fetch(url,{
+			method:"DELETE",
+			headers:{"Content-Type":"application/json; charset=utf-8"}
+		})
+		.then((response)=>{
+			if(response.ok){
+				setLoad(false);
+				obj++;
+				setObj(obj);
+			}
+		})
+		.catch((err)=>{
+			setLoad(false);
+			alert("Ha ocurrido un error, Disculpanos..");
+		});
 	}
 
 	function addUser (){
+		setLoad(true);
 		let form = document.querySelector("form.modalUserAdmin");
 		if (form.name.value && form.email.value && form.pass.value && (form.rol.value != "Selecciona un rol")) {
-			users.push({name:form.name.value, user:form.email.value, pass:form.pass.value, rol:form.rol.value.toLowerCase()});
-			localStorage.setItem("users", JSON.stringify(users));
+			let user = {email:form.email.value, name:form.name.value, pass:form.pass.value, rol:form.rol.value};
 			document.querySelector(".closeModal").click();
+			fetch("https://avilap.herokuapp.com/api/users",{
+				method:"POST",
+				headers:{"Content-Type":"application/json; charset=utf-8"},
+				body:JSON.stringify(user)
+			})
+			.then((response)=>{
+				if(response.ok){
+					setLoad(false);
+					obj++;
+					setObj(obj);
+				}
+			})
+			.catch((err)=>{
+				setLoad(false);
+				alert("Ha ocurrido un error, Disculpanos..");
+			});
 		}
 	}
 
@@ -373,6 +380,7 @@ if (session) {
 											</select>
 										</div>
 								</div>
+								<Loading isVisible={load}/>
 								<div className="casillasAdmin">
 									<div className="contCasilla">
 										<div className="casillaAdmin" id="contCasillaTop">Nombre</div>
@@ -384,9 +392,9 @@ if (session) {
 									return (
 										<div className="contCasilla">
 											<div className="casillaAdmin"><p>{user.name}</p></div>
-											<div className="casillaAdmin"><p>{user.user}</p></div>
-											<div className="casillaAdmin"><input value={user.pass} id={"inputPassAdmin"+index} type="password"/><img id={"imgVerPass"+index} style={{opacity:user.user == "admin@salysalsa.co" && "0.2"}} onClick={()=>{user.user != "admin@salysalsa.co" && verPassFunct(index)}} src={verPass}/></div>
-											<div className="casillaAdmin"><p style={{marginLeft:"auto"}}>{user.rol}</p><img onClick={()=>searchUser("e")} style={{marginLeft:"20%", width:"9%", height:"auto", opacity:(user.user == "admin@salysalsa.co") && "0.1"}} src={editImg}/><img onClick={()=>{user.user != "admin@salysalsa.co" && setModalDel(true); setIdUser(index)}} style={{marginLeft:"2%", width:"9%", opacity:(user.user == "admin@salysalsa.co") && "0.1"}} src={deleteImg}/></div>
+											<div className="casillaAdmin"><p>{user.email}</p></div>
+											<div className="casillaAdmin"><input value={user.pass} id={"inputPassAdmin"+index} type="password"/></div>
+											<div className="casillaAdmin"><p style={{marginLeft:"auto"}}>{user.rol}</p><img onClick={()=>searchUser("e")} style={{marginLeft:"20%", width:"9%", height:"auto", opacity:(user.user == "admin@salysalsa.co") && "0.1"}} src={editImg}/><img onClick={()=>{user.user != "admin@salysalsa.co" && setModalDel(true); setIdUser(user.id)}} style={{marginLeft:"2%", width:"9%", opacity:(user.user == "admin@salysalsa.co") && "0.1"}} src={deleteImg}/></div>
 										</div>
 									)
 								})

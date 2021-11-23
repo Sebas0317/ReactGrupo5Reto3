@@ -59,11 +59,20 @@ function Login (){
 	}
 
 	let users = false;
-	if (!localStorage.getItem("users")) {
-		localStorage.setItem("users", JSON.stringify([{"user":"admin@salysalsa.co", pass:"admin123", rol:"admin", name:"Administrador"}]))
-	} else {
-		users = JSON.parse(localStorage.getItem("users"));
-	}
+	fetch("https://avilap.herokuapp.com/api/users",{
+		method:"GET"
+	})
+	.then((response)=>{
+		if (response.ok) {
+			response.json()
+			.then((res)=>{
+				users = res;
+			});
+		}
+	})
+	.catch((err)=>{
+		console.log(err)
+	});
 
 	function validar(e){
 		e.preventDefault();
@@ -194,7 +203,7 @@ function Login (){
 	//Comprobar que no exista la cuenta
 	function comprobarCuenta(){
 		for (let i = 0; i < users.length; i++){
-			if (email == users[i].user) {
+			if (email == users[i].email) {
 				let inputEmail = document.querySelector("#inputEmail");
 				let emailMensaje = document.querySelector(".loginEmailVal");
 				inputEmail.style.border="1px solid #C42424";
@@ -213,14 +222,27 @@ function Login (){
 	}
 
 	function guardarCuenta(){
-		users.push({user:email, pass:pass, name:name, rol:"cliente"});
-		localStorage.setItem("users", JSON.stringify(users));
-		setModal(true);
-		setTimeout(()=>{
-			setModal(false);
-			document.querySelector(".loginContainer form").reset();
-			history.push("/login")
-		}, 2000);
+		let info = {email:email, name:name, rol:"admin"};
+		fetch("https://avilap.herokuapp.com/api/users", {
+			method:"POST",
+			headers:{"Content-Type":"application/json; charset=utf-8"},
+			body:JSON.stringify(info)
+		})
+		.then((response)=>{
+			if (response.ok) {
+				setModal(true);
+				setTimeout(()=>{
+					setModal(false);
+					document.querySelector(".loginContainer form").reset();
+					history.push("/login")
+				}, 2000);
+			}
+		})
+		.catch((err)=>{
+			console.log(err);
+			console.log(err.status);
+		});
+		
 	}
 
 	
@@ -260,12 +282,7 @@ function Login (){
 					<label><p className="loginPassVal" id="loginPassVal1"></p></label>
 					<div style={{position:"absolute", width:"100%", left:0, alignItems:"center", bottom:8, display:"flex", flexDirection:"column"}}>
 						<button onClick={(e)=>validar(e)}>Registrarme</button>
-						<p style={{margin:0, marginTop:3}}>
-							¿Ya tienes una cuenta? Inicia sesión&nbsp; 
-							<Link to="/login" style={{textDecoration:'none',color:'#4F2634',fontWeight:'bolder'}}>
-								Aquí
-							</Link>
-						</p>
+						<p style={{margin:0, marginTop:3}}>¿Ya tienes una cuenta? logueate <Link to="/login">Aqui</Link></p>
 					</div>
 				</div>
 			</form>
