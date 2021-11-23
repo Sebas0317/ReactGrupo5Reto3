@@ -10,8 +10,17 @@ class All_comments extends React.Component {
   render(props) {
     let comentariosimg = [cliente1, cliente2, cliente3];
 
-    let comentaries = JSON.parse(localStorage.getItem("comentarios"));
+     let comentaries = false;
 
+
+    if (!localStorage.getItem("comentarios")){
+      comentaries = json.comentarios
+      localStorage.setItem("comentarios", JSON.stringify(comentaries));
+    } else {
+      comentaries = JSON.parse(localStorage.getItem("comentarios"));
+    }
+
+   
     let session = JSON.parse(localStorage.getItem("session"));
     return (
       <div className="row testimony m-0">
