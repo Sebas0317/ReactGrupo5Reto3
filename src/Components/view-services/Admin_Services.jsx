@@ -1,76 +1,109 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router";
-import Cumple from "../assets/serv_cumple.png";
-import Aniversarios from "../assets/serv_aniversario.png";
-import Infantil from "../assets/serv_infantil.png";
-import Propuestas from "../assets/serv_propuesta.png";
-import Despedidas from "../assets/serv_despedida.png";
-import Amigos from "../assets/serv_amigos.png";
-import json from "../json/datos.json";
 import ico_basura from "../assets/car-ico-basura.svg";
 import ico_edit from "../assets/ad-ser-edit.svg";
+import imgDefault from "../assets/serv_amigos.png";
 import Modal from "../modal/modal.js";
+
 
 function Admin_Services() {
 
   const [modal, setModal] = useState(false);
   const [modal1, setModal1] = useState(false);
   const [modal2, setModal2] = useState(false);
+  let [idServicio, setIdServicio] = useState(0)
+  let [name, setName] = useState("")
+  let [description, setDescriServ] = useState("")
+  let [imgServicio, setImgServicio] = useState("")
   let [obj, setObj] = useState("aaa");
 
-  let name = false;
-  let description = false;
-
-  const [servicio, setServicio] = useState("");
-
-  let servicios = [
-    Cumple,
-    Aniversarios,
-    Infantil,
-    Propuestas,
-    Despedidas,
-    Amigos,
-  ];
-
-  let infoservices = false;
-
-  if (!localStorage.getItem("servicios")) {
-    localStorage.setItem("servicios", JSON.stringify(json.servicios));
-    infoservices = json.servicios;
-  } else {
-    infoservices = JSON.parse(localStorage.getItem("servicios"));
+  //Obtener Servicios
+  let [infoservices, setInfoservices] = useState([]);
+  function fetchData() {
+    fetch("https://avilap.herokuapp.com/api/servicios")
+      .then((response) => response.json())
+      .then((data) => {
+        setInfoservices(data);
+      });
   }
 
-  function eliminarServicios(props) {
-    infoservices.splice(props, 1);
-    localStorage.setItem("servicios", JSON.stringify(infoservices));
-    if(obj == "aaa"){
-      setObj("eee");
-    } else if(obj == "eee"){
-      setObj("ooo");
-    } else if (obj == "ooo"){
-      setObj("aaa");
-    }
-    setModal2(false);
+  useEffect(()=>{
+    document.title = 'Sevicios';
+    fetchData();
+  });
+
+  //Eliminar servicio
+  function eliminarServicios(id) {
+    fetch("https://avilap.herokuapp.com/api/servicios/" + id, {
+      method: "DELETE",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setModal2(false);
+      });
+
+    // if(obj == "aaa"){
+    //   setObj("eee");
+    // } else if(obj == "eee"){
+    //   setObj("ooo");
+    // } else if (obj == "ooo"){
+    //   setObj("aaa");
+    // }
   }
 
-  function actualizarServicio() {
-    infoservices[servicio].nombre = name;
-    infoservices[servicio].descripcion = description;
-    localStorage.setItem("servicios", JSON.stringify(infoservices));
-    setModal(false);
+  //Actualizar
+  function actualizarServicio(id) {
+    let datos = {
+      id: id,
+      nombre: name,
+      descripcion: description,
+      imagen: imgServicio=="" ? imgDefault : imgServicio
+    };
+
+    fetch("https://avilap.herokuapp.com/api/servicios", {
+      method: "PUT",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(datos)
+    })
+      .then(response => {
+        if (response.ok)
+          console.log('Bien:' + response.text())
+        else
+          console.log(response.status)
+      })
+      .then(data => {
+        setModal(false);
+      });
   }
 
+  //Agregar Servicio
   function addServicio (){
-    infoservices.push({nombre:name, descripcion:description});
-    localStorage.setItem("servicios", JSON.stringify(infoservices));
-    setModal1(false);
+    let datos = {
+      nombre: name,
+      descripcion: description,
+      imagen: imgServicio=="" ? imgDefault : imgServicio
+    };
+
+    fetch("https://avilap.herokuapp.com/api/servicios", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(datos)
+    })
+      .then(response => {
+        if (response.ok)
+          console.log('Bien:' + response.text())
+        else
+          console.log(response.status)
+      })
+      .then(data => {
+        setModal1(false);
+      });
   }
 
-  let history = useHistory();
-  let session = JSON.parse(localStorage.getItem("session"));
-  if (session.user.rol != "admin" || session.estado === false) {
-    history.push("/");
+  function actDatos(i,n,d,f){
+    setIdServicio(i)
+    setName(n)
+    setDescriServ(d)
+    setImgServicio(f)
   }
 
   return (
@@ -82,20 +115,26 @@ function Admin_Services() {
               <input
                 type="text"
                 className="form-control"
-                placeholder={servicio && infoservices[servicio].nombre}
-                onChange={(e) => {name = e.target.value}}
+                value={name}
+                onChange={(e) => {setName(e.target.value)}}
+              />
+              <input
+                type="text"
+                className="form-control mt-3"
+                value={imgServicio}
+                onChange={(e) => {setImgServicio(e.target.value)}}
               />
               <textarea
-                placeholder={servicio && infoservices[servicio].descripcion}
-                onChange={(e) => {description = e.target.value}}
                 id=""
                 cols="30"
                 rows="5"
                 className="form-control mt-3"
+                value={description}
+                onChange={(e) => {setDescriServ(e.target.value)}}
               ></textarea>
               <div className="btns">
                 <button className="closeModal">Cancelar</button>
-                <button className="btnOk-ser" onClick={() => actualizarServicio()}>
+                <button className="btnOk-ser" onClick={() => actualizarServicio(idServicio)}>
                   Actualizar servicio
                 </button>
               </div>
@@ -111,15 +150,20 @@ function Admin_Services() {
               <input
                 type="text"
                 className="form-control" 
-                onChange={(e) => {name = e.target.value}}
+                onChange={(e) => {setName(e.target.value)}}
                 placeholder="Nombra tu servicio"
               />
+              <input
+                type="text"
+                className="form-control mt-3"
+                placeholder="Link de imagen"
+                onChange={(e) => {setImgServicio(e.target.value)}}
+              />
               <textarea
-                onChange={(e) => {description = e.target.value}}
-                id=""
                 cols="30"
                 rows="5"
                 className="form-control mt-3" 
+                onChange={(e) => {setDescriServ(e.target.value)}}
                 placeholder="Describe tu servicio"
               ></textarea>
               <div className="btns">
@@ -140,11 +184,11 @@ function Admin_Services() {
               Eliminar servicio
             </h3>
             <h5 className="mt-2 text-center">
-              ¿Desea eliminar el servicio {infoservices[servicio].nombre}?
+              ¿Desea eliminar el servicio {name}?
             </h5>
             <div className="btns">
               <button className="closeModal">CANCELAR</button>
-              <button onClick={()=>eliminarServicios(servicio)} className="btnOk">Ok</button>
+              <button onClick={()=>eliminarServicios(idServicio)} className="btnOk">Ok</button>
             </div>
           </div>
         </Modal>
@@ -156,20 +200,16 @@ function Admin_Services() {
           </div>
         </div>
         <div className="row services g-3 m-0 py-4 px-5">
-          {infoservices.map((servicio, index) => {
+          {infoservices.map((servicio) => {
             return (
               <div className="col-sm-6">
                 <div className="row service m-0 p-0">
                   <div className="col-sm-6 p-0 img-serv">
-                    <img src={servicios[index]} alt="img-servicio" />
+                    <img src={servicio.imagen} alt="img-servicio" />
                   </div>
                   <div className="col-sm-6 d-grid gap-2 m-0 p-3">
                     <div className="d-flex align-items-center justify-content-between">
-                      <h3
-                        className="m-0"
-                        id="nombreServicioh3"
-                        onChange={(e) => {}}
-                      >
+                      <h3 className="m-0" id="nombreServicioh3">
                         {servicio.nombre}
                       </h3>
                       <div className="d-flex justify-content-end">
@@ -181,9 +221,9 @@ function Admin_Services() {
                           width="22"
                           height="22"
                           className="mx-2"
-                          onClick={() => {
-                            setServicio(index);
-                            setModal(true);
+                          onClick={()=>{
+                            actDatos(servicio.id, servicio.nombre, servicio.descripcion, servicio.imagen);
+                            setModal(true)
                           }}
                         />
                         <img
@@ -193,7 +233,10 @@ function Admin_Services() {
                           alt="img_trash"
                           width="22"
                           height="22"
-                          onClick={()=>{setServicio(index);setModal2(true)}}
+                          onClick={()=>{
+                            actDatos(servicio.id, servicio.nombre);
+                            setModal2(true)}
+                          }
                         />
                       </div>
                     </div>
@@ -205,11 +248,13 @@ function Admin_Services() {
           })}
           {infoservices.length == 0 && 
             (
-            <p style={{ fontSize: "30px", fontFamily:"Branding" }}>Sin servicios, ¿por qué no agregas uno?</p>
+            <p style={{ fontSize: "30px", fontFamily:"Branding" }}>
+              Sin servicios, ¿por qué no agregas uno?
+            </p>
             )
           }
         </div>
-        <div className="row gestion-ser p-5">
+        <div className="row gestion-ser pt-4">
           <a type="button" onClick={()=>setModal1(true)} className="btn">
             Agregar servicio
           </a>

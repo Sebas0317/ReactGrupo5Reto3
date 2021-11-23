@@ -108,8 +108,16 @@ function Navbar () {
             <Link className="pocoMargin" to="/carrito">
               <img className="imgCar" src={carrito} />
             </Link>
+          
+            {logueado ? 
+              <a className="marginLogin opcionPerfil" onClick={()=>{menu ? setMenu(false) : setMenu(true)}}>
+                {session.user.name}
+                <img id="arrowMenu" src={Arrow}/>
+              </a> 
+            : 
+                <Link className="pocoMargin" to="/login">INICIAR SESION</Link>
+            }
           </div>
-          {logueado ? <a className="marginLogin opcionPerfil" onClick={()=>{menu ? setMenu(false) : setMenu(true)}}>{session.user.name}<img id="arrowMenu" src={Arrow}/></a> : <Link className="pocoMargin" to="/login">INICIAR SESION</Link>}
         </div>
       </div>
     );

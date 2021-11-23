@@ -66,8 +66,8 @@ class All_comments extends React.Component {
           </button>
         </div>
 
-        <div className="row gestion-ser p-5 mt-50">
-          { session && session.user.rol == "admin" &&
+        { session && session.estado && session.user.rol == "admin" &&
+          <div className="row gestion-ser pb-5  mt-50">
             <Link
               type="button"
               className="btn"
@@ -76,8 +76,8 @@ class All_comments extends React.Component {
             >
               Gestionar Comentarios
             </Link>
-          }
-        </div>
+          </div>
+        }
       </div>
     );
   }
