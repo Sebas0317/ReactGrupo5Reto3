@@ -34,7 +34,7 @@
 }
 
 .casillasAdmin{
-    border: 1px solid gray;
+    border: 1px solid #DBDBDB;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -50,7 +50,7 @@
 .casillaAdmin{
     display: flex;
     justify-content: center;
-    border-top: 1px solid gray;
+    border-top: 1px solid #DBDBDB;
     border-left: none;
     border-right: none;
     width: 25%;
@@ -78,8 +78,8 @@
 }
 
 #contCasillaTop{
-    background-color: #310101;
-    color: #fff;
+    background-color: #E9EDEE;
+    color: #6E6E6E;
 }
 
 .userCont{
@@ -93,7 +93,7 @@
 }
 .menuUsersAdmin{
     display: flex;
-    align-items: center;
+    flex-direction: column;
     width: 90%;
     margin-bottom: 10px;
 }
@@ -103,7 +103,6 @@
     padding: 8px;
     border: 1px solid #000;
     border-radius: 28px;
-    margin-left: 20px;
     width: 80%;
 }
 .searchContAdmin input {
@@ -116,28 +115,36 @@
     cursor: pointer;
 }
 
-.searchContAdmin select {
-    padding: 2px;
+.menuUsersAdmin select {
+    padding: 3px;
     display: flex;
     align-items: center;
-    border: 1px solid gray;
+    border: none;
+    background-color: #F7F7F7;
     outline: none;
     border-radius: 5px;
 }
 
-.menuUsersAdmin button{
-    background-color: #F99F56;
+.addUserBtn{
+    background-color: #7BD652;
     border: none;
     display: flex;
     align-items: center;
     border-radius: 3px;
-    padding: 7px;
+    padding: 4px;
+    color: #fff;
+    font-weight: bold;
     margin-left: 5px;
 }
 .menuUsersAdmin p{
     margin: 0px 5px 0px 0px;
 }
-
+.menuUsersAdmin_sub {
+    display: flex;
+    width: 100%;
+    align-items: flex-end;
+    justify-content: center;
+}
 .modalUserAdmin{
     z-index: 100;
     background-color: #fff;

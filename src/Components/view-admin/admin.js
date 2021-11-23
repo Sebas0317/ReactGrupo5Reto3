@@ -15,7 +15,8 @@ import verPass1 from "../assets/verPassNone.svg";
 import deleteImg from "../assets/car-ico-basura.svg";
 import editImg from "../assets/ad-ser-edit.svg";
 import addUsuario from "../assets/addUser.svg";
-import Search from "../assets/search.svg";
+import Search from "../assets/userSearch.svg";
+import Arrow1 from "../assets/arrow1.svg";
 
 export default function Admin (){
 	const history = useHistory();
@@ -264,7 +265,7 @@ export default function Admin (){
 		setLoad(true);
 		let form = document.querySelector("form.modalUserAdmin");
 		if (form.name.value && form.email.value && form.pass.value && (form.rol.value != "Selecciona un rol")) {
-			let user = {email:form.email.value, name:form.name.value, pass:form.pass.value, rol:form.rol.value};
+			let user = {email:form.email.value, name:form.name.value, pass:form.pass.value, rol:form.rol.value.toLowerCase()};
 			document.querySelector(".closeModal").click();
 			fetch("https://avilap.herokuapp.com/api/users",{
 				method:"POST",
@@ -282,6 +283,18 @@ export default function Admin (){
 				setLoad(false);
 				alert("Ha ocurrido un error, Disculpanos..");
 			});
+		}
+	}
+
+	let [typeUser, setTypeUser] = useState("todos");
+
+	function verUsuarios(rol){
+		if (typeUser == "todos") {
+			return true;
+		} else if (rol == typeUser){
+			return true;
+		} else {
+			return false;
 		}
 	}
 
@@ -366,23 +379,35 @@ if (session) {
 								</Modal>
 							}
 								<div className="menuUsersAdmin">
-										<button onClick={()=>setModal(true)} type="button">
-											<p>Agregar usuario</p>
-											<img src={addUsuario}/>
-										</button>
-										<div className="searchContAdmin">
-											<img src={Search}/>
-											<input onChange={(e)=>setBuscar(e.target.value)} placeholder="Busca un usuario"/>
-											<select name="" id="" onChange={(e)=>setTipo(e.target.value)}>
-												<option disabled selected>Categoria</option>
-												<option>Nombre</option>
-												<option>Correo</option>
-											</select>
+										<div className="menuUsersAdmin_sub">
+											<div className="searchContAdmin">
+												<img src={Search}/>
+												<input onChange={(e)=>setBuscar(e.target.value)} placeholder="Busca un usuario"/>
+												<select name="" id="" onChange={(e)=>setTipo(e.target.value)}>
+													<option>Nombre</option>
+													<option>Correo</option>
+												</select>
+											</div>
+										</div>
+										<div style={{display:"flex", width:"99%", justifyContent:"space-between", alignItems:"flex-end", marginTop:"1%"}}>
+											<button className="addUserBtn" onClick={()=>setModal(true)} type="button">
+												<p>Añadir</p>
+												<img src={addUsuario}/>
+											</button>
+											<div >
+												<select name="" id="" onChange={(e)=>setTypeUser(e.target.value.toLowerCase())}>
+													<option selected>Todos</option>
+													<option>Empleados</option>
+													<option>Cliente</option>
+													<option>Admin</option>
+												</select>
+											</div>
 										</div>
 								</div>
 								<Loading isVisible={load}/>
 								<div className="casillasAdmin">
 									<div className="contCasilla">
+										<div className="casillaAdmin" id="contCasillaTop"style={{width:"5%"}}>ID</div>
 										<div className="casillaAdmin" id="contCasillaTop">Nombre</div>
 										<div className="casillaAdmin" id="contCasillaTop">Correo</div>
 										<div className="casillaAdmin" id="contCasillaTop">Contraseña</div>
@@ -390,11 +415,12 @@ if (session) {
 									</div>
 								{ (users) && users.map((user, index)=>{
 									return (
-										<div className="contCasilla">
+										<div className="contCasilla" style={{display: verUsuarios(user.rol) ? "flex" : "none"}}>
+											<div className="casillaAdmin" style={{width:"5%"}}><p>{user.id}</p></div>
 											<div className="casillaAdmin"><p>{user.name}</p></div>
 											<div className="casillaAdmin"><p>{user.email}</p></div>
 											<div className="casillaAdmin"><input value={user.pass} id={"inputPassAdmin"+index} type="password"/></div>
-											<div className="casillaAdmin"><p style={{marginLeft:"auto"}}>{user.rol}</p><img onClick={()=>searchUser("e")} style={{marginLeft:"20%", width:"9%", height:"auto", opacity:(user.user == "admin@salysalsa.co") && "0.1"}} src={editImg}/><img onClick={()=>{user.user != "admin@salysalsa.co" && setModalDel(true); setIdUser(user.id)}} style={{marginLeft:"2%", width:"9%", opacity:(user.user == "admin@salysalsa.co") && "0.1"}} src={deleteImg}/></div>
+											<div className="casillaAdmin"><p style={{marginLeft:"auto"}}>{user.rol.charAt(0).toUpperCase()+user.rol.slice(1)}</p><img onClick={()=>searchUser("e")} style={{marginLeft:"20%", width:"9%", height:"auto", opacity:(user.user == "admin@salysalsa.co") && "0.1"}} src={editImg}/><img onClick={()=>{user.user != "admin@salysalsa.co" && setModalDel(true); setIdUser(user.id)}} style={{marginLeft:"2%", width:"9%", opacity:(user.user == "admin@salysalsa.co") && "0.1"}} src={deleteImg}/></div>
 										</div>
 									)
 								})
