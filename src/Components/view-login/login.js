@@ -20,6 +20,20 @@ function Login (){
 		}
 	}
 
+	// const response = fetch(url, {
+	//     method: 'POST',
+	//     mode: 'cors',
+	//     cache: 'no-cache',
+	//     credentials: 'same-origin',
+	//     headers: {
+	//       'Content-Type': 'application/json'
+	//     },
+	//     redirect: 'follow', 
+	//     referrerPolicy: 'no-referrer',
+	//     body: JSON.stringify(data)
+	//   });
+	// }
+
 	function mostrarPass(){
 		let oculto = true;
 		let btnVerPass = document.querySelector(".inputPass img");

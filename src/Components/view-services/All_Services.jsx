@@ -50,7 +50,7 @@ class All_Services extends React.Component {
           }
         </div>
         <div className="row gestion-ser p-5">
-          { session.user.rol == "admin" &&
+          { session && session.user.rol == "admin" &&
             <Link type="button" className="btn" to="/gestionservicios">
             Gestionar Servicios
           </Link>}

@@ -22,6 +22,7 @@ class All_comments extends React.Component {
 
    
     let session = JSON.parse(localStorage.getItem("session"));
+
     return (
       <div className="row testimony m-0">
         <div
@@ -66,7 +67,7 @@ class All_comments extends React.Component {
         </div>
 
         <div className="row gestion-ser p-5 mt-50">
-          { session.user.rol == "admin" &&
+          { session && session.user.rol == "admin" &&
             <Link
               type="button"
               className="btn"

@@ -112,7 +112,7 @@ function Menu () {
         }
       </div>
       <div className="row gestion-menu p-5">
-      { session.user.rol == "admin" &&
+      { session && session.user.rol == "admin" &&
       <Link type="button" className="btn" to="gestionmenu">
             Gestionar menús
           </Link>}

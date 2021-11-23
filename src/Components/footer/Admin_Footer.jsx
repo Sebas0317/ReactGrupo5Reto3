@@ -10,9 +10,6 @@ let footerInfo = json.footer[0];
       footerInfo = JSON.parse(localStorage.getItem("footerInfo"));
     }
 
- let footer = prompt("Ingresa el nombre del restaurante");
-
-   footerInfo.restaurante = footer;
 
    localStorage.setItem("footerInfo", JSON.stringify(footerInfo));
     export default function Admin_Footer() {
