@@ -93,6 +93,7 @@
 }
 .menuUsersAdmin{
     display: flex;
+    align-items: center;
     width: 90%;
     margin-bottom: 10px;
 }
@@ -125,7 +126,7 @@
 }
 
 .menuUsersAdmin button{
-    background-color: #C6EDFC;
+    background-color: #F99F56;
     border: none;
     display: flex;
     align-items: center;
