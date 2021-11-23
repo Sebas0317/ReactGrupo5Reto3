@@ -68,7 +68,7 @@ export default function Admin (){
 			if (x == 0) {
 				val.push(users[i].name)
 			} else {
-				val.push(users[i].user)
+				val.push(users[i].email)
 			}
 		}
 
@@ -87,7 +87,7 @@ export default function Admin (){
 				if (x == 0) {
 					o = user.name == result[i];
 				} else {
-					o = user.user == result[i]; 
+					o = user.email == result[i]; 
 				}
 				return o;
 			});

@@ -28,6 +28,15 @@ function Navbar () {
     let valPlatos = localStorage.getItem("pedidos")
     if (valPlatos) {platos = JSON.parse(valPlatos)}
 
+    function toggleMenu(){
+      if(menu == true){
+        setMenu(false);
+      } else {
+        setMenu(true);
+      }
+    }
+
+
     function logout(){
       session.estado = false;
       localStorage.setItem("session", JSON.stringify(session));
@@ -108,15 +117,18 @@ function Navbar () {
             <Link className="pocoMargin" to="/carrito">
               <img className="imgCar" src={carrito} />
             </Link>
-          
-            {logueado ? 
-              <a className="marginLogin opcionPerfil" onClick={()=>{menu ? setMenu(false) : setMenu(true)}}>
-                {session.user.name}
-                <img id="arrowMenu" src={Arrow}/>
-              </a> 
+            <b style={{margin:"0px", cursor:"pointer"}} onClick={()=>toggleMenu()}>
+              
+              {logueado ? 
+                <b>
+                  {session.user.name}
+                  <img id="arrowMenu" src={Arrow}/>
+                </b>
             : 
                 <Link className="pocoMargin" to="/login">INICIAR SESION</Link>
             }
+            </b>
+
           </div>
         </div>
       </div>
