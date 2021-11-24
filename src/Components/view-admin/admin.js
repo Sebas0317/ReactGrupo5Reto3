@@ -8,6 +8,7 @@ import Admin_Menu from "../view-menu/Admin_Menu";
 import Admin_Coments from "../comments/Admin_Coments";
 import Admin_Footer from "../footer/Admin_Footer";
 import Loading from "../modal/loading";
+import Loading1 from "../modal/loading1";
 
 //Imagenes
 import verPass from "../assets/verPass.svg";
@@ -29,6 +30,7 @@ export default function Admin (){
 	let [usuarios, setUsuarios] = useState(true);
 	let [redi, setRedi] = useState("");
 	let [load, setLoad] = useState(false);
+	let [load1, setLoad1] = useState(false);
 	let [users, setUsers] = useState([]);
 	let [obj, setObj] = useState(0);
 	let [modal, setModal] = useState(false);
@@ -222,7 +224,9 @@ export default function Admin (){
 		}
 	}, []);
 
-	useEffect(()=>{	
+	useEffect(()=>{
+		setLoad1(true);
+		setUsers([]);
 		fetch("https://avilap.herokuapp.com/api/users",{
 			method:"GET"
 		})
@@ -231,10 +235,12 @@ export default function Admin (){
 				response.json()
 				.then((res)=>{
 					setUsers(res);
+					setLoad1(false);
 				});
 			}
 		})
 		.catch((err)=>{
+			setLoad(false);
 			console.log(err);
 		});
 	}, [obj]);
@@ -420,11 +426,13 @@ if (session) {
 											<div className="casillaAdmin"><p>{user.name}</p></div>
 											<div className="casillaAdmin"><p>{user.email}</p></div>
 											<div className="casillaAdmin"><input value={user.pass} id={"inputPassAdmin"+index} type="password"/></div>
-											<div className="casillaAdmin"><p style={{marginLeft:"auto"}}>{user.rol.charAt(0).toUpperCase()+user.rol.slice(1)}</p><img onClick={()=>searchUser("e")} style={{marginLeft:"20%", width:"9%", height:"auto", opacity:(user.user == "admin@salysalsa.co") && "0.1"}} src={editImg}/><img onClick={()=>{user.user != "admin@salysalsa.co" && setModalDel(true); setIdUser(user.id)}} style={{marginLeft:"2%", width:"9%", opacity:(user.user == "admin@salysalsa.co") && "0.1"}} src={deleteImg}/></div>
+											<div className="casillaAdmin"><p style={{marginLeft:"auto"}}>{user.rol.charAt(0).toUpperCase()+user.rol.slice(1)}</p><img onClick={()=>searchUser("e")} style={{marginLeft:"20%", width:"9%", height:"auto", opacity:(user.user == "admin@salysalsa.co") && "0.1"}} src={editImg}/><img onClick={()=>{user.email != "admin@salysalsa.co" && setModalDel(true); setIdUser(user.id)}} style={{marginLeft:"2%", width:"9%", opacity:(user.email == "admin@salysalsa.co") && "0.1"}} src={deleteImg}/></div>
 										</div>
 									)
 								})
-
+								}
+								{ load1 &&
+									<Loading1 isVisible={true}/>
 								}
 								</div>
 							</div>

@@ -4,7 +4,7 @@ import ico_basura from "../assets/car-ico-basura.svg";
 import ico_edit from "../assets/ad-ser-edit.svg";
 import Modal from "../modal/modal.js";
 import imgDefault from "../assets/menu_pl1.png";
-
+import Loading1 from "../modal/loading1";
 
 function Admin_Menu(){
 
@@ -15,7 +15,9 @@ function Admin_Menu(){
   let [nomPlato, setNomPlato] = useState("")
   let [descriPlato, setDescriPlato] = useState("")
   let [precioPlato, setPrecioPlato] = useState(0)
-  let [imgPlato, setImgPlato] = useState("")
+  let [imgPlato, setImgPlato] = useState("");
+  let [obj, setObj] = useState(0);
+  let [load, setLoad] = useState(true);
 
 
   //Obtener Platos
@@ -25,13 +27,19 @@ function Admin_Menu(){
       .then((response) => response.json())
       .then((data) => {
         setListPlatos(data);
-      });
+        setLoad(false);
+      })
+      .catch((err)=>{
+        setLoad(false);
+      })
   }
 
+ 
   useEffect(()=>{
     document.title = 'Menú';
+    setLoad(true);
     fetchData();
-	});
+	},[obj]);
 
   
   //Eliminar plato
@@ -42,6 +50,8 @@ function Admin_Menu(){
       .then((response) => response.json())
       .then((data) => {
         setModal2(false);
+        obj++;
+        setObj(obj);
       });
   }
 
@@ -61,13 +71,17 @@ function Admin_Menu(){
       body: JSON.stringify(datos)
     })
       .then(response => {
-        if (response.ok)
+        if (response.ok){
           console.log('Bien:' + response.text())
-        else
+        }
+        else{
           console.log(response.status)
+        }
       })
       .then(data => {
         setModal(false);
+        obj++;
+        setObj(obj);
       });
   }
 
@@ -85,13 +99,17 @@ function Admin_Menu(){
       body: JSON.stringify(datos)
     })
       .then(response => {
-        if (response.ok)
-          console.log('Bien:' + response.text())
-        else
+        if (response.ok){
+          console.log('Bien:' + response.text());
+        }  
+        else{
           console.log(response.status)
+        }
       })
       .then(data => {
         setModal1(false);
+        obj++;
+        setObj(obj);
       });
   }
 
@@ -207,6 +225,9 @@ function Admin_Menu(){
       }
       <p className="title-AdMenu">Gestión de menús</p>
       <div className="row m-0">
+       { load &&
+          <Loading1 isVisible={true}/>
+       }
         {listPlatos.length ? 
           listPlatos.map((plato)=>{
             return (

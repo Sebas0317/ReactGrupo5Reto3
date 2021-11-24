@@ -14,7 +14,7 @@ function Navbar () {
     let logueado = false;
     let session = false
 
-    let valSession = localStorage.getItem("session")
+    let valSession = localStorage.getItem("session");
     if (valSession) {
       session = JSON.parse(valSession);
       if (session){
@@ -40,7 +40,8 @@ function Navbar () {
     function logout(){
       session.estado = false;
       localStorage.setItem("session", JSON.stringify(session));
-      setObj("asdaasdasd");
+      obj++;
+      setObj(obj);
       history.push("/")
       setMenu(false);
     }

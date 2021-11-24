@@ -4,7 +4,7 @@ import Social from "../social/Social"
 import Modal from "../modal/modal";
 import "../styles/menu.css";
 import { Link } from "react-router-dom";
-
+import Loading1 from "../modal/loading1";
 
 function Menu () {
 
@@ -13,20 +13,30 @@ function Menu () {
   let [precio, setPrecio] = useState(0);
   let [cant, setCant] = useState(1);
   let [foto, setFoto] = useState("");
-
+  let [load, setLoad] = useState(false);
   let [listPlatos, setListPlatos] = useState([]);
+  let [obj, setObj] = useState(false);
+
   function fetchData() {
-    fetch("http://avilap.herokuapp.com/api/platos")
-      .then((response) => response.json())
-      .then((data) => {
-        setListPlatos(data);
-      });
+
+    fetch("http://avilap.herokuapp.com/api/platos", {
+      method:"GET"
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      setLoad(false);
+      setListPlatos(data);
+    })
+    .catch(()=>{
+      setLoad(false);
+    });
   }
 
   useEffect(()=>{
     document.title = 'Menú';
+    setLoad(true);
     fetchData();
-	});
+	}, [obj]);
 
   function guardar() {
     let Obj_Plato = {Nombre: nombre, Precio: precio, Total: precio*cant, Foto: foto};
@@ -83,6 +93,9 @@ function Menu () {
       }
       <p className="title">Haz tu pedido</p>
       <div className="platos">
+      { load &&
+        <Loading1 isVisible={true}/>
+      }
         {listPlatos.length ?
           listPlatos.map((plato)=>{
             return (

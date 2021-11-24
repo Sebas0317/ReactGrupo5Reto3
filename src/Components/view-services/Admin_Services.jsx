@@ -1,8 +1,10 @@
+
 import React, { useEffect, useState } from "react";
 import ico_basura from "../assets/car-ico-basura.svg";
 import ico_edit from "../assets/ad-ser-edit.svg";
 import imgDefault from "../assets/serv_amigos.png";
 import Modal from "../modal/modal.js";
+import Loading from "../modal/loading";
 
 
 function Admin_Services() {
@@ -14,7 +16,8 @@ function Admin_Services() {
   let [name, setName] = useState("")
   let [description, setDescriServ] = useState("")
   let [imgServicio, setImgServicio] = useState("")
-  let [obj, setObj] = useState("aaa");
+  let [obj, setObj] = useState(0);
+  let [load, setLoad] = useState();
 
   //Obtener Servicios
   let [infoservices, setInfoservices] = useState([]);
@@ -23,13 +26,16 @@ function Admin_Services() {
       .then((response) => response.json())
       .then((data) => {
         setInfoservices(data);
+      })
+      .catch((err)=>{
+
       });
   }
 
   useEffect(()=>{
     document.title = 'Sevicios';
     fetchData();
-  });
+  }, [obj]);
 
   //Eliminar servicio
   function eliminarServicios(id) {
@@ -39,15 +45,12 @@ function Admin_Services() {
       .then((response) => response.json())
       .then((data) => {
         setModal2(false);
-      });
+        obj++;
+        setObj(obj);
+      })
+      .catch((err)=>{
 
-    // if(obj == "aaa"){
-    //   setObj("eee");
-    // } else if(obj == "eee"){
-    //   setObj("ooo");
-    // } else if (obj == "ooo"){
-    //   setObj("aaa");
-    // }
+      });
   }
 
   //Actualizar
@@ -65,13 +68,19 @@ function Admin_Services() {
       body: JSON.stringify(datos)
     })
       .then(response => {
-        if (response.ok)
-          console.log('Bien:' + response.text())
-        else
+        if (response.ok){
+          console.log('Bien:' + response.text());
+          obj++;
+          setObj(obj);
+        } 
+        else{
           console.log(response.status)
+        }
       })
       .then(data => {
         setModal(false);
+        obj++;
+        setObj(obj);
       });
   }
 
@@ -80,7 +89,7 @@ function Admin_Services() {
     let datos = {
       nombre: name,
       descripcion: description,
-      imagen: imgServicio=="" ? imgDefault : imgServicio
+      imagen: imgServicio == "" ? imgDefault : imgServicio
     };
 
     fetch("https://avilap.herokuapp.com/api/servicios", {
@@ -89,10 +98,14 @@ function Admin_Services() {
       body: JSON.stringify(datos)
     })
       .then(response => {
-        if (response.ok)
-          console.log('Bien:' + response.text())
-        else
+        if (response.ok){
+          console.log('Bien:' + response.text());
+          obj++;
+          setObj(obj);
+        }
+        else{
           console.log(response.status)
+        }
       })
       .then(data => {
         setModal1(false);
