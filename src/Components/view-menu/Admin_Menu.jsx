@@ -5,6 +5,7 @@ import ico_edit from "../assets/ad-ser-edit.svg";
 import Modal from "../modal/modal.js";
 import imgDefault from "../assets/menu_pl1.png";
 import Loading1 from "../modal/loading1";
+import Loading from "../modal/loading";
 
 function Admin_Menu(){
 
@@ -16,8 +17,10 @@ function Admin_Menu(){
   let [descriPlato, setDescriPlato] = useState("")
   let [precioPlato, setPrecioPlato] = useState(0)
   let [imgPlato, setImgPlato] = useState("");
+  let [imgPlato1, setImgPlato1] = useState("");
   let [obj, setObj] = useState(0);
-  let [load, setLoad] = useState(true);
+  let [load, setLoad] = useState(false);
+  let [load1, setLoad1] = useState(true);
 
 
   //Obtener Platos
@@ -27,28 +30,30 @@ function Admin_Menu(){
       .then((response) => response.json())
       .then((data) => {
         setListPlatos(data);
-        setLoad(false);
+        setLoad1(false);
       })
       .catch((err)=>{
-        setLoad(false);
+        setLoad1(false);
       })
   }
 
  
   useEffect(()=>{
     document.title = 'Menú';
-    setLoad(true);
+    setLoad1(true);
     fetchData();
 	},[obj]);
 
   
   //Eliminar plato
   function eliminar(id) {
+    setLoad(true);
     fetch("http://avilap.herokuapp.com/api/platos/" + id, {
       method: "DELETE",
     })
       .then((response) => response.json())
       .then((data) => {
+        setLoad(false);
         setModal2(false);
         obj++;
         setObj(obj);
@@ -57,12 +62,13 @@ function Admin_Menu(){
 
   //Editar plato
   function editPlato(id) {
+    setLoad(true);
     let datos = {
       id: id,
       nombre: nomPlato,
       descripcion: descriPlato,
       precio: precioPlato.toString(),
-      imagen: imgPlato=="" ? imgDefault : imgPlato
+      imagen: imgPlato1 =="" ? imgDefault : imgPlato
     };
 
     fetch("http://avilap.herokuapp.com/api/platos", {
@@ -79,6 +85,8 @@ function Admin_Menu(){
         }
       })
       .then(data => {
+        setLoad(false);
+        setImgPlato1("");
         setModal(false);
         obj++;
         setObj(obj);
@@ -86,11 +94,12 @@ function Admin_Menu(){
   }
 
   function addPlato() {
+    setLoad(true);
     let datos = {
       nombre: nomPlato,
       descripcion: descriPlato,
       precio: precioPlato.toString(),
-      imagen: imgPlato=="" ? imgDefault : imgPlato
+      imagen: imgPlato1 =="" ? imgDefault : imgPlato
     };
 
     fetch("http://avilap.herokuapp.com/api/platos", {
@@ -107,6 +116,8 @@ function Admin_Menu(){
         }
       })
       .then(data => {
+        setLoad(false);
+        setImgPlato1("");
         setModal1(false);
         obj++;
         setObj(obj);
@@ -187,7 +198,7 @@ function Admin_Menu(){
                 type="text"
                 className="form-control mt-3"
                 placeholder="Link de imagen"
-                onChange={(e)=>setImgPlato(e.target.value)}
+                onChange={(e)=>setImgPlato1(e.target.value)}
               />
               <textarea
                 cols="30"
@@ -225,8 +236,11 @@ function Admin_Menu(){
       }
       <p className="title-AdMenu">Gestión de menús</p>
       <div className="row m-0">
-       { load &&
+       { load1 &&
           <Loading1 isVisible={true}/>
+       }
+       { load &&
+          <Loading isVisible={true}/>
        }
         {listPlatos.length ? 
           listPlatos.map((plato)=>{

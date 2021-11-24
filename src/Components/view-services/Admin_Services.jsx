@@ -5,6 +5,7 @@ import ico_edit from "../assets/ad-ser-edit.svg";
 import imgDefault from "../assets/serv_amigos.png";
 import Modal from "../modal/modal.js";
 import Loading from "../modal/loading";
+import Loading1 from "../modal/loading1";
 
 
 function Admin_Services() {
@@ -16,8 +17,10 @@ function Admin_Services() {
   let [name, setName] = useState("")
   let [description, setDescriServ] = useState("")
   let [imgServicio, setImgServicio] = useState("")
+  let [imgServicio1, setImgServicio1] = useState("")
   let [obj, setObj] = useState(0);
-  let [load, setLoad] = useState();
+  let [load, setLoad] = useState(false);
+  let [load1, setLoad1] = useState(false);
 
   //Obtener Servicios
   let [infoservices, setInfoservices] = useState([]);
@@ -25,6 +28,7 @@ function Admin_Services() {
     fetch("https://avilap.herokuapp.com/api/servicios")
       .then((response) => response.json())
       .then((data) => {
+        setLoad1(false);
         setInfoservices(data);
       })
       .catch((err)=>{
@@ -34,11 +38,13 @@ function Admin_Services() {
 
   useEffect(()=>{
     document.title = 'Sevicios';
+    setLoad1(true);
     fetchData();
   }, [obj]);
 
   //Eliminar servicio
   function eliminarServicios(id) {
+    setLoad(true)
     fetch("https://avilap.herokuapp.com/api/servicios/" + id, {
       method: "DELETE",
     })
@@ -47,19 +53,21 @@ function Admin_Services() {
         setModal2(false);
         obj++;
         setObj(obj);
+        setLoad(false);
       })
       .catch((err)=>{
-
+        setLoad(false);
       });
   }
 
   //Actualizar
   function actualizarServicio(id) {
+    setLoad(true);
     let datos = {
       id: id,
       nombre: name,
       descripcion: description,
-      imagen: imgServicio=="" ? imgDefault : imgServicio
+      imagen: imgServicio.length == "" ? imgDefault : imgServicio
     };
 
     fetch("https://avilap.herokuapp.com/api/servicios", {
@@ -72,6 +80,8 @@ function Admin_Services() {
           console.log('Bien:' + response.text());
           obj++;
           setObj(obj);
+          setLoad(false);
+          setImgServicio("");
         } 
         else{
           console.log(response.status)
@@ -81,15 +91,17 @@ function Admin_Services() {
         setModal(false);
         obj++;
         setObj(obj);
+        setLoad(false);
       });
   }
 
   //Agregar Servicio
   function addServicio (){
+    setLoad(true);
     let datos = {
       nombre: name,
       descripcion: description,
-      imagen: imgServicio == "" ? imgDefault : imgServicio
+      imagen: imgServicio.length == "" ? imgDefault : imgServicio
     };
 
     fetch("https://avilap.herokuapp.com/api/servicios", {
@@ -97,26 +109,34 @@ function Admin_Services() {
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(datos)
     })
-      .then(response => {
-        if (response.ok){
-          console.log('Bien:' + response.text());
-          obj++;
-          setObj(obj);
-        }
-        else{
-          console.log(response.status)
-        }
-      })
-      .then(data => {
-        setModal1(false);
-      });
+    .then(response => {
+      if (response.ok){
+        console.log('Bien:' + response.text());
+        obj++;
+        setObj(obj);
+        setLoad(false);
+        setImgServicio("");
+      }
+      else{
+        console.log(response.statusText);
+      }
+    })
+    .then(data => {
+      setModal1(false);
+      setLoad(false);
+    })
+    .catch((err)=>{
+      console.log(err);
+      setModal1(false);
+      setLoad(false);
+    });
   }
 
   function actDatos(i,n,d,f){
     setIdServicio(i)
     setName(n)
     setDescriServ(d)
-    setImgServicio(f)
+    setImgServicio1(f)
   }
 
   return (
@@ -134,7 +154,7 @@ function Admin_Services() {
               <input
                 type="text"
                 className="form-control mt-3"
-                value={imgServicio}
+                value={imgServicio1}
                 onChange={(e) => {setImgServicio(e.target.value)}}
               />
               <textarea
@@ -213,6 +233,12 @@ function Admin_Services() {
           </div>
         </div>
         <div className="row services g-3 m-0 py-4 px-5">
+        { load1 &&
+          <Loading1 isVisible={true}/>
+        }
+        { load &&
+          <Loading isVisible={true}/>
+        }
           {infoservices.map((servicio) => {
             return (
               <div className="col-sm-6">

@@ -14,6 +14,9 @@ function All_Services() {
       .then((response) => response.json())
       .then((data) => {
         setInfoservices(data);
+      })
+      .catch(()=>{
+
       });
   }
 
