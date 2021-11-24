@@ -35,6 +35,7 @@ export default function Admin (){
 	let [obj, setObj] = useState(0);
 	let [modal, setModal] = useState(false);
 	let [modalDel, setModalDel] = useState(false);
+	let [modalUpd, setModalUpd] = useState(false);
 	let [buscar, setBuscar] = useState("");
 	let [tipo, setTipo] = useState("nombre");
 
@@ -292,6 +293,34 @@ export default function Admin (){
 		}
 	}
 
+	let [name, setName] = useState("");
+	let [email, setEmail] = useState("");
+	let [pass, setPass] = useState("");
+	let [rol, setRol] = useState("");
+
+	function updateUser(){
+		setLoad(true);
+		let user = {id:idUser, name:name, email:email, pass:pass, rol:rol};
+		fetch("https://avilap.herokuapp.com/api/users",{
+			method:"PUT",
+			headers:{"Content-Type":"application/json; charset=utf-8"},
+			body:JSON.stringify(user)
+		})
+		.then((response)=>{
+			if(response.ok){
+				setLoad(false);
+				setModalUpd(false);
+				obj++;
+				setObj(obj);
+			}
+		})
+		.catch((err)=>{
+			setLoad(false);
+			alert("Ha ocurrido un error, Disculpanos..");
+		});
+	}
+
+
 	let [typeUser, setTypeUser] = useState("todos");
 
 	function verUsuarios(rol){
@@ -350,7 +379,7 @@ if (session) {
 							<div className="parteAdmin">
 							{ modal &&	
 								<Modal isVisible={modal} setVisible={()=>setModal(false)}>
-									<form className="modalUserAdmin">
+									<form className="modalUserAdmin" id="modalUserAdmin">
 										<h3>Añade un nuevo usuario</h3>
 										<label>Nombre</label>
 										<input name="name" className="inputUserModalAdmin" type="text" placeholder="Escribe el nombre"/>
@@ -369,6 +398,32 @@ if (session) {
 										<div className="contBtnsAdmin">
 											<input className="closeModal btnCancelAdminUser" style={{backgroundColor:"#8E8E8E", marginRight:"5px"}} value="Cancelar"/>
 											<input className="btnSuccesAdminUser" type="button" onClick={()=>addUser()} value="Añadir usuario"/>
+										</div>
+									</form>
+								</Modal>
+							}
+							{ modalUpd &&	
+								<Modal isVisible={true} setVisible={()=>setModalUpd(false)}>
+									<form className="modalUserAdmin" id="modalUserUpdAdmin">
+										<h3>Actualizar usuario</h3>
+										<label>Nombre</label>
+										<input name="name" value={name} onChange={(e)=>setName(e.target.value)} className="inputUserModalAdmin" type="text" placeholder="Escribe el nombre"/>
+										<label>Correo</label>
+										<input name="email" value={email} onChange={(e)=>setEmail(e.target.value)} className="inputUserModalAdmin" type="text" placeholder="Escribe el correo electronico"/>
+										<label>Contraseña</label>
+										<input name="pass" value={pass} onChange={(e)=>setPass(e.target.value)} className="inputUserModalAdmin" type="password" placeholder="Escribe la contraseña"/>
+										<div className="selectAdminUser">
+											<label>Rol</label>
+											<select name="rol" id="" onChange={(e)=>setRol(e.target.value)}>
+												{ rol && rol == "cliente" ? 
+													<option selected>Cliente</option> : <option selected>Admin</option>
+												}
+												<option>{rol && rol == "cliente" ? "Admin" : "Cliente"}</option>
+											</select>
+										</div>
+										<div className="contBtnsAdmin">
+											<input className="closeModal btnCancelAdminUser" style={{backgroundColor:"#8E8E8E", marginRight:"5px"}} value="Cancelar"/>
+											<input className="btnSuccesAdminUser" type="button" onClick={()=>updateUser()} value="Actualizar usuario"/>
 										</div>
 									</form>
 								</Modal>
@@ -426,7 +481,11 @@ if (session) {
 											<div className="casillaAdmin"><p>{user.name}</p></div>
 											<div className="casillaAdmin"><p>{user.email}</p></div>
 											<div className="casillaAdmin"><input value={user.pass} id={"inputPassAdmin"+index} type="password"/></div>
-											<div className="casillaAdmin"><p style={{marginLeft:"auto"}}>{user.rol.charAt(0).toUpperCase()+user.rol.slice(1)}</p><img onClick={()=>searchUser("e")} style={{marginLeft:"20%", width:"9%", height:"auto", opacity:(user.user == "admin@salysalsa.co") && "0.1"}} src={editImg}/><img onClick={()=>{user.email != "admin@salysalsa.co" && setModalDel(true); setIdUser(user.id)}} style={{marginLeft:"2%", width:"9%", opacity:(user.email == "admin@salysalsa.co") && "0.1"}} src={deleteImg}/></div>
+											<div className="casillaAdmin">
+												<p style={{marginLeft:"auto"}}>{user.rol.charAt(0).toUpperCase()+user.rol.slice(1)}</p>
+												<img onClick={()=>{setModalUpd(true); setIdUser(user.id); setName(user.name); setEmail(user.email); setPass(user.pass); setRol(user.rol)}} style={{marginLeft:"20%", width:"9%", height:"auto", opacity:(user.user == "admin@salysalsa.co") && "0.1"}} src={editImg}/>
+												<img onClick={()=>{user.email != "admin@salysalsa.co" && setModalDel(true); setIdUser(user.id)}} style={{marginLeft:"2%", width:"9%", opacity:(user.email == "admin@salysalsa.co") && "0.1"}} src={deleteImg}/>
+											</div>
 										</div>
 									)
 								})
