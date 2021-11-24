@@ -26,7 +26,7 @@ function Admin_Menu(){
   //Obtener Platos
   let [listPlatos, setListPlatos] = useState([]);
   function fetchData() {
-    fetch("http://avilap.herokuapp.com/api/platos")
+    fetch("https://avilap.herokuapp.com/api/platos")
       .then((response) => response.json())
       .then((data) => {
         setListPlatos(data);
@@ -48,7 +48,7 @@ function Admin_Menu(){
   //Eliminar plato
   function eliminar(id) {
     setLoad(true);
-    fetch("http://avilap.herokuapp.com/api/platos/" + id, {
+    fetch("https://avilap.herokuapp.com/api/platos/" + id, {
       method: "DELETE",
     })
       .then((response) => response.json())
@@ -71,7 +71,7 @@ function Admin_Menu(){
       imagen: imgPlato1 =="" ? imgDefault : imgPlato
     };
 
-    fetch("http://avilap.herokuapp.com/api/platos", {
+    fetch("https://avilap.herokuapp.com/api/platos", {
       method: "PUT",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(datos)
@@ -102,7 +102,7 @@ function Admin_Menu(){
       imagen: imgPlato1 =="" ? imgDefault : imgPlato
     };
 
-    fetch("http://avilap.herokuapp.com/api/platos", {
+    fetch("https://avilap.herokuapp.com/api/platos", {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(datos)
