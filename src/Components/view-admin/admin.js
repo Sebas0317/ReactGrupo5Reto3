@@ -268,9 +268,9 @@ export default function Admin (){
 	}
 
 	function addUser (){
-		setLoad(true);
 		let form = document.querySelector("form.modalUserAdmin");
 		if (form.name.value && form.email.value && form.pass.value && (form.rol.value != "Selecciona un rol")) {
+			setLoad(true);
 			let user = {email:form.email.value, name:form.name.value, pass:form.pass.value, rol:form.rol.value.toLowerCase()};
 			document.querySelector(".closeModal").click();
 			fetch("https://avilap.herokuapp.com/api/users",{
