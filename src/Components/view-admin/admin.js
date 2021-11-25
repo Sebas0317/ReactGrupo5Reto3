@@ -7,9 +7,9 @@ import Admin_Services from "../view-services/Admin_Services";
 import Admin_Menu from "../view-menu/Admin_Menu";
 import Admin_Coments from "../comments/Admin_Coments";
 import Admin_Footer from "../footer/Admin_Footer";
-import Admin_Reservas from "../view-reserva/Admin_Reservas";
 import Loading from "../modal/loading";
 import Loading1 from "../modal/loading1";
+import Admin_Reservas from "../view-reserva/Admin_Reservas";
 
 //Imagenes
 import verPass from "../assets/verPass.svg";
@@ -117,14 +117,13 @@ export default function Admin (){
 		if (buscar.length != 0) {
 			let result = searchUser(buscar, tipo.toLowerCase());
 			users = result;
-		} else {
-			
 		}
 	}
 
 	searching();
 
 	useEffect(()=>{
+		document.title="Gestión de usuarios";
 		if (session) {
 			if (session.user.rol == "admin") {
 				let btnServicios = document.querySelector("#btnServicios");
@@ -227,7 +226,6 @@ export default function Admin (){
 	}, []);
 
 	useEffect(()=>{
-		document.title="Gestión de usuarios"
 		setLoad1(true);
 		setUsers([]);
 		fetch("https://avilap.herokuapp.com/api/users",{
@@ -367,7 +365,7 @@ if (session) {
 						}
 						{ reservas &&
 							<div className="parteAdmin">
-							<Admin_Reservas />
+								<Admin_Reservas />
 							</div>
 
 						}
@@ -406,6 +404,7 @@ if (session) {
 											<select name="rol" id="">
 												<option disabled selected>Selecciona un rol</option>
 												<option>Cliente</option>
+												<option>Empleado</option>
 												<option>Admin</option>
 											</select>
 										</div>
@@ -429,10 +428,10 @@ if (session) {
 										<div className="selectAdminUser">
 											<label>Rol</label>
 											<select name="rol" id="" onChange={(e)=>setRol(e.target.value)}>
-												{ rol && rol == "cliente" ? 
-													<option selected>Cliente</option> : <option selected>Admin</option>
-												}
-												<option>{rol && rol == "cliente" ? "Admin" : "Cliente"}</option>
+												<option selected>{rol && rol == "cliente" ? "Cliente" : rol == "admin" ? "Admin"  : "Empleado"}</option>
+												{rol && rol != "cliente" && <option>Cliente</option>}
+												{rol && rol != "admin" && <option>Admin</option>}
+												{rol && rol != "empleado" &&  <option>Empleado</option>}
 											</select>
 										</div>
 										<div className="contBtnsAdmin">
@@ -472,7 +471,7 @@ if (session) {
 											<div >
 												<select name="" id="" onChange={(e)=>setTypeUser(e.target.value.toLowerCase())}>
 													<option selected>Todos</option>
-													<option>Empleados</option>
+													<option>Empleado</option>
 													<option>Cliente</option>
 													<option>Admin</option>
 												</select>
@@ -495,8 +494,8 @@ if (session) {
 											<div className="casillaAdmin"><p>{user.name}</p></div>
 											<div className="casillaAdmin"><p>{user.email}</p></div>
 											<div className="casillaAdmin"><input value={user.pass} id={"inputPassAdmin"+index} type="password"/></div>
-											<div className="casillaAdmin">
-												<p style={{marginLeft:"auto"}}>{user.rol.charAt(0).toUpperCase()+user.rol.slice(1)}</p>
+											<div style={{display:"flex", justifyContent:"flex-end"}} className="casillaAdmin">
+												<p>{user.rol.charAt(0).toUpperCase()+user.rol.slice(1)}</p>
 												<img onClick={()=>{setModalUpd(true); setIdUser(user.id); setName(user.name); setEmail(user.email); setPass(user.pass); setRol(user.rol)}} style={{marginLeft:"20%", width:"9%", height:"auto", opacity:(user.user == "admin@salysalsa.co") && "0.1"}} src={editImg}/>
 												<img onClick={()=>{user.email != "admin@salysalsa.co" && setModalDel(true); setIdUser(user.id)}} style={{marginLeft:"2%", width:"9%", opacity:(user.email == "admin@salysalsa.co") && "0.1"}} src={deleteImg}/>
 											</div>

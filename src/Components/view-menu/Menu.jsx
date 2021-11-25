@@ -19,7 +19,7 @@ function Menu () {
 
   function fetchData() {
 
-    fetch("http://avilap.herokuapp.com/api/platos", {
+    fetch("https://avilap.herokuapp.com/api/platos", {
       method:"GET"
     })
     .then((response) => response.json())

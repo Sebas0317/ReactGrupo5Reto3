@@ -20,7 +20,7 @@ function Admin_Menu(){
   let [imgPlato1, setImgPlato1] = useState("");
   let [obj, setObj] = useState(0);
   let [load, setLoad] = useState(false);
-  let [load1, setLoad1] = useState(true);
+  let [load1, setLoad1] = useState(false);
 
 
   //Obtener Platos
@@ -37,12 +37,16 @@ function Admin_Menu(){
       })
   }
 
+ 
   useEffect(()=>{
-    document.title = 'Gestión menú';
+    document.title = 'Menú';
     setLoad1(true);
     fetchData();
 	},[obj]);
 
+  useEffect(()=>{
+    document.title = 'Gestión menú';
+  },[])
   
   //Eliminar plato
   function eliminar(id) {
@@ -92,7 +96,6 @@ function Admin_Menu(){
       });
   }
 
-  //Agregar plato
   function addPlato() {
     setLoad(true);
     let datos = {
