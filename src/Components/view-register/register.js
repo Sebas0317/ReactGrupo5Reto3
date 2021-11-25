@@ -222,7 +222,7 @@ function Login (){
 	}
 
 	function guardarCuenta(){
-		let info = {email:email, name:name, rol:"cliente"};
+		let info = {email:email, name:name, pass:pass, rol:"cliente"};
 		fetch("https://avilap.herokuapp.com/api/users", {
 			method:"POST",
 			headers:{"Content-Type":"application/json; charset=utf-8"},
