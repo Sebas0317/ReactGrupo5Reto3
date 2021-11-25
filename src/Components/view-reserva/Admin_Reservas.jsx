@@ -20,6 +20,7 @@ export default function Admin_Reservas(){
 	let [servicio, setServicio] = useState("");
 	let [comentario, setComentario] = useState("");
   let [estadoReserva, setEstadoReserva] = useState("")
+  let [obj, setObj] = useState(0);
 	
 
   //Obtener Reservas
@@ -40,7 +41,7 @@ export default function Admin_Reservas(){
     document.title = 'Gestión de reservas';
     // setLoad1(true);
     fetchData();
-	});
+	},[obj]);
 
   //Eliminar reserva
   function eliminar(id) {
@@ -52,6 +53,8 @@ export default function Admin_Reservas(){
       .then((data) => {
         setLoad(false);
         setModal2(false);
+        obj++;
+        setObj(obj);
       });
   }
 
@@ -85,6 +88,8 @@ export default function Admin_Reservas(){
       .then(data => {
         setLoad(false);
         setModal1(false);
+        obj++;
+        setObj(obj);
       });
   }
 

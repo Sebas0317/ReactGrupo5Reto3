@@ -48,6 +48,23 @@
     width: 100%;
 }
 
+#notificacionDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3.6vh;
+    width: 3.6vh;
+    padding: 0px;
+    margin-left: auto;
+    border-radius: 15px;
+    background-color: red;
+}
+#notificacionDiv b {
+    font-size: 18px;
+    margin-bottom: 10%;
+    font-weight: bold;
+}
+
 #contCasillaTop{
     background-color: #310101 !important;
     color: white !important;
@@ -120,6 +137,7 @@
 }
 
 .menuUsersAdmin select {
+    cursor: pointer;
     padding: 3px;
     display: flex;
     align-items: center;

@@ -97,11 +97,12 @@ function Login (){
 	}
 	
 
-	
 	useEffect(()=>{
 		mostrarPass();
 		document.title="Iniciar sesión"
+	}, []);
 
+	useEffect(()=>{
 		async function obtenerUsuariosBD(){
 			await fetch("https://avilap.herokuapp.com/api/users",{
 				method:"GET"

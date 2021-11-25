@@ -225,6 +225,9 @@ export default function Admin (){
 		}
 	}, []);
 
+	let notiSolicitudes = 0;
+	let [notiComentarios, setNotiComentarios] = useState(0);
+
 	useEffect(()=>{
 		setLoad1(true);
 		setUsers([]);
@@ -242,6 +245,21 @@ export default function Admin (){
 		})
 		.catch((err)=>{
 			setLoad(false);
+			console.log(err);
+		});
+
+		fetch("https://avilap.herokuapp.com/api/comentarios",{
+			method:"GET"
+		})
+		.then((response)=>{
+			if (response.ok) {
+				response.json()
+				.then((res)=>{
+					setNotiComentarios(res.length);
+				});
+			}
+		})
+		.catch((err)=>{
 			console.log(err);
 		});
 	}, [obj]);
@@ -355,6 +373,13 @@ if (session) {
 						</div>
 						<div id="btnComentarios" className="opcionAdmin">
 							<i className="fas fa-comment-dots me-2"></i> <span>Gestión de comentarios</span>
+							{ notiComentarios > 0 &&
+							   <span id="notificacionDiv"><b>{notiComentarios}</b></span>
+							}
+						</div>
+						<div id="btnComentarios" className="opcionAdmin">
+							<i className="fas fa-comment-dots me-2"></i> <span>Solicitudes</span> 
+							
 						</div>
 					</div>
 					<div style={{paddingTop:"6%", display:"flex", width:"100%"}}>

@@ -1,4 +1,5 @@
 import React,{useEffect, useState} from "react";
+import {useHistory} from "react-router-dom";
 import "../styles/contacto.css";
 import Modal from "../modal/modal";
 import Ok from "../assets/ok.png";
@@ -6,6 +7,8 @@ import Social from "../social/Social";
 import Load from "../modal/loading";
 
 export default function Contacto (){
+
+  let history = useHistory();
 
   let [name, setName] = useState("");
   let [email, setEmail] = useState("");
@@ -21,7 +24,7 @@ export default function Contacto (){
 
   function validarNombre (validar){
     let nameInput = document.querySelector("#apellidos");
-    if (name.length != 0) {
+    if (name.length > 0) {
       nameInput.style.outline="none";
       if (valTxt.test(name)) {
          nameInput.style.border="none";
@@ -134,7 +137,7 @@ export default function Contacto (){
 
   function validarMsg (validar){
     let msgInput = document.querySelector("#textoArea");
-    if (msg.length != 0) {
+    if (msg.length > 0) {
       msgInput.style.outline="none";
       if (msg.length < 7) {
         msgInput.style.border="1px solid #C42424";
@@ -153,15 +156,61 @@ export default function Contacto (){
     }
   }
 
-function validarCheck (){
+function validarCheck (validar){
     let checkCont = document.querySelector(".checkboxContenedor");
     if (check == true) {
       checkCont.style.border="none";
       return true
     } else {
-      checkCont.style.border="1px solid #C42424";
+       checkCont.style.border="none";
+      if (validar == true) {
+        checkCont.style.border="1px solid #C42424";  
+      }
       return false
     }
+  }
+
+
+  function enviarABD(data){
+    let newData = data;
+    let ruta = "solicitudes";
+    if (data.tipo == "Solicitud y/o Pregunta") {
+      ruta = "solicitudes";
+      newData = data;
+    } else {
+      let fecha = new Date();
+      newData = {usuario:data.nombre, comentario:data.mensaje, fecha:fecha.toLocaleDateString()}
+      ruta = "comentarios";
+    }
+
+    if(data.tipo == "Solicitud y/o Pregunta"){
+      ruta = "solicitudes";
+    } else {
+      ruta = "comentarios";
+    }
+    let url = "https://avilap.herokuapp.com/api/" + ruta;
+
+    fetch(url, {
+      method:"POST",
+      headers:{"Content-Type":"application/json; charset=utf-8"},
+      body: JSON.stringify(newData)
+    })
+    .then((response)=>{
+      console.log(response);
+    })
+    .then((data)=>{
+      setLoading(false);
+      setModal(true);
+      setTimeout(()=>{
+        setModal(false);
+        history.push("/");
+      }, 3000);
+    })
+    .catch((err)=>{
+       setLoading(false);
+       alert("Upss, hubo un error al intentar enviar su mensaje :(");
+       console.log(err);
+    });
   }
 
   useEffect(()=>{
@@ -171,12 +220,22 @@ function validarCheck (){
     validarAsunto();
     validarTipo();
     validarMsg();
-    document.title = 'Contáctanos';
+    validarCheck();
+
 
     document.querySelector(".form-register form").addEventListener("submit", (e)=>{
       e.preventDefault();
-      if (validarNombre(true) && validarEmail(true) && validarTel(true) && validarAsunto(true) && validarTipo(true) && validarMsg(true) && validarCheck()) {
+      let nam = validarNombre(true);
+      let ema = validarEmail(true);
+      let tell = validarTel(true);
+      let asu = validarAsunto(true);      
+      let tip =validarTipo(true);
+      let ms = validarMsg(true);
+      let chec = validarCheck(true);
+
+      if (nam && ema && tell && asu && tip && ms && chec) {
         setLoading(true);
+        let data = {nombre:name, email:email, telefono:tel, asunto:asunto, mensaje:msg, tipo:tipo};
         let mensaje = `Tu mensaje para Sal&Salsa se envio correctamente, Muchas gracias!:<br><br> 
           Nombre: <b>${name}</b> <br>
           Correo: <b>${email}</b> <br>
@@ -194,7 +253,7 @@ function validarCheck (){
           Body : mensaje
         })
         .then(()=>{
-            enviarEmail();
+            enviarEmail(data);
         })
         .catch(()=>{
           setLoading(false);
@@ -205,7 +264,12 @@ function validarCheck (){
     });
   });
 
-  function enviarEmail (){
+  useEffect(()=>{
+    document.title = 'Contáctanos';
+  },[])
+
+
+  function enviarEmail (data){
     let mensaje1 = `
       Nombre: <b>${name}</b> <br>
       Correo: <b>${email}</b> <br>
@@ -226,14 +290,10 @@ function validarCheck (){
       setEmail("");
       setTel("");
       setAsunto("");
-      setTipo("");
       setMsg("");
+      setTipo("");
       document.querySelector(".form-register form").reset();
-      setLoading(false);
-      setModal(true);
-      setTimeout(()=>{
-        setModal(false);
-      }, 3000);
+      enviarABD(data);     
     })
     .catch(()=>{
       setLoading(false);
@@ -307,7 +367,7 @@ function validarCheck (){
             <select className="controls" id="select" onChange={(e)=>setTipo(e.target.value)}>
               <option selected disabled>Tipo de mensaje</option>
               <option>Comentario</option>
-              <option>Solicitud</option>
+              <option>Solicitud y/o Pregunta</option>
             </select>
             <textarea
               onChange={(e)=>setMsg(e.target.value)}
