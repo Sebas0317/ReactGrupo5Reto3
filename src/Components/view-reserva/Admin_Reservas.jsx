@@ -138,7 +138,7 @@ export default function Admin_Reservas(){
       <div className="row title-reservation pt-5 vstack">
         <h2 className="title-AdReservas ps-5">Gestión de reservas</h2>
       </div>
-      <div className="row p-5 g-4" >
+      <div className="row p-5 pt-4 g-4" >
         { load1 &&
           <Loading1 isVisible={true} />
         }

@@ -382,7 +382,7 @@ if (session) {
 							
 						</div>
 					</div>
-					<div style={{paddingTop:"6%", display:"flex", width:"100%"}}>
+					<div style={{ display:"flex", width:"100%"}}>
 						{ servicios &&
 							<div className="parteAdmin">
 								<Admin_Services/>
@@ -413,7 +413,7 @@ if (session) {
 
 						}
 						{ usuarios &&
-							<div className="parteAdmin">
+							<div className="parteAdmin"style={{paddingTop:"9%"}}>
 							{ modal &&	
 								<Modal isVisible={modal} setVisible={()=>setModal(false)}>
 									<form className="modalUserAdmin" id="modalUserAdmin">

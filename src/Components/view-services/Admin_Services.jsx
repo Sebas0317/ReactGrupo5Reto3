@@ -226,13 +226,13 @@ function Admin_Services() {
           </div>
         </Modal>
       }
-      <div className="container-fluit pt-4 my-5">
+      <div className="container-fluit pt-5 mb-5">
         <div className="row mt-5 mx-0 p-0">
           <div className="col-sm-12 top-serv ps-5 pe-1">
             <p className="title-Adserv">Gestión de servicios</p>
           </div>
         </div>
-        <div className="row services g-3 m-0 py-4 px-5">
+        <div className="row services g-3 m-0 px-5">
         { load1 &&
           <Loading1 isVisible={true}/>
         }

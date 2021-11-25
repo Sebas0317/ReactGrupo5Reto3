@@ -149,13 +149,13 @@ function Admin_Coments() {
         </Modal>
       )}
 
-      <div className="container-fluit pt-4 my-5">
+      <div className="container-fluit pt-5 mb-5">
         <div className="row mt-5 mx-0 p-0">
           <div className="col-sm-12 top-serv ps-5 pe-1">
             <p className="title-Adserv">Gestión de comentarios</p>
           </div>
         </div>
-        <div className="row services g-3 m-0 py-4 px-5">
+        <div className="row services g-3 m-0 px-5">
           {infocomentaries.map((comentarios, index) => {
             return (
               <div className="col-sm-6 d-flex mb-2 item-Ad">
@@ -199,11 +199,11 @@ function Admin_Coments() {
             </p>
           )}
         </div>
-        <div className="row gestion-ser p-5">
+        {/* <div className="row gestion-ser p-5">
           <a type="button" onClick={() => setModal1(true)} className="btn">
             Agregar comentario
           </a>
-        </div>
+        </div> */}
       </div>
     </main>
   );
