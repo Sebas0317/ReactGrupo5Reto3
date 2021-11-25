@@ -19,6 +19,7 @@
     background-color: #3E0202;
     padding: 12px;
     cursor: pointer;
+    align-items: center;
 }
 
 .seleccion{
@@ -45,6 +46,12 @@
 .contCasilla{
     display: flex;
     width: 100%;
+}
+
+#contCasillaTop{
+    background-color: #310101 !important;
+    color: white !important;
+    font-weight: bolder;
 }
 
 .casillaAdmin{
@@ -88,9 +95,6 @@
     padding: 10px;
 }
 
-.casillaName{
-
-}
 .menuUsersAdmin{
     display: flex;
     flex-direction: column;

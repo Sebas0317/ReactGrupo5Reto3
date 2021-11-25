@@ -300,6 +300,7 @@ export default function Reserva() {
 		validarServicio();
 		validarComentario();
 		validarCheckbox();
+		document.title="Resevas";
 	});
 
 	let [modal, setModal] = useState(false);
@@ -311,6 +312,7 @@ export default function Reserva() {
 		
 	}
 
+	//ENVIAR RESERVA
 	function enviarReserva (){
 		let mensaje = `<b>DATOS DE LA RESERVA:</b><br><br> 
 										Cliente: <b>${name}</b><br> 
@@ -331,22 +333,54 @@ export default function Reserva() {
   		})
   		.then(()=>{
   			document.querySelector(".closeModal").click();
+				addReserva();
   			setName("");
-			setTel("");
-			setEmail("");
-			setPersonas("");
-			setFecha("");
-			setHora("");
-			setComentario("");
-			document.querySelector(".contenedorReserva form").reset();
-	  			alert("Reserva enviada exitosamente!");
+				setTel("");
+				setEmail("");
+				setPersonas("");
+				setFecha("");
+				setHora("");
+				setComentario("");
+				document.querySelector(".contenedorReserva form").reset();
+	  		alert("Reserva enviada exitosamente!");
 	  	})
   		.catch((error)=>{
   			alert("Ha ocurrido un error al intentar enviar la reserva, disculpanos..");
-			alert(error);
+				alert(error);
   		})
 	}
 
+	//AGREGAR RESERVA A BD
+	function addReserva() {
+    let datos = {
+      nombre: name,
+			email: email,
+			fecha: fecha,
+			telefono: tel,
+			hora: hora,
+			servicio: servicio,
+			personas: Number(personas),
+			mensaje: comentario,
+			estado: 'En espera'
+    };
+
+    fetch("https://avilap.herokuapp.com/api/reservas", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(datos)
+    })
+      .then(response => {
+        if (response.ok){
+          console.log('Bien:' + response.text());
+        }  
+        else{
+          console.log(response.status)
+        }
+      })
+      .then(data => {
+        console.log('Bien')
+      });
+  }
 
 	return (
 		<div className="contenedorReserva">
@@ -371,7 +405,7 @@ export default function Reserva() {
 						</Modal>
 			}
 
-			<h2>Reservas</h2>
+			<h2 className="title-reservas">Reservas</h2>
 			<form className="formReserva">
 				<p>Los campos marcados con un <span>*</span> son obligatorios</p>
 				<div className="nameCont">

@@ -1,12 +1,13 @@
-import react, { useState } from "react";
+import react, { useEffect } from "react";
 import MenuContainer from "../view-menu/MenuContainer";
 import "../styles/menu.css";
 function History() {
+  useEffect(()=>document.title = 'Historial de compras');
   const listPlatos = JSON.parse(window.localStorage.getItem("history"));
   return (
     <>
       <div className="row">
-        <div className="header-car pt-5 my-5">
+        <div className="title-AdMenu pt-5 my-5">
           <p className="title-car ps-5">Historial de compras</p>
         </div>
       </div>

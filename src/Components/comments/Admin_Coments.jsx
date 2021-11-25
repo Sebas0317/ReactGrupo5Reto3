@@ -23,6 +23,8 @@ function Admin_Coments() {
 
   let infocomentaries = false;
 
+  useEffect(()=>document.title = 'Gestión de comentarios');
+
   //localStorage
   if (!localStorage.getItem("comentarios")) {
     localStorage.setItem("comentarios", JSON.stringify(json.comentarios));
@@ -105,7 +107,7 @@ function Admin_Coments() {
                 onChange={(e) => {
                   name = e.target.value;
                 }}
-                placeholder="Quien Comenta"
+                placeholder="Quién comenta"
               />
               <textarea
                 onChange={(e) => {
@@ -115,7 +117,7 @@ function Admin_Coments() {
                 cols="30"
                 rows="5"
                 className="form-control mt-3"
-                placeholder="Describe tu comentario"
+                placeholder="Escribe tu comentario"
               ></textarea>
               <div className="btns">
                 <button className="closeModal">Cancelar</button>
@@ -156,8 +158,8 @@ function Admin_Coments() {
         <div className="row services g-3 m-0 py-4 px-5">
           {infocomentaries.map((comentarios, index) => {
             return (
-              <div className="col-sm-6 d-flex mb-4 item-Ad">
-                <div className="context-Ad">
+              <div className="col-sm-6 d-flex mb-2 item-Ad">
+                <div className="context-Ad p-3" style={{backgroundColor:'#e6e0e2'}}>
                   <div className="d-flex align-items-center justify-content-between">
                     <h2 className="titleItem">{comentarios.usuario}</h2>
                     <div className="d-flex justify-content-end">
@@ -197,10 +199,10 @@ function Admin_Coments() {
             </p>
           )}
         </div>
-        <div className="row gestion-com p-5">
-          <button type="button" onClick={() => setModal1(true)} className="btn">
-            Agregar comentarios
-          </button>
+        <div className="row gestion-ser p-5">
+          <a type="button" onClick={() => setModal1(true)} className="btn">
+            Agregar comentario
+          </a>
         </div>
       </div>
     </main>

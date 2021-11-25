@@ -5,6 +5,7 @@ import All_Services from "./All_Services";
 import Social from "../social/Social";
 
 class Services_Container extends React.Component{
+  componentDidMount(){document.title = 'Servicios'}
   render(){
     return(
       <main>

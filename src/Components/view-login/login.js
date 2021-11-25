@@ -100,6 +100,7 @@ function Login (){
 	
 	useEffect(()=>{
 		mostrarPass();
+		document.title="Iniciar sesión"
 
 		async function obtenerUsuariosBD(){
 			await fetch("https://avilap.herokuapp.com/api/users",{
@@ -187,7 +188,12 @@ function Login (){
 					</div>
 					<div style={{position:"absolute", width:"100%", left:0, alignItems:"center", bottom:8, display:"flex", flexDirection:"column"}}>
 						<button onClick={(e)=>validar(e)}>Iniciar sesion</button>
-						<p style={{margin:0, marginTop:3}}>¿No tienes cuenta? registrate <Link to="/register">Aqui</Link></p>
+						<p style={{margin:0, marginTop:3}}>
+							¿No tienes cuenta? Regístrate&nbsp; 
+							<Link to="/register" style={{textDecoration:'none',color:'#4F2634',fontWeight:'bolder'}}>
+								Aquí
+							</Link>
+						</p>
 					</div>
 				</div>
 			</form>

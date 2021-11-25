@@ -71,7 +71,6 @@ class All_comments extends React.Component {
             <Link
               type="button"
               className="btn"
-              
               to="/gestioncomentarios"
             >
               Gestionar Comentarios

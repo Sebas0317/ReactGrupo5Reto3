@@ -8,6 +8,7 @@ import Comentarios from "../comments/All_comments"
 
 
 class Inicio_Container extends React.Component{
+  componentDidMount(){document.title = 'Sal&Salsa'}
   render(){
     return(
       <div className="container-fluid p-0 m-0">

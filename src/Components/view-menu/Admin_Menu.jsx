@@ -37,9 +37,8 @@ function Admin_Menu(){
       })
   }
 
- 
   useEffect(()=>{
-    document.title = 'Menú';
+    document.title = 'Gestión menú';
     setLoad1(true);
     fetchData();
 	},[obj]);
@@ -93,6 +92,7 @@ function Admin_Menu(){
       });
   }
 
+  //Agregar plato
   function addPlato() {
     setLoad(true);
     let datos = {

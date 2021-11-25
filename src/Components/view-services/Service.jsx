@@ -4,7 +4,7 @@ function Service({imagen,nombre, descripcion}){
   
   return(
       <div className="col-sm-6">
-        <div className="row service m-0 p-0">
+        <div className="row service m-0 p-0 h-100">
           <div className="col-sm-6 p-0 img-serv">
             <img src={imagen} alt="img-servicio" />
           </div>

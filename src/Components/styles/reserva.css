@@ -5,7 +5,7 @@
 	align-items:center;
 	flex-direction:column;
 }
-.contenedorReserva h2 {
+.title-reservas {
 	font-family: 'Branding';
 	color: #310101;
 	font-size: 72px;
@@ -242,4 +242,34 @@
 	width: 25%;
 	background-color: #2D9E45;
 	color: #fff;
+}
+
+
+/* Admin Reservations */
+
+.title-AdReservas{
+	font-family: Branding;
+  font-size: 4rem;
+	color: #4f2c38;
+}
+
+.card-reservations{
+  height: 100%;
+  font-size: small;
+  text-align: justify;
+	background-color: #E6E0E2;
+}
+
+.card-reservations .card-header{
+  display: flex;
+	color: white;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #310101;
+}
+
+.card-reservations .card-header h6{
+	font-size: 1.6rem;
+	font-family: 'Branding';
+	line-height : 22px;
 }

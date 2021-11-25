@@ -21,7 +21,6 @@ function All_Services() {
   }
 
   useEffect(()=>{
-    document.title = 'Sevicios';
     fetchData();
   },[]);
 

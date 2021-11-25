@@ -7,6 +7,7 @@ import Admin_Services from "../view-services/Admin_Services";
 import Admin_Menu from "../view-menu/Admin_Menu";
 import Admin_Coments from "../comments/Admin_Coments";
 import Admin_Footer from "../footer/Admin_Footer";
+import Admin_Reservas from "../view-reserva/Admin_Reservas";
 import Loading from "../modal/loading";
 import Loading1 from "../modal/loading1";
 
@@ -226,6 +227,7 @@ export default function Admin (){
 	}, []);
 
 	useEffect(()=>{
+		document.title="Gestión de usuarios"
 		setLoad1(true);
 		setUsers([]);
 		fetch("https://avilap.herokuapp.com/api/users",{
@@ -338,12 +340,24 @@ if (session) {
 		return (
 			<div className="adminCont">
 					<div className="navAdmin">
-						<div id="btnUsuarios" className="opcionAdmin seleccion"><span>Editar usuarios</span></div>
-						<div id="btnReservas" className="opcionAdmin"><span>Editar Reservas</span></div>
-						<div id="btnFooter" className="opcionAdmin"><span>Editar Footer</span></div>
-						<div id="btnMenu" className="opcionAdmin"><span>Editar Menu</span></div>
-						<div id="btnServicios" className="opcionAdmin"><span>Editar servicios</span></div>
-						<div id="btnComentarios" className="opcionAdmin"><span>Editar Comentarios</span></div>
+						<div id="btnUsuarios" className="opcionAdmin seleccion">
+							<i className="fas fa-users-cog me-2"></i><span>Gestión de usuarios</span>
+						</div>
+						<div id="btnReservas" className="opcionAdmin">
+							<i className="fas fa-receipt me-2"></i> <span>Gestión de reservas</span>
+						</div>
+						<div id="btnFooter" className="opcionAdmin">
+							<i className="fas fa-pager me-2"></i> <span>Gestión de información</span>
+						</div>
+						<div id="btnMenu" className="opcionAdmin">
+							<i className="fas fa-utensils me-2"></i> <span>Gestión de menú</span>
+						</div>
+						<div id="btnServicios" className="opcionAdmin">
+							<i className="fas fa-glass-cheers me-2"></i> <span>Gestión de servicios</span>
+						</div>
+						<div id="btnComentarios" className="opcionAdmin">
+							<i className="fas fa-comment-dots me-2"></i> <span>Gestión de comentarios</span>
+						</div>
 					</div>
 					<div style={{paddingTop:"6%", display:"flex", width:"100%"}}>
 						{ servicios &&
@@ -353,7 +367,7 @@ if (session) {
 						}
 						{ reservas &&
 							<div className="parteAdmin">
-							<	p>Reservas</p>
+							<Admin_Reservas />
 							</div>
 
 						}
@@ -441,7 +455,7 @@ if (session) {
 							}
 								<div className="menuUsersAdmin">
 										<div className="menuUsersAdmin_sub">
-											<div className="searchContAdmin">
+											<div className="searchContAdmin mb-3">
 												<img src={Search}/>
 												<input onChange={(e)=>setBuscar(e.target.value)} placeholder="Busca un usuario"/>
 												<select name="" id="" onChange={(e)=>setTipo(e.target.value)}>
@@ -472,7 +486,7 @@ if (session) {
 										<div className="casillaAdmin" id="contCasillaTop">Nombre</div>
 										<div className="casillaAdmin" id="contCasillaTop">Correo</div>
 										<div className="casillaAdmin" id="contCasillaTop">Contraseña</div>
-										<div className="casillaAdmin" id="contCasillaTop">rol</div>
+										<div className="casillaAdmin" id="contCasillaTop">Rol</div>
 									</div>
 								{ (users) && users.map((user, index)=>{
 									return (

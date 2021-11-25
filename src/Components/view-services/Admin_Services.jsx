@@ -37,7 +37,7 @@ function Admin_Services() {
   }
 
   useEffect(()=>{
-    document.title = 'Sevicios';
+    document.title = 'Gestión sevicios';
     setLoad1(true);
     fetchData();
   }, [obj]);
@@ -242,7 +242,7 @@ function Admin_Services() {
           {infoservices.map((servicio) => {
             return (
               <div className="col-sm-6">
-                <div className="row service m-0 p-0">
+                <div className="row service m-0 p-0 h-100">
                   <div className="col-sm-6 p-0 img-serv">
                     <img src={servicio.imagen} alt="img-servicio" />
                   </div>

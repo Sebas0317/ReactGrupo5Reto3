@@ -171,6 +171,7 @@ function validarCheck (){
     validarAsunto();
     validarTipo();
     validarMsg();
+    document.title = 'Contáctanos';
 
     document.querySelector(".form-register form").addEventListener("submit", (e)=>{
       e.preventDefault();

@@ -4,6 +4,7 @@ import Comentarios from "../comments/All_comments"
 import Social from '../social/Social'
 
 class Nosotros extends Component {
+    componentDidMount(){document.title = 'Nosotros'}
     render() {
         return (
             <>

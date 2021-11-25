@@ -250,6 +250,7 @@ function Login (){
 	useEffect(()=>{
 		mostrarPass();
 		mostrarPass1();
+		document.title="Registro"
 	})
 	return (
 		<div className="loginContainer">
@@ -282,7 +283,12 @@ function Login (){
 					<label><p className="loginPassVal" id="loginPassVal1"></p></label>
 					<div style={{position:"absolute", width:"100%", left:0, alignItems:"center", bottom:8, display:"flex", flexDirection:"column"}}>
 						<button onClick={(e)=>validar(e)}>Registrarme</button>
-						<p style={{margin:0, marginTop:3}}>¿Ya tienes una cuenta? logueate <Link to="/login">Aqui</Link></p>
+						<p style={{margin:0, marginTop:3}}>
+							¿Ya tienes una cuenta? Inicia sesión&nbsp; 
+							<Link to="/login" style={{textDecoration:'none',color:'#4F2634',fontWeight:'bolder'}}>
+								Aquí
+							</Link>
+						</p>
 					</div>
 				</div>
 			</form>
