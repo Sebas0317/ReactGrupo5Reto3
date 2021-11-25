@@ -12,6 +12,51 @@
     border-right: 3px solid #B2B2B2;
 }
 
+.btnInformacionAdmin{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    margin-left: 18%;
+    background-color: #310101;
+    width: 25%;
+    padding: 12px;
+    cursor: default;
+}
+#btnFooter{
+    cursor: pointer;
+}
+
+.modalAdminFooter{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 10px;
+    left: 46%;
+    width: 25%;
+    padding: 15px;
+    border-radius: 3px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #878787;
+}
+.modalAdminFooter img {
+    margin-left: 5px;
+    width: 10%;
+}
+
+.opcionAdminInfo{
+    display: flex;
+    background-color: #3E0202;
+    padding: 12px;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 10px;
+    align-items: center;
+    border-left: none;
+    text-shadow: none;
+}
+
 .opcionAdmin{
     margin-bottom: 10%;
     margin-left: 3px;
