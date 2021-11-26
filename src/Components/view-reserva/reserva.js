@@ -1,9 +1,13 @@
 import React, {useState, useEffect} from "react";
 import "../styles/reserva.css";
+import {useHistory} from "react-router-dom";
 import Modal from "../modal/modal";
+import Ok from "../assets/incorrecto.png";
 
 export default function Reserva() {
 	let button = document.querySelector(".btnReserva");
+
+	let history = useHistory();
 
 	let [name, setName] = useState("");
 	let [tel, setTel] = useState("");
@@ -14,7 +18,29 @@ export default function Reserva() {
 	let [servicio, setServicio] = useState("");
 	let [comentario, setComentario] = useState("");
 	let [checkbox, setCheckbox] = useState("");
+	let [modall, setModall] = useState(false);
+	let [txt, setTxt] = useState("");
 
+	useEffect(()=>{
+		let session = false;
+		let valSession = localStorage.getItem("session");
+	    if (valSession) {
+	      session = JSON.parse(valSession);
+	      if (session){
+	        if (session.estado === true){
+	        } else {
+	        	setModall(true);
+	        	setTimeout(()=>{
+	        		setTxt("Redirigiendo..");
+	        	}, 3000);
+	        	setTimeout(()=>{
+	        		setModall(false);
+	        		history.push("/login");
+	        	}, 5500)
+	        }
+	      }
+	   }
+	})
 
 	//VALIDANDO NOMBRE
 	function validarNombre(validar){
@@ -404,7 +430,10 @@ export default function Reserva() {
 							</div>
 						</Modal>
 			}
-
+			 <div style={{display:modall ? "flex" : "none", minWidth:"25%", backgroundColor:"#3E0202", zIndex:"500", left:"1%"}} className="modalAdminFooter">
+        <span>Tienes que loguearte para reservar {txt}</span>
+        <img src={Ok} />
+      </div>
 			<h2 className="title-reservas">Reservas</h2>
 			<form className="formReserva">
 				<p>Los campos marcados con un <span>*</span> son obligatorios</p>
