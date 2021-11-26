@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import BorrarImg from "../assets/car-ico-basura.svg";
 
 export default function Admin_solicitudes (){
 
@@ -25,15 +26,18 @@ export default function Admin_solicitudes (){
 
 	return (
 		<div className="AdminSolicitudes">
-			<h1>Solicitudes</h1>
+			<h1 className="title-Adserv">Solicitudes</h1>
 		    <div className="AdminContSoli">
 				{data.map((solicitud)=>{
 					return(
 						<div className="AdminSolicitud">
-							<p>Nombre: {solicitud.nombre}</p>
-							<p>Asunto: {solicitud.asunto}</p>
-							<p>Telefono: {solicitud.telefono}</p>
-							<p>Mensaje: {solicitud.mensaje}</p>
+							<div className="AdminSoliContNombre">
+							 	<p>Nombre: <b>{solicitud.nombre}</b></p>
+							 	<img src={BorrarImg}/>
+							 </div>
+							<p>Asunto: <b>{solicitud.asunto}</b></p>
+							<p>Telefono: <b>{solicitud.telefono}</b></p>
+							<p>Mensaje: <b>{solicitud.mensaje}</b></p>
 						</div>
 					)
 				})}
