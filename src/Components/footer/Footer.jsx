@@ -1,10 +1,10 @@
-﻿import React, { Component } from "react";
+﻿import React, {useEffect, useState } from "react";
 import logofooter from "../assets/logo.png";
 import "../styles/Footer.css"
 import MapaSitio from "./MapaSitio";
 import json from "../json/datos.json";
-class Footer extends Component {
-  render() {
+
+export default function Footer () {
 
     function mostrarMapaSitio() {
       let mapaSitio = document.querySelector('#mapasitio');
@@ -37,14 +37,21 @@ class Footer extends Component {
       mapa.style.display = '';
     }
 
-    let footerInfo = json.footer[0];
-    if (!localStorage.getItem("footerInfo")) {
-      localStorage.setItem("footerInfo", JSON.stringify(footerInfo));
-    } else {
-      footerInfo = JSON.parse(localStorage.getItem("footerInfo"));
-    }
+    let [footerInfo, setFooterInfo] = useState([]);
 
-    /*let footer = prompt("Ingresa el nombre del restaurante");*/
+    useEffect(()=>{
+      fetch("https://avilap.herokuapp.com/api/footer",{
+        method:"GET"
+      })
+      .then((response)=>response.json())
+      .then((data)=>{
+        setFooterInfo(data[0]);
+      })
+      .catch((err)=>{
+
+      })
+    },[])
+
   return (
       <footer>
         <div className="img-foot">
@@ -66,7 +73,7 @@ class Footer extends Component {
             <div className="contactos-footer">
               <li>{footerInfo.restaurante}</li>
               <li>{footerInfo.direccion}</li>
-              <li>{footerInfo.correo}</li>
+              <li>{footerInfo.email}</li>
               <li>{footerInfo.telefono}</li>
             </div>
             <div className="copy">
@@ -91,6 +98,3 @@ class Footer extends Component {
       </footer>
     );
   }
-}
-
-export default Footer;

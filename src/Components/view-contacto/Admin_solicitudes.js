@@ -1,9 +1,11 @@
 import {useEffect, useState} from "react";
 import BorrarImg from "../assets/car-ico-basura.svg";
+import Loading1 from "../modal/loading1";
 
 export default function Admin_solicitudes (){
 
 	let [data, setData] = useState([]);
+	let [load1, setLoad1] = useState(true);
 
 	useEffect(()=>{
 		fetch("https://avilap.herokuapp.com/api/solicitudes",{
@@ -14,19 +16,24 @@ export default function Admin_solicitudes (){
 				response.json()
 				.then((res)=>{
 					setData(res);
+					setLoad1(false);
 				});
 			}
 		})
 		.catch((err)=>{
 			console.log(err);
+			setLoad1(false);
 		});
 	}, [])
 
 	console.log(data);
 
 	return (
-		<div className="AdminSolicitudes">
+		<div className="AdminSolicitudes">			
 			<h1 className="title-Adserv">Solicitudes</h1>
+			{ load1 &&
+				<Loading1 isVisible={true}/>
+			}
 		    <div className="AdminContSoli">
 				{data.map((solicitud)=>{
 					return(

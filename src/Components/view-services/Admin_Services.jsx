@@ -20,7 +20,7 @@ function Admin_Services() {
   let [imgServicio1, setImgServicio1] = useState("")
   let [obj, setObj] = useState(0);
   let [load, setLoad] = useState(false);
-  let [load1, setLoad1] = useState(false);
+  let [load1, setLoad1] = useState(true);
 
   //Obtener Servicios
   let [infoservices, setInfoservices] = useState([]);
@@ -38,7 +38,6 @@ function Admin_Services() {
 
   useEffect(()=>{
     document.title = 'Gestión sevicios';
-    // setLoad1(true);
     fetchData();
   }, [obj]);
 
