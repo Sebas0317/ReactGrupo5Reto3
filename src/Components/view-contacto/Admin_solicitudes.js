@@ -1,11 +1,13 @@
 import {useEffect, useState} from "react";
 import BorrarImg from "../assets/car-ico-basura.svg";
 import Loading1 from "../modal/loading1";
+import Msg from "../modal/mensaje";
 
 export default function Admin_solicitudes (){
 
 	let [data, setData] = useState([]);
 	let [load1, setLoad1] = useState(true);
+	let [modalMsg, setModalMsg] = useState(false);
 
 	useEffect(()=>{
 		fetch("https://avilap.herokuapp.com/api/solicitudes",{
@@ -34,6 +36,11 @@ export default function Admin_solicitudes (){
 			{ load1 &&
 				<Loading1 isVisible={true}/>
 			}
+			{ modalMsg &&
+				<Msg isVisible={true} tipo={true}>
+					<span>Eliminado correctamente</span>
+				</Msg>
+			}	
 		    <div className="AdminContSoli">
 				{data.map((solicitud)=>{
 					return(
