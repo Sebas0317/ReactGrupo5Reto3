@@ -10,6 +10,7 @@ import Admin_Footer from "../footer/admin-footer";
 import Loading from "../modal/loading";
 import Loading1 from "../modal/loading1";
 import Admin_Reservas from "../view-reserva/Admin_Reservas";
+import Admin_solicitudes from "../view-contacto/Admin_solicitudes";
 
 //Imagenes
 import verPass from "../assets/verPass.svg";
@@ -28,6 +29,7 @@ export default function Admin (){
 	let [reservas, setReservas] = useState(false);
 	let [footer, setFooter] = useState(false);
 	let [comentarios, setComentarios] = useState(false);
+	let [solicitudes, setSolicitudes] = useState(false);
 	let [usuarios, setUsuarios] = useState(true);
 	let [redi, setRedi] = useState("");
 	let [load, setLoad] = useState(false);
@@ -135,6 +137,7 @@ export default function Admin (){
 				let btnFooter = document.querySelector("#btnFooter");
 				let btnInfo = document.querySelector("#btnInfo");
 				let btnNosotros = document.querySelector("#nosotrosAdminOpcion");
+				let btnSolicitudes = document.querySelector("#btnSolicitudes");
 
 				btnServicios.addEventListener("click", ()=>{
 					setMenu(false);
@@ -144,6 +147,7 @@ export default function Admin (){
 					setFooter(false);
 					setServicios(true);
 					setComentarios(false);
+					setSolicitudes(false);
 					btnUsuarios.classList.remove("seleccion");
 					btnFooter.classList.remove("seleccion");
 					btnServicios.classList.add("seleccion");
@@ -152,12 +156,14 @@ export default function Admin (){
 					btnComentarios.classList.remove("seleccion");
 					btnInfo.classList.remove("seleccion");
 					btnNosotros.classList.remove("seleccion");
+					btnSolicitudes.classList.remove("seleccion");
 				});
 				btnUsuarios.addEventListener("click", ()=>{
 					setMenu(false);
 					setReservas(false);
 					setNosotros(false);
 					setUsuarios(true);
+					setSolicitudes(false);
 					setFooter(false);
 					setServicios(false);
 					setComentarios(false);
@@ -169,6 +175,7 @@ export default function Admin (){
 					btnReservas.classList.remove("seleccion");
 					btnInfo.classList.remove("seleccion");
 					btnNosotros.classList.remove("seleccion");
+					btnSolicitudes.classList.remove("seleccion");
 
 				});
 				btnMenu.addEventListener("click", ()=>{
@@ -178,6 +185,7 @@ export default function Admin (){
 					setFooter(false);
 					setServicios(false);
 					setNosotros(false);
+					setSolicitudes(false);
 					setComentarios(false);
 					btnMenu.classList.add("seleccion");
 					btnComentarios.classList.remove("seleccion");
@@ -186,6 +194,7 @@ export default function Admin (){
 					btnUsuarios.classList.remove("seleccion");
 					btnReservas.classList.remove("seleccion");
 					btnInfo.classList.remove("seleccion");
+					btnSolicitudes.classList.remove("seleccion");
 					btnNosotros.classList.remove("seleccion");
 				});
 				btnReservas.addEventListener("click", ()=>{
@@ -194,6 +203,7 @@ export default function Admin (){
 					setUsuarios(false);
 					setServicios(false);
 					setFooter(false);
+					setSolicitudes(false);
 					setComentarios(false);
 					setNosotros(false);
 					btnMenu.classList.remove("seleccion");
@@ -201,6 +211,7 @@ export default function Admin (){
 					btnComentarios.classList.remove("seleccion");
 					btnFooter.classList.remove("seleccion");
 					btnUsuarios.classList.remove("seleccion");
+					btnSolicitudes.classList.remove("seleccion");
 					btnReservas.classList.add("seleccion");
 					btnInfo.classList.remove("seleccion");
 					btnNosotros.classList.remove("seleccion");
@@ -209,6 +220,7 @@ export default function Admin (){
 					setMenu(false);
 					setReservas(false);
 					setUsuarios(false);
+					setSolicitudes(false);
 					setServicios(false);
 					setFooter(false);
 					setComentarios(true);
@@ -217,6 +229,7 @@ export default function Admin (){
 					btnServicios.classList.remove("seleccion");
 					btnFooter.classList.remove("seleccion");
 					btnComentarios.classList.add("seleccion");
+					btnSolicitudes.classList.remove("seleccion");
 					btnUsuarios.classList.remove("seleccion");
 					btnReservas.classList.remove("seleccion");
 					btnInfo.classList.remove("seleccion");
@@ -228,12 +241,14 @@ export default function Admin (){
 					setUsuarios(false);
 					setServicios(false);
 					setFooter(true);
+					setSolicitudes(false);
 					setComentarios(false);
 					setNosotros(false);
 					btnMenu.classList.remove("seleccion");
 					btnServicios.classList.remove("seleccion");
 					btnFooter.classList.add("seleccion");
 					btnComentarios.classList.remove("seleccion");
+					btnSolicitudes.classList.remove("seleccion");
 					btnUsuarios.classList.remove("seleccion");
 					btnReservas.classList.remove("seleccion");
 					btnInfo.classList.add("seleccion");
@@ -245,9 +260,11 @@ export default function Admin (){
 					setUsuarios(false);
 					setServicios(false);
 					setFooter(false);
+					setSolicitudes(false);
 					setComentarios(false);
 					setNosotros(true);
 					btnMenu.classList.remove("seleccion");
+					btnSolicitudes.classList.remove("seleccion");
 					btnServicios.classList.remove("seleccion");
 					btnFooter.classList.remove("seleccion");
 					btnComentarios.classList.remove("seleccion");
@@ -255,6 +272,25 @@ export default function Admin (){
 					btnReservas.classList.remove("seleccion");
 					btnInfo.classList.add("seleccion");
 					btnNosotros.classList.add("seleccion");
+				});
+				btnSolicitudes.addEventListener("click", ()=>{
+					setMenu(false);
+					setReservas(false);
+					setUsuarios(false);
+					setServicios(false);
+					setFooter(false);
+					setSolicitudes(true);
+					setComentarios(false);
+					setNosotros(false);
+					btnMenu.classList.remove("seleccion");
+					btnSolicitudes.classList.add("seleccion");
+					btnServicios.classList.remove("seleccion");
+					btnFooter.classList.remove("seleccion");
+					btnComentarios.classList.remove("seleccion");
+					btnUsuarios.classList.remove("seleccion");
+					btnReservas.classList.remove("seleccion");
+					btnInfo.classList.remove("seleccion");
+					btnNosotros.classList.remove("seleccion");
 				});
 			}else {
 				redirigir();
@@ -266,6 +302,7 @@ export default function Admin (){
 
 	let notiSolicitudes = 0;
 	let [notiComentarios, setNotiComentarios] = useState(0);
+	let [solicitudesInfo, setSolicitudesInfo] = useState(0);
 
 	useEffect(()=>{
 		setLoad1(true);
@@ -295,6 +332,21 @@ export default function Admin (){
 				response.json()
 				.then((res)=>{
 					setNotiComentarios(res.length);
+				});
+			}
+		})
+		.catch((err)=>{
+			console.log(err);
+		});
+
+		fetch("https://avilap.herokuapp.com/api/solicitudes",{
+			method:"GET"
+		})
+		.then((response)=>{
+			if (response.ok) {
+				response.json()
+				.then((res)=>{
+					setSolicitudesInfo(res.length);
 				});
 			}
 		})
@@ -435,8 +487,11 @@ if (session) {
 							   <span id="notificacionDiv"><b>{notiComentarios}</b></span>
 							}
 						</div>
-						<div id="btnComentarios" className="opcionAdmin">
-							<i className="fas fa-comment-dots me-2"></i> <span>Solicitudes</span> 
+						<div id="btnSolicitudes" className="opcionAdmin">
+							<i class="fas fa-envelope me-2"></i> <span>Solicitudes</span> 
+							{ solicitudesInfo > 0 &&
+							   <span id="notificacionDiv"><b>{solicitudesInfo}</b></span>
+							}
 						</div>
 					</div>
 					<div style={{ display:"flex", width:"100%"}}>
@@ -475,8 +530,13 @@ if (session) {
 							</div>
 
 						}
+						{ solicitudes &&
+							<div className="parteAdmin">
+								<Admin_solicitudes/>
+							</div>
+						}
 						{ usuarios &&
-							<div className="parteAdmin"style={{paddingTop:"9%", alignItems:'center'}}>
+							<div className="parteAdmin"style={{paddingTop:"9%"}}>
 							{ modal &&	
 								<Modal isVisible={modal} setVisible={()=>setModal(false)}>
 									<form className="modalUserAdmin" id="modalUserAdmin">
