@@ -476,7 +476,7 @@ if (session) {
 
 						}
 						{ usuarios &&
-							<div className="parteAdmin"style={{paddingTop:"9%"}}>
+							<div className="parteAdmin"style={{paddingTop:"9%", alignItems:'center'}}>
 							{ modal &&	
 								<Modal isVisible={modal} setVisible={()=>setModal(false)}>
 									<form className="modalUserAdmin" id="modalUserAdmin">

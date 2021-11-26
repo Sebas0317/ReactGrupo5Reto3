@@ -1,9 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router";
-import Modal from "../modal/modal.js";
-import json from "../json/datos.json";
-import ico_basura from "../assets/car-ico-basura.svg";
-import ico_edit from "../assets/ad-ser-edit.svg";
 import "../styles/footerAdmin.css"
 import Ok from "../assets/ok.png";
 
@@ -67,7 +62,7 @@ export default function Admin_Footer() {
         <div className="col-sm-12 top-serv ps-5 pe-1">
           <p className="title-InfoFoo">Gestión de Footer</p>
         </div>
-        <div className="d-block align-items-center justify-content-between">
+        <div className="d-block align-items-center justify-content-between px-5">
           <div className="d-flex justify-content-end flex-column infoFoo">
             <input className="inputAdminFooter" value={restaurante} onChange={(e)=>setRestaurante(e.target.value)}/>
             <input className="inputAdminFooter" value={direccion} onChange={(e)=>setDireccion(e.target.value)}/>

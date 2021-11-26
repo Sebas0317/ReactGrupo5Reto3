@@ -32,13 +32,13 @@ function Admin_Services() {
         setInfoservices(data);
       })
       .catch((err)=>{
-
+        setLoad1(false);
       });
   }
 
   useEffect(()=>{
     document.title = 'Gestión sevicios';
-    setLoad1(true);
+    // setLoad1(true);
     fetchData();
   }, [obj]);
 

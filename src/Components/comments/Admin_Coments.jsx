@@ -1,60 +1,48 @@
 import React, { useEffect, useState, } from "react";
 import { useHistory } from "react-router";
-import json from "../json/datos.json";
-import cliente1 from "../assets/cliente1.png";
-import cliente2 from "../assets/cliente2.png";
-import cliente3 from "../assets/cliente3.png";
 import Modal from "../modal/modal.js";
 import ico_basura from "../assets/car-ico-basura.svg";
-import ico_edit from "../assets/ad-ser-edit.svg";
 
 //agregar funcion de Admin_Coments con el modal
 
 function Admin_Coments() {
+
   const [modal, setModal] = useState(false);
-  const [modal1, setModal1] = useState(false);
-  const [modal2, setModal2] = useState(false);
+  const [idComentario, setIdComentario] = useState(0)
+  const [name, setName] = useState("");
   let [obj, setObj] = useState(0);
 
-  let name = false;
-  let description = false;
-
-  const [comentario, setComentario] = useState("");
-
-  let infocomentaries = false;
-
-  useEffect(()=>document.title = 'Gestión de comentarios');
-
-  //localStorage
-  if (!localStorage.getItem("comentarios")) {
-    localStorage.setItem("comentarios", JSON.stringify(json.comentarios));
-    infocomentaries = json.comentarios;
-  } else {
-    infocomentaries = JSON.parse(localStorage.getItem("comentarios"));
+  //Obtener comentarios
+  let [listComentarios, setListComentarios] = useState([]);
+  function fetchData() {
+    fetch("https://avilap.herokuapp.com/api/comentarios")
+      .then((response) => response.json())
+      .then((data) => {
+        setListComentarios(data);
+      })
+      .catch((err)=>{
+        console.log('Bien')
+      })
   }
 
-  function eliminarComentarios(props) {
-    infocomentaries.splice(props, 1);
-    localStorage.setItem("comentarios", JSON.stringify(infocomentaries));
-    
-    setModal2(false);
-  }
+  useEffect(()=>{
+    document.title = 'Gestión de comentarios';
+    fetchData();
+  });
 
-  function actualizarComentario() {
-    infocomentaries[comentario].usuario = name;
-    infocomentaries[comentario].comentarioText = description;
-    localStorage.setItem("comentarios", JSON.stringify(infocomentaries));
-    setModal(false);
-  }
 
-  function addComentario() {
-    infocomentaries.push({usuario: name, comentarioText:description });
-    localStorage.setItem("comentarios", JSON.stringify(infocomentaries));
-    setModal1(false);
+  //Eliminar comentario
+  function eliminarComentario(id) {
+    fetch("https://avilap.herokuapp.com/api/comentarios/" + id, {
+      method: "DELETE",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setModal(false);
+      });
   }
 
   let history = useHistory();
-
   let session = JSON.parse(localStorage.getItem("session"));
   if (session.user.rol != "admin" || session.estado === false) {
     history.push("/");
@@ -65,81 +53,14 @@ function Admin_Coments() {
       {modal && (
         <Modal isVisible={true} setVisible={() => setModal(false)}>
           <div className="styleModal">
-            <div className="modalcomentaries">
-              <input
-                type="text"
-                className="form-control"
-                placeholder={comentario && infocomentaries[comentario].usuario}
-                onChange={(e) => {
-                  name = e.target.value;
-                }}
-              />
-              <textarea
-                placeholder={comentario && infocomentaries[comentario].comentarioText}
-                onChange={(e) => {
-                  description = e.target.value;
-                }}
-                id=""
-                cols="30"
-                rows="5"
-                className="form-control mt-3"
-              ></textarea>
-              <div className="btns">
-                <button className="closeModal">Cancelar</button>
-                <button
-                  className="btnOk-ser"
-                  onClick={() => actualizarComentario()}
-                >
-                  Actualizar comentario
-                </button>
-              </div>
-            </div>
-          </div>
-        </Modal>
-      )}
-      {modal1 && (
-        <Modal isVisible={true} setVisible={() => setModal1(false)}>
-          <div className="styleModal">
-            <div className="modalcomentaries">
-              <input
-                type="text"
-                className="form-control"
-                onChange={(e) => {
-                  name = e.target.value;
-                }}
-                placeholder="Quién comenta"
-              />
-              <textarea
-                onChange={(e) => {
-                  description = e.target.value;
-                }}
-                id=""
-                cols="30"
-                rows="5"
-                className="form-control mt-3"
-                placeholder="Escribe tu comentario"
-              ></textarea>
-              <div className="btns">
-                <button className="closeModal">Cancelar</button>
-                <button className="btnOk-ser" onClick={() => addComentario()}>
-                  Agregar servicio
-                </button>
-              </div>
-            </div>
-          </div>
-        </Modal>
-      )}
-      {modal2 && (
-        <Modal isVisible={true} setVisible={() => setModal2(false)}>
-          <div className="styleModal">
             <h3 className="text-center">Eliminar comentario</h3>
             <h5 className="mt-2 text-center">
-            ¿Desea eliminar el comentario {infocomentaries[comentario].comentarioText}?
+            ¿Desea eliminar el comentario de {name}?
             </h5>
             <div className="btns">
               <button className="closeModal">CANCELAR</button>
               <button
-                onClick={() => eliminarComentarios(comentario)}
+                onClick={() => eliminarComentario(idComentario)}
                 className="btnOk"
               >
                 Ok
@@ -149,14 +70,14 @@ function Admin_Coments() {
         </Modal>
       )}
 
-      <div className="container-fluit pt-5 mb-5">
+      <div className="container-fluid pt-5 mb-5">
         <div className="row mt-5 mx-0 p-0">
           <div className="col-sm-12 top-serv ps-5 pe-1">
             <p className="title-Adserv">Gestión de comentarios</p>
           </div>
         </div>
         <div className="row services g-3 m-0 px-5">
-          {infocomentaries.map((comentarios, index) => {
+          {listComentarios.map((comentarios) => {
             return (
               <div className="col-sm-6 d-flex mb-2 item-Ad">
                 <div className="context-Ad p-3" style={{backgroundColor:'#e6e0e2'}}>
@@ -164,46 +85,32 @@ function Admin_Coments() {
                     <h2 className="titleItem">{comentarios.usuario}</h2>
                     <div className="d-flex justify-content-end">
                       <img
-                        src={ico_edit}
-                        type="button"
-                        id="editarBtn"
-                        alt="img_edit"
-                        width="25"
-                        height="25"
-                        className="mx-2"
-                        onClick={() => {
-                          setComentario(index);
-                          setModal(true);
-                        }}
-                      />
-                      <img
                         src={ico_basura}
                         type="button"
                         id="eliminarBtn"
                         alt="img_trash"
                         width="25"
                         height="25"
-                        onClick={()=>{setComentario(index);setModal2(true)}}
+                        onClick={()=>{
+                          setName(comentarios.usuario);
+                          setIdComentario(comentarios.id);
+                          setModal(true)
+                        }}
                       />
                     </div>
                   </div>
-                  <p>{comentarios.comentarioText}</p>
+                  <p>{comentarios.comentario}</p>
+                  <p>{comentarios.fecha}</p>
                 </div>
-                
               </div>
             );
           })}
-          {infocomentaries.length == 0 && (
-            <p style={{ fontSize: "30px", fontFamily: "Branding" }}>
-              Sin Comentarios, ¿por qué no agregas uno?
+          {listComentarios.length == 0 && (
+            <p style={{ fontSize: "30px", fontFamily: "Branding"}}>
+              Sin comentarios
             </p>
           )}
         </div>
-        {/* <div className="row gestion-ser p-5">
-          <a type="button" onClick={() => setModal1(true)} className="btn">
-            Agregar comentario
-          </a>
-        </div> */}
       </div>
     </main>
   );

@@ -136,7 +136,7 @@ function Admin_Menu(){
   }
   
   return (
-    <div className="contenedorPlatos">
+    <div className="contenedorPlatos w-100">
       {modal &&
         <Modal isVisible={true} setVisible={() => setModal(false)}>
           <div className="styleModal">

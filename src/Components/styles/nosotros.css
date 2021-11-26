@@ -39,7 +39,7 @@
     font-family: Branding;
   }
   
-  .personal-nos img {
+  .personal-nos .rounded-circle {
     margin-bottom: 1rem;
     padding: 4px;
     width: 140px;
