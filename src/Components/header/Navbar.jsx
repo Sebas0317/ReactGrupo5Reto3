@@ -98,7 +98,6 @@ function Navbar () {
               </div>
               <div id="btnAdmin" style={{display:(session && session.user.rol == "admin") ? "flex" : "none"}} className="opcionesNavMenu">Administracion</div>
               <div id="btnHistory" className="opcionesNavMenu">Historial pedidos/reservas</div>
-              <div className="opcionesNavMenu">Reservas</div>
               <div id="cerrarSesion" className="opcionesNavMenu">Cerrar sesion</div>
             </div>
           </div>
