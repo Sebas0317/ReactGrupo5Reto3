@@ -150,7 +150,7 @@ export default function Admin_Reservas(){
             reservas.map((reserva)=>{
               return (
                 <div className="col-sm-4">
-                  <div className="card-reservations mb-3" style={{maxWidth:'18rem'}}>
+                  <div className="card-reservations mb-3" style={{minWidth:'18rem'}}>
                     <div className="card-header">
                       <h6 className="m-0">{reserva.nombre}</h6>
                       <div className="d-flex">

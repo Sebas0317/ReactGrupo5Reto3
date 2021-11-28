@@ -6,12 +6,16 @@ import Ok from "../assets/incorrecto.png";
 
 export default function Reserva() {
 	let button = document.querySelector(".btnReserva");
+	let user = []
+	let valSession = localStorage.getItem("session");
+	if (valSession)
+		user = JSON.parse(valSession);
 
 	let history = useHistory();
 
-	let [name, setName] = useState("");
+	let [name, setName] = useState(valSession && user.estado ? user.user.name : "");
 	let [tel, setTel] = useState("");
-	let [email, setEmail] = useState("");
+	let [email, setEmail] = useState(valSession && user.estado ? user.user.email : "");
 	let [personas, setPersonas] = useState("");
 	let [fecha, setFecha] = useState("");
 	let [hora, setHora] = useState("");
@@ -20,6 +24,8 @@ export default function Reserva() {
 	let [checkbox, setCheckbox] = useState("");
 	let [modall, setModall] = useState(false);
 	let [txt, setTxt] = useState("");
+
+	
 
 	useEffect(()=>{
 		let session = false;
@@ -326,16 +332,15 @@ export default function Reserva() {
 		validarServicio();
 		validarComentario();
 		validarCheckbox();
-		document.title="Resevas";
+		document.title="Reservas";
 	});
 
 	let [modal, setModal] = useState(false);
 	function validar (e){
 		e.preventDefault();
-		if (validarNombre(true) && validarTel(true) && validarEmail(true) && validarPersonas(true) && validarFecha(true) && validarHora(true) && validarServicio(true) && validarComentario(true) && validarCheckbox(true)) {
+		if (validarNombre(true) && validarEmail(true) && validarTel(true) && validarPersonas(true) && validarFecha(true) && validarHora(true) && validarServicio(true) && validarComentario(true) && validarCheckbox(true)) {
 			setModal(true);
 		}
-		
 	}
 
 	//ENVIAR RESERVA
@@ -439,7 +444,7 @@ export default function Reserva() {
 				<p>Los campos marcados con un <span>*</span> son obligatorios</p>
 				<div className="nameCont">
 					<p className="nameVal"></p>
-					<input onChange={(e) => setName(e.target.value)} className="name" placeholder="Nombre completo*"/>
+					<input className="name" value={valSession && user.estado ? user.user.name : "Nombre"} disabled/>
 				</div>
 				<div className="espacio"/>
 				<div className="telCont">
@@ -449,7 +454,7 @@ export default function Reserva() {
 				<div className="espacio"/>
 				<div className="emailCont">
 					<p className="emailVal"></p>
-					<input className="email" onChange={(e)=>setEmail(e.target.value)} placeholder="Correo electronico*"/>
+					<input className="email" value={valSession && user.estado ? user.user.email : "Email"} disabled/>
 				</div>
 				<div className="espacio"/>
 				<div className="personasCont">

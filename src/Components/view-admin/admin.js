@@ -11,6 +11,7 @@ import Loading from "../modal/loading";
 import Loading1 from "../modal/loading1";
 import Admin_Reservas from "../view-reserva/Admin_Reservas";
 import Admin_solicitudes from "../view-contacto/Admin_solicitudes";
+import Admin_Nosotros from "../view-nosotros/Admin_Nosotros";
 
 //Imagenes
 import verPass from "../assets/verPass.svg";
@@ -508,7 +509,7 @@ if (session) {
 						}
 						{ nosotros &&
 							<div className="parteAdmin">
-								<p>Nosotros</p>
+								<Admin_Nosotros />
 							</div>
 
 						}

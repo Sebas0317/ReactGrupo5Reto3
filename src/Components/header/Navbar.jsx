@@ -65,7 +65,7 @@ function Navbar () {
 
      if(menu == true){
         document.querySelector("#btnHistory").addEventListener("click", ()=>{
-          history.push("/history");
+          history.push("/reservaciones");
           setMenu(false);
         });
 
@@ -96,9 +96,9 @@ function Navbar () {
                   <p  style={{margin:"0px", fontSize:"15px", color:"#929292"}}>{session && session.user.email}</p>
                 </div>
               </div>
-              <div id="btnAdmin" style={{display:(session && session.user.rol == "admin") ? "flex" : "none"}} className="opcionesNavMenu">Administracion</div>
-              <div id="btnHistory" className="opcionesNavMenu">Historial pedidos/reservas</div>
-              <div id="cerrarSesion" className="opcionesNavMenu">Cerrar sesion</div>
+              <div id="btnAdmin" style={{display:(session && session.user.rol == "admin") ? "flex" : "none"}} className="opcionesNavMenu">Administración</div>
+              <div id="btnHistory" className="opcionesNavMenu">Historial de reservas</div>
+              <div id="cerrarSesion" className="opcionesNavMenu">Cerrar sesión</div>
             </div>
           </div>
         }

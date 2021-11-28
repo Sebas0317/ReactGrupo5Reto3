@@ -53,7 +53,7 @@
 	align-items: center;
 	min-height: 720px;
 	background-image: url(../assets/foto2.png);
-	background-size: contain;
+	background-size: cover;
 	background-repeat: no-repeat;
 }
 

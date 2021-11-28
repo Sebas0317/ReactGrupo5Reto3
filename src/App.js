@@ -18,6 +18,7 @@ import Register from "./Components/view-register/register";
 import Admin from "./Components/view-admin/admin";
 import History from "./Components/view-history/history";
 import Admin_Reservas from "./Components/view-reserva/Admin_Reservas";
+import Reservas_cliente from "./Components/view-reserva/Reservas_cliente";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
         <Route exact path="/admin" component={Admin}/>
         <Route exact path="/history" component={History}/>
         <Route exact path="/gestionreservas" component={Admin_Reservas}/>
+        <Route exact path="/reservaciones" component={Reservas_cliente}/>
         <Route exact component={Pagina404}/>
       </Switch>
       </Layout>
