@@ -19,11 +19,12 @@
 
 .AdminSoliContNombre{
     display: flex;
+    color: white;
+    font-size: 1.6rem;
     align-items: center;
+    font-family: "Branding";
+    background-color: #310101;
     justify-content: space-between;
-}
-.AdminSoliContNombre img{
-    cursor: pointer;
 }
 .AdminSoliContNombre p{
     margin: 0px;
@@ -42,7 +43,6 @@
     margin-right: auto;
 }
 .AdminSolicitud{
-    padding: 10px;
     background-color: rgb(230, 224, 226);
     color: #000;
     border-radius: 5px;

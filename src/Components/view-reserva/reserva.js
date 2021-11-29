@@ -45,7 +45,16 @@ export default function Reserva() {
 	        	}, 5500)
 	        }
 	      }
-	   }
+	   } else {
+			setModall(true);
+			setTimeout(()=>{
+				setTxt("Redirigiendo..");
+			}, 3000);
+			setTimeout(()=>{
+				setModall(false);
+				history.push("/login");
+			}, 5500)
+		}
 	})
 
 	//VALIDANDO NOMBRE
@@ -436,7 +445,7 @@ export default function Reserva() {
 						</Modal>
 			}
 			 <div style={{display:modall ? "flex" : "none", minWidth:"25%", backgroundColor:"#3E0202", zIndex:"500", left:"1%"}} className="modalAdminFooter">
-        <span>Tienes que loguearte para reservar {txt}</span>
+        <span>Debe iniciar sesión para reservar {txt}</span>
         <img src={Ok} />
       </div>
 			<h2 className="title-reservas">Reservas</h2>
