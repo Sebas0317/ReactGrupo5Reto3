@@ -16,7 +16,7 @@ import Nosotros from "./Components/view-nosotros/Nosotros"
 import Login from "./Components/view-login/login";
 import Register from "./Components/view-register/register";
 import Admin from "./Components/view-admin/admin";
-import History from "./Components/view-history/history";
+import Admin_Empleados from "./Components/view-nosotros/Admin_Empleados";
 import Admin_Reservas from "./Components/view-reserva/Admin_Reservas";
 import Reservas_cliente from "./Components/view-reserva/Reservas_cliente";
 
@@ -25,22 +25,22 @@ function App() {
     <BrowserRouter>
       <Layout>
       <Switch>
-        <Route exact path="/" component={Inicio}/>
-        <Route exact path="/menu" component={Menu} />
-        <Route exact path="/carrito" component={Carrito_Container} />
-        <Route exact path="/servicios" component={Services_Container}/>
-        <Route exact path="/gestionservicios" component={Admin_Services}/>
-        <Route exact path="/gestioncomentarios" component={Admin_Coments}/>
-        <Route exact path="/gestionmenu" component={Admin_Menu}/>
-        <Route exact path="/reserva" component={Reserva}/>
-        <Route exact path="/contacto" component={Contacto}/>
-        <Route exact path="/nosotros" component={Nosotros}/>
         <Route exact path="/login" component={Login}/>
         <Route exact path="/register" component={Register}/>
-        <Route exact path="/admin" component={Admin}/>
-        <Route exact path="/history" component={History}/>
+        <Route exact path="/" component={Inicio}/>
+        <Route exact path="/nosotros" component={Nosotros}/>
+        <Route exact path="/gestionempleados" component={Admin_Empleados}/>
+        <Route exact path="/menu" component={Menu} />
+        <Route exact path="/gestionmenu" component={Admin_Menu}/>
+        <Route exact path="/servicios" component={Services_Container}/>
+        <Route exact path="/gestionservicios" component={Admin_Services}/>
+        <Route exact path="/contacto" component={Contacto}/>
+        <Route exact path="/reserva" component={Reserva}/>
         <Route exact path="/gestionreservas" component={Admin_Reservas}/>
         <Route exact path="/reservaciones" component={Reservas_cliente}/>
+        <Route exact path="/carrito" component={Carrito_Container} />
+        <Route exact path="/gestioncomentarios" component={Admin_Coments}/>
+        <Route exact path="/admin" component={Admin}/>
         <Route exact component={Pagina404}/>
       </Switch>
       </Layout>

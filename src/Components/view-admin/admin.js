@@ -11,16 +11,13 @@ import Loading from "../modal/loading";
 import Loading1 from "../modal/loading1";
 import Admin_Reservas from "../view-reserva/Admin_Reservas";
 import Admin_solicitudes from "../view-contacto/Admin_solicitudes";
-import Admin_Nosotros from "../view-nosotros/Admin_Nosotros";
+import Admin_Empleados from "../view-nosotros/Admin_Empleados";
 
 //Imagenes
-import verPass from "../assets/verPass.svg";
-import verPass1 from "../assets/verPassNone.svg";
 import deleteImg from "../assets/car-ico-basura.svg";
 import editImg from "../assets/ad-ser-edit.svg";
 import addUsuario from "../assets/addUser.svg";
 import Search from "../assets/userSearch.svg";
-import Arrow1 from "../assets/arrow1.svg";
 
 export default function Admin (){
 	const history = useHistory();
@@ -472,7 +469,7 @@ if (session) {
 											<span>Footer</span>		
 										</div>
 										<div id="nosotrosAdminOpcion" className="opcionAdminInfo">
-											<span>Sobre nosotros</span>		
+											<span>Gestión de empleados</span>		
 										</div>
 									</div>
 						</div>
@@ -509,7 +506,7 @@ if (session) {
 						}
 						{ nosotros &&
 							<div className="parteAdmin">
-								<Admin_Nosotros />
+								<Admin_Empleados/>
 							</div>
 
 						}

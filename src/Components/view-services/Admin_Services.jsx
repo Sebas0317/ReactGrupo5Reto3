@@ -225,19 +225,19 @@ function Admin_Services() {
           </div>
         </Modal>
       }
-      <div className="container-fluit pt-5 mb-5">
+      <div className="container-fluid pt-5 mb-5 px-0">
         <div className="row mt-5 mx-0 p-0">
           <div className="col-sm-12 top-serv ps-5 pe-1">
             <p className="title-Adserv">Gestión de servicios</p>
           </div>
         </div>
         <div className="row services g-3 m-0 px-5">
-        { load1 &&
-          <Loading1 isVisible={true}/>
-        }
-        { load &&
-          <Loading isVisible={true}/>
-        }
+          { load1 &&
+            <Loading1 isVisible={true}/>
+          }
+          { load &&
+            <Loading isVisible={true}/>
+          }
           {infoservices.map((servicio) => {
             return (
               <div className="col-sm-6">

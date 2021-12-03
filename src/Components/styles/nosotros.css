@@ -4,45 +4,45 @@
   margin-top: 4.5rem;
 }
 .photo-nos {
-    min-width: 540px;
-    min-height: 500px;
-    background: url('../assets/nosotros.png');
-    background-size: cover;
-  }
-  
-  .top-nos {
-    display: flex;
-    align-items: flex-start;
-  }
-  
-  .history-nos .title2-nos {
-    color: #e3901b;
-    font-size: 2rem;
-  }
-  
-  .title-nos {
-    font-family: Branding;
-    font-size: 7rem;
-  }
-  
-  .history-nos .text-nos {
-    text-align: justify;
-  }
-  
-  .personal-nos {
-    padding-bottom: 3rem;
-    text-align: center;
-    background-color: #D5CACE;
-  }
-  
-  .personal-nos .col-sm-4 {
-    font-family: Branding;
-  }
-  
-  .personal-nos .rounded-circle {
-    margin-bottom: 1rem;
-    padding: 4px;
-    width: 140px;
-    height: 140px;
-    border: #AFA3A6 5px solid;
-  }
+  min-width: 540px;
+  min-height: 500px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.top-nos {
+  display: flex;
+  align-items: flex-start;
+}
+
+.history-nos .title2-nos {
+  color: #e3901b;
+  font-size: 2rem;
+}
+
+.title-nos {
+  font-family: Branding;
+  font-size: 7rem;
+}
+
+.history-nos .text-nos {
+  text-align: justify;
+}
+
+.personal-nos {
+  padding-bottom: 3rem;
+  text-align: center;
+  background-color: #D5CACE;
+}
+
+.personal-nos .col-sm-4 {
+  font-family: Branding;
+}
+
+.personal-nos .rounded-circle {
+  margin-bottom: 1rem;
+  padding: 4px;
+  width: 140px;
+  height: 140px;
+  border: #AFA3A6 5px solid;
+}

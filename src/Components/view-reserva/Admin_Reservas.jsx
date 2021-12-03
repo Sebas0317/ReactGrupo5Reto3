@@ -181,10 +181,8 @@ export default function Admin_Reservas(){
                           onClick={()=>{
                             setIdReserva(reserva.id);setNomReserva(reserva.nombre);
                             setModal2(true)
-                          }}
-                          >
+                          }}>
                         </i>
-                        
                       </div>
                     </div>
                     <div className="card-body">
